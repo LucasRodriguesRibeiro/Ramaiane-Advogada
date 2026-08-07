@@ -1,0 +1,6 @@
+{
+  "name": "Advocacia Criminal 24h",
+  "description": "Site para escritório de advocacia criminalista construído dobra por dobra",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
