@@ -44,7 +44,7 @@ export const PracticeAreasFold: React.FC<PracticeAreasFoldProps> = ({ onOpenEmer
             <span>ÁREAS DE ATUAÇÃO</span>
           </div>
 
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#F7F7F5] tracking-tight">
+          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#F7F7F5] tracking-tight uppercase">
             ATUAÇÃO TÉCNICA E ESTRATÉGICA
           </h2>
         </div>

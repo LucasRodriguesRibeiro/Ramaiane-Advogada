@@ -53,8 +53,8 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) 
           </div>
 
           {/* Title */}
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#0B0B0C] tracking-tight">
-            Defesa em Crimes da Lei de Drogas
+          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#0B0B0C] tracking-tight uppercase">
+            DEFESA EM CRIMES DA LEI DE DROGAS
           </h2>
 
           {/* Text Paragraph */}
@@ -62,17 +62,17 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) 
             Atuação estratégica em casos envolvendo tráfico de drogas e associação para o tráfico, desde a prisão em flagrante e investigação até o processo, recursos e execução penal, com análise rigorosa das provas e da legalidade dos atos praticados.
           </p>
 
-          {/* Discrete Services Grid - 2 columns (em pares) */}
-          <div className="py-1 grid grid-cols-2 gap-2 sm:gap-2.5 max-w-xl w-full">
+          {/* Discrete Services List - 1 column (um embaixo do outro com mesma largura e altura) */}
+          <div className="flex flex-col space-y-3 max-w-xl w-full">
             {steps.map((step) => {
               const IconComponent = step.icon;
               return (
                 <div 
                   key={step.label}
-                  className="bg-[#18191B] text-[#F7F7F5] px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-md flex items-center space-x-2 sm:space-x-2.5 min-h-[42px] sm:min-h-[44px] w-full border border-[#2A2B2E] hover:border-[#B8BBC0]/60 hover:bg-[#202225] transition-all group shadow-xs"
+                  className="bg-[#18191B] text-[#F7F7F5] px-4 h-11 sm:h-12 rounded-lg flex items-center justify-center space-x-2.5 sm:space-x-3 w-full border border-[#2A2B2E] hover:border-[#B8BBC0]/60 hover:bg-[#202225] transition-all group shadow-xs"
                 >
                   <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-white transition-colors" />
-                  <span className="text-[10px] sm:text-xs font-medium tracking-wide uppercase text-[#F7F7F5] leading-tight">
+                  <span className="text-xs font-medium tracking-wider uppercase text-[#F7F7F5] leading-none text-center">
                     {step.label}
                   </span>
                 </div>

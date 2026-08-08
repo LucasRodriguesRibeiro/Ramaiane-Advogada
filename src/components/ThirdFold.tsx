@@ -37,7 +37,7 @@ export const ThirdFold: React.FC<ThirdFoldProps> = ({ onOpenEmergencyModal }) =>
             <span>SITUAÇÕES QUE EXIGEM ATUAÇÃO IMEDIATA</span>
           </div>
 
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#F7F7F5] tracking-tight">
+          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#F7F7F5] tracking-tight uppercase">
             QUANDO CADA DECISÃO IMPORTA.
           </h2>
 
