@@ -16,13 +16,21 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({ isOpen, onClose,
 
   if (!isOpen) return null;
 
-  const encodedWhatsAppUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(
-    `URGENTE - ATENDIMENTO CRIMINAL\n` +
-    `Nome: ${personName || 'Não informado'}\n` +
-    `Tipo de Ocorrência: ${urgencyType || 'Não informado'}\n` +
-    `Cidade/DP: ${city || 'Não informada'}\n` +
-    `Mensagem: Preciso de auxílio jurídico imediato para defesa criminal.`
-  )}`;
+  const buildWhatsAppMessage = () => {
+    const baseMessage = "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.";
+    const details: string[] = [];
+
+    if (personName.trim()) details.push(`Nome: ${personName.trim()}`);
+    if (urgencyType.trim()) details.push(`Tipo de Ocorrência: ${urgencyType.trim()}`);
+    if (city.trim()) details.push(`Cidade/DP: ${city.trim()}`);
+
+    if (details.length > 0) {
+      return `${baseMessage}\n\n${details.join('\n')}`;
+    }
+    return baseMessage;
+  };
+
+  const encodedWhatsAppUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fadeIn">

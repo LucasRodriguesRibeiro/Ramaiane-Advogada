@@ -22,7 +22,7 @@ export default function App() {
     oabNumber: "Advocacia Criminal Estratégica",
     phone: "(92) 99348-0017",
     whatsappNumber: "5592993480017",
-    whatsappMessage: "Olá Dra. Ramaiane, preciso de atendimento em advocacia criminal.",
+    whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
   };
 
   useEffect(() => {

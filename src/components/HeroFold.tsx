@@ -1,7 +1,7 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
-import dobra1Img from '../assets/images/dobra1.jpg';
-import dobra1MobileImg from '../assets/images/dobra1mobile.png';
+import dobra1Img from '../assets/images/novanovadobra1.png';
+import dobra1MobileImg from '../assets/images/novanovadobra1.png';
 
 interface HeroFoldProps {
   onOpenEmergencyModal: () => void;
@@ -17,7 +17,7 @@ export const HeroFold: React.FC<HeroFoldProps> = ({ onOpenEmergencyModal }) => {
         <img
           src={dobra1MobileImg}
           alt="Deyse Ramaiane - Advocacia Criminal"
-          className="block lg:hidden w-full h-full object-cover object-[68%_5%] scale-[1.55] sm:scale-[1.35] -translate-x-24 -translate-y-12 sm:-translate-x-16 sm:-translate-y-8 contrast-105 brightness-105 opacity-95 transition-all duration-300"
+          className="block lg:hidden w-full h-full object-cover object-[75%_5%] scale-[1.55] sm:scale-[1.35] -translate-x-2 -translate-y-12 sm:translate-x-0 sm:-translate-y-8 contrast-105 brightness-105 opacity-95 transition-all duration-300"
         />
 
         {/* Desktop Photo */}
