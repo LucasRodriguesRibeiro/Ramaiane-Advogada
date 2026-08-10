@@ -17,7 +17,7 @@ export const HeroFold: React.FC<HeroFoldProps> = ({ onOpenEmergencyModal }) => {
         <img
           src={dobra1MobileImg}
           alt="Deyse Ramaiane - Advocacia Criminal"
-          className="block lg:hidden w-full h-full object-cover object-[75%_5%] scale-[1.55] sm:scale-[1.35] -translate-x-2 -translate-y-12 sm:translate-x-0 sm:-translate-y-8 contrast-105 brightness-105 opacity-95 transition-all duration-300"
+          className="block lg:hidden w-full h-full object-cover object-[82%_5%] scale-[1.30] sm:scale-[1.18] translate-x-4 -translate-y-6 sm:translate-x-2 sm:-translate-y-4 contrast-105 brightness-105 opacity-95 transition-all duration-300"
         />
 
         {/* Desktop Photo */}
