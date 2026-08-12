@@ -70,10 +70,13 @@ export const FooterFold: React.FC<FooterFoldProps> = ({ onOpenEmergencyModal }) 
               <a href="#" className="hover:text-[#F7F7F5] transition-colors">Início</a>
             </li>
             <li>
-              <a href="#apresentacao" className="hover:text-[#F7F7F5] transition-colors">Sobre</a>
+              <a href="#apresentacao" className="hover:text-[#F7F7F5] transition-colors">Sobre Ramaiane</a>
             </li>
             <li>
-              <a href="#areas-de-atuacao" className="hover:text-[#F7F7F5] transition-colors">Áreas de Atuação</a>
+              <a href="#nucleo-criminal" className="hover:text-[#F7F7F5] transition-colors">Núcleo Criminal</a>
+            </li>
+            <li>
+              <a href="#nucleo-civel" className="hover:text-[#F7F7F5] transition-colors">Núcleo Cível</a>
             </li>
             <li>
               <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Como Funciona</a>

@@ -3,9 +3,9 @@ import { MessageCircle } from 'lucide-react';
 import { DobraHeaderNav } from './components/DobraHeaderNav';
 import { HeroFold } from './components/HeroFold';
 import { SecondFold } from './components/SecondFold';
-import { PracticeAreasFold } from './components/PracticeAreasFold';
-import { FourthFold } from './components/FourthFold';
 import { FifthFold } from './components/FifthFold';
+import { FourthFold } from './components/FourthFold';
+import { CivilCoreFold } from './components/CivilCoreFold';
 import { HowItWorksFold } from './components/HowItWorksFold';
 import { FinalCallFold } from './components/FinalCallFold';
 import { TestimonialsFold } from './components/TestimonialsFold';
@@ -57,16 +57,16 @@ export default function App() {
         {/* 1. Apresentação Profissional */}
         <SecondFold />
 
-        {/* 2. Áreas de Atuação */}
-        <PracticeAreasFold onOpenEmergencyModal={handleOpenModal} />
-
-        {/* 4. Destaque - Tráfico de Drogas */}
-        <FourthFold onOpenEmergencyModal={handleOpenModal} />
-
-        {/* 5. Atuações Especializadas (Médicos, Empresas, Crimes Digitais, Influenciadores) */}
+        {/* 2. Núcleo Criminal (Setores / Especialidades) */}
         <FifthFold onOpenEmergencyModal={handleOpenModal} />
 
-        {/* 6. Como Funciona o Atendimento */}
+        {/* 3. Destaque - Tráfico de Drogas */}
+        <FourthFold onOpenEmergencyModal={handleOpenModal} />
+
+        {/* 4. Núcleo Cível */}
+        <CivilCoreFold onOpenEmergencyModal={handleOpenModal} />
+
+        {/* 5. Como Funciona o Atendimento */}
         <HowItWorksFold onOpenEmergencyModal={handleOpenModal} />
 
         {/* 8. Chamada Final */}

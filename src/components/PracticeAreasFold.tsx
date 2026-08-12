@@ -23,7 +23,7 @@ export const PracticeAreasFold: React.FC<PracticeAreasFoldProps> = ({ onOpenEmer
   ];
 
   return (
-    <section id="areas-de-atuacao" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] overflow-hidden">
+    <section id="atuacao-tecnica" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] overflow-hidden">
       {/* Background Metallic Hourglass Image */}
       <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full z-0 opacity-15 pointer-events-none">
         <img

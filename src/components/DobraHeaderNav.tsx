@@ -14,8 +14,9 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
 
   const navItems = [
     { label: 'INÍCIO', href: '#' },
-    { label: 'SOBRE', href: '#apresentacao' },
-    { label: 'ÁREAS DE ATUAÇÃO', href: '#areas-de-atuacao' },
+    { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
+    { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
+    { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
     { label: 'COMO FUNCIONA', href: '#como-funciona' },
     { label: 'CONTATO', href: '#contato' },
   ];

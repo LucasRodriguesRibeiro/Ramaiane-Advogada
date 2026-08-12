@@ -1,7 +1,7 @@
 import React from 'react';
 import dobra2Img from '../assets/images/dobra2.jpeg';
 import assinaturaImg from '../assets/images/assinatura_transparente.png';
-import { Shield, Scale, Unlock, Landmark, Smartphone } from 'lucide-react';
+import { Shield, Scale, Unlock, Landmark, Smartphone, Stethoscope } from 'lucide-react';
 
 export const SecondFold: React.FC = () => {
   const quadroItems = [
@@ -26,9 +26,14 @@ export const SecondFold: React.FC = () => {
       icon: Landmark
     },
     {
-      title: "CRIMES DIGITAIS",
+      title: "CRIMES DIGITAIS E FRAUDES",
       desc: "Defesa e orientação em investigações e processos com repercussão criminal no ambiente digital.",
       icon: Smartphone
+    },
+    {
+      title: "DIREITO PENAL MÉDICO E DA SAÚDE",
+      desc: "Atuação estratégica na defesa de médicos, clínicas e instituições de saúde em investigações e processos com repercussão criminal.",
+      icon: Stethoscope
     }
   ];
 
@@ -63,31 +68,23 @@ export const SecondFold: React.FC = () => {
           {/* Paragraphs */}
           <div className="space-y-4 text-[#18191B] text-base leading-relaxed font-light">
             <p>
-              Há mais de uma década, atuo na advocacia criminal com uma abordagem pautada em técnica, estratégia e análise individualizada de cada caso.
+              Há mais de uma década, atuo na advocacia criminal com técnica, estratégia e análise individualizada de cada caso.
             </p>
             <p>
-              A defesa não começa apenas no processo. Muitas vezes, começa antes: na investigação, na prevenção de riscos e na definição da estratégia capaz de proteger direitos, liberdade e reputação.
-            </p>
-            <p>
-              Minha atuação acompanha cada caso de forma próxima, sigilosa e estratégica, desde os primeiros atos investigativos até processos, recursos e medidas perante os tribunais.
+              Minha atuação vai além da defesa tradicional, com foco na proteção de pessoas, profissionais, empresários e empresas diante de riscos e situações de natureza criminal.
             </p>
           </div>
 
           {/* Quadro: Areas / Focus Cards */}
-          <div className="pt-2 space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#74777C]">
-              ÁREAS DE ATUAÇÃO
-            </div>
+          <div className="pt-2">
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {quadroItems.map((item, idx) => {
+              {quadroItems.map((item) => {
                 const IconComponent = item.icon;
                 return (
                   <div 
                     key={item.title}
-                    className={`bg-[#FFFFFF] border border-[#B8BBC0]/50 p-4 rounded-md space-y-2 shadow-sm hover:border-[#0B0B0C]/40 transition-colors ${
-                      idx === 4 ? "sm:col-span-2" : ""
-                    }`}
+                    className="bg-[#FFFFFF] border border-[#B8BBC0]/50 p-4 rounded-md space-y-2 shadow-sm hover:border-[#0B0B0C]/40 transition-colors"
                   >
                     <div className="flex items-center space-x-2.5 text-[#0B0B0C]">
                       <IconComponent className="w-4 h-4 text-[#74777C]" />
