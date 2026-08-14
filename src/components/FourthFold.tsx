@@ -13,10 +13,11 @@ import {
 } from 'lucide-react';
 
 interface FourthFoldProps {
-  onOpenEmergencyModal: () => void;
+  onOpenEmergencyModal?: () => void;
+  onOpenDrugsModal?: () => void;
 }
 
-export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) => {
+export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, onOpenDrugsModal }) => {
   const steps = [
     { label: "Prisão em Flagrante", icon: Siren },
     { label: "Audiência de Custódia", icon: Gavel },
@@ -27,6 +28,14 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) 
     { label: "Recursos", icon: BookOpen },
     { label: "Execução Penal", icon: Unlock }
   ];
+
+  const handleOpenModal = () => {
+    if (onOpenDrugsModal) {
+      onOpenDrugsModal();
+    } else if (onOpenEmergencyModal) {
+      onOpenEmergencyModal();
+    }
+  };
 
   return (
     <section id="trafico-de-drogas" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-20 sm:py-28 font-sans-clean overflow-hidden">
@@ -69,10 +78,11 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) 
               return (
                 <div 
                   key={step.label}
-                  className="bg-[#18191B] text-[#F7F7F5] px-4 h-11 sm:h-12 rounded-lg flex items-center justify-center space-x-2.5 sm:space-x-3 w-full border border-[#2A2B2E] hover:border-[#B8BBC0]/60 hover:bg-[#202225] transition-all group shadow-xs"
+                  onClick={handleOpenModal}
+                  className="bg-[#18191B] text-[#F7F7F5] px-4 h-11 sm:h-12 rounded-lg flex items-center justify-center space-x-2.5 sm:space-x-3 w-full border border-[#2A2B2E] hover:border-[#CCA668]/60 hover:bg-[#202225] transition-all group shadow-xs cursor-pointer"
                 >
-                  <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-white transition-colors" />
-                  <span className="text-xs font-medium tracking-wider uppercase text-[#F7F7F5] leading-none text-center">
+                  <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-[#CCA668] transition-colors" />
+                  <span className="text-xs font-medium tracking-wider uppercase text-[#F7F7F5] leading-none text-center group-hover:text-white transition-colors">
                     {step.label}
                   </span>
                 </div>
@@ -83,7 +93,7 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal }) 
           {/* Action Button */}
           <div className="pt-2">
             <button
-              onClick={onOpenEmergencyModal}
+              onClick={handleOpenModal}
               className="silver-button w-full sm:w-auto px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer"
             >
               <span>AGENDAR ATENDIMENTO</span>

@@ -3,10 +3,32 @@ import { ArrowRight, PhoneCall } from 'lucide-react';
 import officeBgImg from '../assets/images/dobra1.jpg';
 
 interface FinalCallFoldProps {
-  onOpenEmergencyModal: () => void;
+  onOpenEmergencyModal?: () => void;
+  onOpenScheduleModal?: () => void;
+  onOpenUrgentModal?: () => void;
 }
 
-export const FinalCallFold: React.FC<FinalCallFoldProps> = ({ onOpenEmergencyModal }) => {
+export const FinalCallFold: React.FC<FinalCallFoldProps> = ({ 
+  onOpenEmergencyModal,
+  onOpenScheduleModal,
+  onOpenUrgentModal 
+}) => {
+  const handleSchedule = () => {
+    if (onOpenScheduleModal) {
+      onOpenScheduleModal();
+    } else if (onOpenEmergencyModal) {
+      onOpenEmergencyModal();
+    }
+  };
+
+  const handleUrgent = () => {
+    if (onOpenUrgentModal) {
+      onOpenUrgentModal();
+    } else if (onOpenEmergencyModal) {
+      onOpenEmergencyModal();
+    }
+  };
+
   return (
     <section className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-24 sm:py-32 font-sans-clean border-t border-[#18191B] overflow-hidden">
       {/* Subtle Background Image with Gradient Mask */}
@@ -37,13 +59,13 @@ export const FinalCallFold: React.FC<FinalCallFoldProps> = ({ onOpenEmergencyMod
 
         {/* Text paragraph */}
         <p className="text-[#B8BBC0] text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
-          Diante de uma situação criminal, cada decisão importa. O atendimento começa pela análise individualizada do caso e pela definição da estratégia jurídica adequada.
+          Diante de uma situação criminal, cada decisão importa. A atuação começa com uma análise individualizada do caso e a definição da estratégia jurídica adequada.
         </p>
 
         {/* CTA Buttons */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={onOpenEmergencyModal}
+            onClick={handleSchedule}
             className="silver-button w-full sm:w-auto px-9 py-4 rounded-md text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer shadow-lg"
           >
             <span>AGENDAR ATENDIMENTO</span>
@@ -51,7 +73,7 @@ export const FinalCallFold: React.FC<FinalCallFoldProps> = ({ onOpenEmergencyMod
           </button>
 
           <button
-            onClick={onOpenEmergencyModal}
+            onClick={handleUrgent}
             className="silver-outline-button w-full sm:w-auto px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer"
           >
             <PhoneCall className="w-4 h-4" />

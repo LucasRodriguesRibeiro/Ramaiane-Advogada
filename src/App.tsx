@@ -11,10 +11,18 @@ import { FinalCallFold } from './components/FinalCallFold';
 import { TestimonialsFold } from './components/TestimonialsFold';
 import { FooterFold } from './components/FooterFold';
 import { EmergencyModal } from './components/EmergencyModal';
+import { NucleoModal } from './components/NucleoModal';
+import { DrugsLawModal } from './components/DrugsLawModal';
+import { ScheduleAppointmentModal } from './components/ScheduleAppointmentModal';
+import { Urgent24hModal } from './components/Urgent24hModal';
 import { EmergencyContact } from './types';
 
 export default function App() {
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
+  const [isDrugsModalOpen, setIsDrugsModalOpen] = useState(false);
+  const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
+  const [isUrgentModalOpen, setIsUrgentModalOpen] = useState(false);
+  const [selectedNucleoId, setSelectedNucleoId] = useState<string | null>(null);
   const [showWhatsAppBalloon, setShowWhatsAppBalloon] = useState(false);
 
   const emergencyContact: EmergencyContact = {
@@ -42,6 +50,14 @@ export default function App() {
   }, []);
 
   const handleOpenModal = () => setIsEmergencyModalOpen(true);
+  const handleOpenNucleoModal = (nucleoId: string) => setSelectedNucleoId(nucleoId);
+  const handleCloseNucleoModal = () => setSelectedNucleoId(null);
+  const handleOpenDrugsModal = () => setIsDrugsModalOpen(true);
+  const handleCloseDrugsModal = () => setIsDrugsModalOpen(false);
+  const handleOpenScheduleModal = () => setIsScheduleModalOpen(true);
+  const handleCloseScheduleModal = () => setIsScheduleModalOpen(false);
+  const handleOpenUrgentModal = () => setIsUrgentModalOpen(true);
+  const handleCloseUrgentModal = () => setIsUrgentModalOpen(false);
 
   return (
     <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
@@ -58,10 +74,16 @@ export default function App() {
         <SecondFold />
 
         {/* 2. Núcleo Criminal (Setores / Especialidades) */}
-        <FifthFold onOpenEmergencyModal={handleOpenModal} />
+        <FifthFold 
+          onOpenEmergencyModal={handleOpenModal} 
+          onSelectNucleo={handleOpenNucleoModal} 
+        />
 
         {/* 3. Destaque - Tráfico de Drogas */}
-        <FourthFold onOpenEmergencyModal={handleOpenModal} />
+        <FourthFold 
+          onOpenEmergencyModal={handleOpenModal} 
+          onOpenDrugsModal={handleOpenDrugsModal}
+        />
 
         {/* 4. Núcleo Cível */}
         <CivilCoreFold onOpenEmergencyModal={handleOpenModal} />
@@ -70,7 +92,11 @@ export default function App() {
         <HowItWorksFold onOpenEmergencyModal={handleOpenModal} />
 
         {/* 8. Chamada Final */}
-        <FinalCallFold onOpenEmergencyModal={handleOpenModal} />
+        <FinalCallFold 
+          onOpenEmergencyModal={handleOpenModal}
+          onOpenScheduleModal={handleOpenScheduleModal}
+          onOpenUrgentModal={handleOpenUrgentModal}
+        />
 
         {/* 9. Depoimentos */}
         <TestimonialsFold onOpenEmergencyModal={handleOpenModal} />
@@ -97,10 +123,39 @@ export default function App() {
         </span>
       </a>
 
-      {/* Emergency / Contact Modal */}
+      {/* Emergency / Contact Modal (Generic / Urgent) */}
       <EmergencyModal
         isOpen={isEmergencyModalOpen}
         onClose={() => setIsEmergencyModalOpen(false)}
+        contact={emergencyContact}
+      />
+
+      {/* Specialized Nucleus Modal (Criminal Core) */}
+      <NucleoModal
+        nucleoId={selectedNucleoId}
+        isOpen={selectedNucleoId !== null}
+        onClose={handleCloseNucleoModal}
+        contact={emergencyContact}
+      />
+
+      {/* Specialized Drugs Law Modal (4ª Dobra) */}
+      <DrugsLawModal
+        isOpen={isDrugsModalOpen}
+        onClose={handleCloseDrugsModal}
+        contact={emergencyContact}
+      />
+
+      {/* Schedule Appointment 3-Step Modal (Final Call Fold) */}
+      <ScheduleAppointmentModal
+        isOpen={isScheduleModalOpen}
+        onClose={handleCloseScheduleModal}
+        contact={emergencyContact}
+      />
+
+      {/* 24h Urgent Modal (Final Call Fold) */}
+      <Urgent24hModal
+        isOpen={isUrgentModalOpen}
+        onClose={handleCloseUrgentModal}
         contact={emergencyContact}
       />
 
