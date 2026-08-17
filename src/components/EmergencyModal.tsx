@@ -204,14 +204,41 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
                 <option value="" disabled className="text-[#5A5D66] bg-[#0E0F12]">
                   Selecione a área
                 </option>
-                <option value="Defesa em Crimes da Lei de Drogas" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Defesa em Crimes da Lei de Drogas
+                <option value="Médicos, Clínicas e Instituições de Saúde" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Médicos, Clínicas e Instituições de Saúde
+                </option>
+                <option value="Pacientes e Vítimas de Erro Médico" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Pacientes e Vítimas de Erro Médico
                 </option>
                 <option value="Direito Penal Econômico e Empresarial" className="text-[#F7F7F5] bg-[#0E0F12]">
                   Direito Penal Econômico e Empresarial
                 </option>
+                <option value="Defesa em Crimes da Lei de Drogas" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Defesa em Crimes da Lei de Drogas
+                </option>
+                <option value="Produtores Rurais e Atividade Ambiental" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Produtores Rurais e Atividade Ambiental
+                </option>
                 <option value="Crimes Digitais e Fraudes Virtuais" className="text-[#F7F7F5] bg-[#0E0F12]">
                   Crimes Digitais e Fraudes Virtuais
+                </option>
+                <option value="Influenciadores e Criadores de Conteúdo" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Influenciadores e Criadores de Conteúdo
+                </option>
+                <option value="Gestores e Agentes Públicos" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Gestores e Agentes Públicos
+                </option>
+                <option value="Profissionais Liberais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Profissionais Liberais
+                </option>
+                <option value="Instituições Financeiras, Fintechs e Investidores" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Instituições Financeiras, Fintechs e Investidores
+                </option>
+                <option value="Estrangeiros e Empresas Internacionais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Estrangeiros e Empresas Internacionais
+                </option>
+                <option value="Policiais Militares e Forças de Segurança" className="text-[#F7F7F5] bg-[#0E0F12]">
+                  Policiais Militares e Forças de Segurança
                 </option>
                 <option value="Plantão Criminal 24h / Prisão em Flagrante" className="text-[#F7F7F5] bg-[#0E0F12]">
                   Plantão Criminal 24h / Prisão em Flagrante

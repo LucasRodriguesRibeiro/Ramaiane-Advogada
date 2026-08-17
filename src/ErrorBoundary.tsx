@@ -37,9 +37,16 @@ export class ErrorBoundary extends Component<Props, State> {
           <h1 className="font-serif-title text-2xl sm:text-3xl font-light uppercase tracking-tight mb-4">
             Deyse Ramaiane Advocacia Criminal
           </h1>
-          <p className="text-sm text-[#B8BBC0] mb-6 max-w-md">
-            Ocorreu um erro temporário ao carregar a página. Clique abaixo para reiniciar a navegação.
+          <p className="text-sm text-[#B8BBC0] mb-4 max-w-md">
+            Ocorreu um erro temporário ao carregar a página.
           </p>
+          {this.state.error && (
+            <pre className="bg-[#18191B] p-4 rounded text-xs text-red-400 mb-6 max-w-2xl overflow-auto text-left border border-red-900/50">
+              {this.state.error.toString()}
+              {'\n'}
+              {this.state.error.stack}
+            </pre>
+          )}
           <button
             onClick={() => window.location.reload()}
             className="px-6 py-3 border border-[#F7F7F5]/80 hover:bg-white/10 text-[#F7F7F5] rounded-sm text-xs uppercase tracking-widest font-semibold transition-all"

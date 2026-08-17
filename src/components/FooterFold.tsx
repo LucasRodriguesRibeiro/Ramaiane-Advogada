@@ -6,13 +6,18 @@ import {
   MapPin,
   Mail,
   ArrowUp,
+  Lock,
 } from 'lucide-react';
 
 interface FooterFoldProps {
   onOpenEmergencyModal: () => void;
+  onOpenAdminAuth?: () => void;
 }
 
-export const FooterFold: React.FC<FooterFoldProps> = ({ onOpenEmergencyModal }) => {
+export const FooterFold: React.FC<FooterFoldProps> = ({ 
+  onOpenEmergencyModal,
+  onOpenAdminAuth
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -79,6 +84,9 @@ export const FooterFold: React.FC<FooterFoldProps> = ({ onOpenEmergencyModal }) 
               <a href="#nucleo-civel" className="hover:text-[#F7F7F5] transition-colors">Núcleo Cível</a>
             </li>
             <li>
+              <a href="#blog" className="hover:text-[#F7F7F5] transition-colors">Blog</a>
+            </li>
+            <li>
               <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Como Funciona</a>
             </li>
             <li>
@@ -120,9 +128,21 @@ export const FooterFold: React.FC<FooterFoldProps> = ({ onOpenEmergencyModal }) 
       <div className="bg-[#050506] border-t border-[#18191B] py-6 px-6 sm:px-10 lg:px-12 text-xs text-[#9DA0A6] text-center leading-relaxed font-light">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#9DA0A6] gap-2">
-            <span>
-              © {new Date().getFullYear()} Deyse Ramaiane Advocacia Criminal. Todos os direitos reservados.
-            </span>
+            <div className="flex items-center space-x-2">
+              <span>
+                © {new Date().getFullYear()} Deyse Ramaiane Advocacia Criminal. Todos os direitos reservados.
+              </span>
+              {onOpenAdminAuth && (
+                <button
+                  onClick={onOpenAdminAuth}
+                  className="opacity-25 hover:opacity-100 hover:text-[#CCA668] transition-all p-1 rounded cursor-pointer"
+                  title="Acesso da Advogada"
+                  aria-label="Acesso Restrito"
+                >
+                  <Lock className="w-3 h-3" />
+                </button>
+              )}
+            </div>
             <button
               onClick={scrollToTop}
               className="flex items-center space-x-1 text-[#D1D4D9] hover:text-[#F7F7F5] transition-colors cursor-pointer uppercase text-xs tracking-wider"

@@ -7,6 +7,8 @@ import { FifthFold } from './components/FifthFold';
 import { FourthFold } from './components/FourthFold';
 import { CivilCoreFold } from './components/CivilCoreFold';
 import { HowItWorksFold } from './components/HowItWorksFold';
+import { BlogFold } from './components/BlogFold';
+import { ArticlePage } from './components/ArticlePage';
 import { FinalCallFold } from './components/FinalCallFold';
 import { TestimonialsFold } from './components/TestimonialsFold';
 import { FooterFold } from './components/FooterFold';
@@ -16,6 +18,8 @@ import { DrugsLawModal } from './components/DrugsLawModal';
 import { ScheduleAppointmentModal } from './components/ScheduleAppointmentModal';
 import { Urgent24hModal } from './components/Urgent24hModal';
 import { EmergencyContact } from './types';
+import { BlogArticle } from './types/blog';
+import { getBlogArticles } from './services/firebase';
 
 export default function App() {
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
@@ -25,12 +29,76 @@ export default function App() {
   const [selectedNucleoId, setSelectedNucleoId] = useState<string | null>(null);
   const [showWhatsAppBalloon, setShowWhatsAppBalloon] = useState(false);
 
+  // Estados de Artigos e Navegação por URL
+  const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
+  const [currentArticle, setCurrentArticle] = useState<BlogArticle | null>(null);
+
+  // Estados de Gestão do Blog (Acesso Discreto)
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [isBlogAuthModalOpen, setIsBlogAuthModalOpen] = useState(false);
+  const [isBlogAdminModalOpen, setIsBlogAdminModalOpen] = useState(false);
+
   const emergencyContact: EmergencyContact = {
     lawyerName: "Ramaiane Advogada Criminal",
     oabNumber: "Advocacia Criminal Estratégica",
     phone: "(92) 99348-0017",
     whatsappNumber: "5592993480017",
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
+  };
+
+  // Carrega lista de artigos e sincroniza com a URL atual (ex: /artigo/nome-do-artigo ou /nome-do-artigo)
+  useEffect(() => {
+    const initArticlesAndRouting = async () => {
+      const items = await getBlogArticles();
+      setAllArticles(items);
+
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+      const parts = path.split('/');
+      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
+
+      if (slugToCheck) {
+        const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
+        if (found) {
+          setCurrentArticle(found);
+        }
+      }
+    };
+
+    initArticlesAndRouting();
+
+    const handlePopState = async () => {
+      const items = await getBlogArticles();
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+      const parts = path.split('/');
+      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
+
+      if (slugToCheck) {
+        const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
+        if (found) {
+          setCurrentArticle(found);
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          return;
+        }
+      }
+      setCurrentArticle(null);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleSelectArticle = (article: BlogArticle) => {
+    setCurrentArticle(article);
+    const newPath = `/artigo/${article.slug}`;
+    window.history.pushState({ slug: article.slug }, '', newPath);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
+  const handleNavigateHome = () => {
+    setCurrentArticle(null);
+    window.history.pushState({}, '', '/');
+    document.title = 'Deyse Ramaiane | Advocacia Criminal Estratégica';
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   useEffect(() => {
@@ -58,6 +126,41 @@ export default function App() {
   const handleCloseScheduleModal = () => setIsScheduleModalOpen(false);
   const handleOpenUrgentModal = () => setIsUrgentModalOpen(true);
   const handleCloseUrgentModal = () => setIsUrgentModalOpen(false);
+  const handleOpenBlogAdminAuth = () => setIsBlogAuthModalOpen(true);
+
+  // Se um artigo estiver aberto, exibe a página dedicada do artigo
+  if (currentArticle) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
+        <ArticlePage
+          article={currentArticle}
+          allArticles={allArticles}
+          onNavigateHome={handleNavigateHome}
+          onSelectArticle={handleSelectArticle}
+          onOpenEmergencyModal={handleOpenModal}
+          onOpenAdminAuth={handleOpenBlogAdminAuth}
+          contact={emergencyContact}
+        />
+
+        {/* Modais Globais de Atendimento */}
+        <EmergencyModal
+          isOpen={isEmergencyModalOpen}
+          onClose={() => setIsEmergencyModalOpen(false)}
+          contact={emergencyContact}
+        />
+        <ScheduleAppointmentModal
+          isOpen={isScheduleModalOpen}
+          onClose={handleCloseScheduleModal}
+          contact={emergencyContact}
+        />
+        <Urgent24hModal
+          isOpen={isUrgentModalOpen}
+          onClose={handleCloseUrgentModal}
+          contact={emergencyContact}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
@@ -91,6 +194,19 @@ export default function App() {
         {/* 5. Como Funciona o Atendimento */}
         <HowItWorksFold onOpenEmergencyModal={handleOpenModal} />
 
+        {/* 6. Blog & Artigos Jurídicos Estratégicos */}
+        <BlogFold 
+          contact={emergencyContact}
+          onOpenEmergencyModal={handleOpenModal}
+          isAdminAuthenticated={isAdminAuthenticated}
+          setIsAdminAuthenticated={setIsAdminAuthenticated}
+          isAuthModalOpen={isBlogAuthModalOpen}
+          setIsAuthModalOpen={setIsBlogAuthModalOpen}
+          isAdminModalOpen={isBlogAdminModalOpen}
+          setIsAdminModalOpen={setIsBlogAdminModalOpen}
+          onSelectArticle={handleSelectArticle}
+        />
+
         {/* 8. Chamada Final */}
         <FinalCallFold 
           onOpenEmergencyModal={handleOpenModal}
@@ -102,8 +218,11 @@ export default function App() {
         <TestimonialsFold onOpenEmergencyModal={handleOpenModal} />
       </main>
 
-      {/* Rodapé */}
-      <FooterFold onOpenEmergencyModal={handleOpenModal} />
+      {/* Rodapé com botão de cadeado discreto */}
+      <FooterFold 
+        onOpenEmergencyModal={handleOpenModal}
+        onOpenAdminAuth={handleOpenBlogAdminAuth}
+      />
 
       {/* Floating WhatsApp Balloon (Mobile & Desktop - Aparece após a 1ª dobra) */}
       <a

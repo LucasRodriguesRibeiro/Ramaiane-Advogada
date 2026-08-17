@@ -219,26 +219,56 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                     <option value="" disabled className="text-[#5A5D66] bg-[#0E0F12]">
                       Selecione a área
                     </option>
-                    <option value="Defesa em Crimes da Lei de Drogas" className="text-[#F7F7F5] bg-[#0E0F12]">
-                      Defesa em Crimes da Lei de Drogas
+                    <option value="Médicos, Clínicas e Instituições de Saúde" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Médicos, Clínicas e Instituições de Saúde
+                    </option>
+                    <option value="Pacientes e Vítimas de Erro Médico" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Pacientes e Vítimas de Erro Médico
                     </option>
                     <option value="Direito Penal Econômico e Empresarial" className="text-[#F7F7F5] bg-[#0E0F12]">
                       Direito Penal Econômico e Empresarial
                     </option>
-                    <option value="Crimes Digitais e Virtuais" className="text-[#F7F7F5] bg-[#0E0F12]">
-                      Crimes Digitais e Virtuais
+                    <option value="Defesa em Crimes da Lei de Drogas" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Defesa em Crimes da Lei de Drogas
                     </option>
-                    <option value="Plantão e Prisão em Flagrante 24h" className="text-[#F7F7F5] bg-[#0E0F12]">
-                      Plantão e Prisão em Flagrante 24h
+                    <option value="Produtores Rurais e Atividade Ambiental" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Produtores Rurais e Atividade Ambiental
+                    </option>
+                    <option value="Crimes Digitais e Fraudes Virtuais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Crimes Digitais e Fraudes Virtuais
+                    </option>
+                    <option value="Influenciadores e Criadores de Conteúdo" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Influenciadores e Criadores de Conteúdo
+                    </option>
+                    <option value="Gestores e Agentes Públicos" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Gestores e Agentes Públicos
+                    </option>
+                    <option value="Profissionais Liberais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Profissionais Liberais
+                    </option>
+                    <option value="Instituições Financeiras, Fintechs e Investidores" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Instituições Financeiras, Fintechs e Investidores
+                    </option>
+                    <option value="Estrangeiros e Empresas Internacionais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Estrangeiros e Empresas Internacionais
+                    </option>
+                    <option value="Policiais Militares e Forças de Segurança" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Policiais Militares e Forças de Segurança
+                    </option>
+                    <option value="Plantão Criminal 24h / Prisão em Flagrante" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Plantão Criminal 24h / Prisão em Flagrante
                     </option>
                     <option value="Audiência de Custódia e Habeas Corpus" className="text-[#F7F7F5] bg-[#0E0F12]">
                       Audiência de Custódia e Habeas Corpus
                     </option>
+                    <option value="Defesa em Inquéritos e Operações Policiais" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Defesa em Inquéritos e Operações Policiais
+                    </option>
                     <option value="Advocacia Cível Estratégica" className="text-[#F7F7F5] bg-[#0E0F12]">
                       Advocacia Cível Estratégica
                     </option>
-                    <option value="Outra Área Jurídica" className="text-[#F7F7F5] bg-[#0E0F12]">
-                      Outra Área Jurídica
+                    <option value="Outra Área de Atuação" className="text-[#F7F7F5] bg-[#0E0F12]">
+                      Outra Área de Atuação
                     </option>
                   </select>
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#CCA668]">
