@@ -7,7 +7,7 @@ import { FifthFold } from './components/FifthFold';
 import { FourthFold } from './components/FourthFold';
 import { CivilCoreFold } from './components/CivilCoreFold';
 import { HowItWorksFold } from './components/HowItWorksFold';
-import { BlogFold } from './components/BlogFold';
+import { BlogPage } from './components/BlogPage';
 import { ArticlePage } from './components/ArticlePage';
 import { FinalCallFold } from './components/FinalCallFold';
 import { TestimonialsFold } from './components/TestimonialsFold';
@@ -29,9 +29,10 @@ export default function App() {
   const [selectedNucleoId, setSelectedNucleoId] = useState<string | null>(null);
   const [showWhatsAppBalloon, setShowWhatsAppBalloon] = useState(false);
 
-  // Estados de Artigos e Navegação por URL
+  // Estados de Artigos e Navegação por URL / Página
   const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
   const [currentArticle, setCurrentArticle] = useState<BlogArticle | null>(null);
+  const [isBlogPageActive, setIsBlogPageActive] = useState<boolean>(false);
 
   // Estados de Gestão do Blog (Acesso Discreto)
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
@@ -46,7 +47,7 @@ export default function App() {
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
   };
 
-  // Carrega lista de artigos e sincroniza com a URL atual (ex: /artigo/nome-do-artigo ou /nome-do-artigo)
+  // Carrega lista de artigos e sincroniza com a URL atual (ex: /blog ou /artigo/nome-do-artigo)
   useEffect(() => {
     const initArticlesAndRouting = async () => {
       const items = await getBlogArticles();
@@ -54,12 +55,19 @@ export default function App() {
 
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
       const parts = path.split('/');
-      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
 
-      if (slugToCheck) {
-        const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
-        if (found) {
-          setCurrentArticle(found);
+      if (parts[0] === 'blog') {
+        setIsBlogPageActive(true);
+        setCurrentArticle(null);
+        document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+      } else {
+        const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
+        if (slugToCheck) {
+          const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
+          if (found) {
+            setCurrentArticle(found);
+            setIsBlogPageActive(false);
+          }
         }
       }
     };
@@ -70,17 +78,29 @@ export default function App() {
       const items = await getBlogArticles();
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
       const parts = path.split('/');
-      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
 
+      if (parts[0] === 'blog') {
+        setIsBlogPageActive(true);
+        setCurrentArticle(null);
+        document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+
+      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
       if (slugToCheck) {
         const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
         if (found) {
           setCurrentArticle(found);
+          setIsBlogPageActive(false);
           window.scrollTo({ top: 0, behavior: 'instant' });
           return;
         }
       }
+
+      setIsBlogPageActive(false);
       setCurrentArticle(null);
+      document.title = 'Deyse Ramaiane | Advocacia Criminal Estratégica';
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -89,13 +109,23 @@ export default function App() {
 
   const handleSelectArticle = (article: BlogArticle) => {
     setCurrentArticle(article);
+    setIsBlogPageActive(false);
     const newPath = `/artigo/${article.slug}`;
     window.history.pushState({ slug: article.slug }, '', newPath);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
+  const handleNavigateBlog = () => {
+    setCurrentArticle(null);
+    setIsBlogPageActive(true);
+    window.history.pushState({ page: 'blog' }, '', '/blog');
+    document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   const handleNavigateHome = () => {
     setCurrentArticle(null);
+    setIsBlogPageActive(false);
     window.history.pushState({}, '', '/');
     document.title = 'Deyse Ramaiane | Advocacia Criminal Estratégica';
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -128,7 +158,7 @@ export default function App() {
   const handleCloseUrgentModal = () => setIsUrgentModalOpen(false);
   const handleOpenBlogAdminAuth = () => setIsBlogAuthModalOpen(true);
 
-  // Se um artigo estiver aberto, exibe a página dedicada do artigo
+  // 1. Rota: Página Dedicada de Artigo Específico (/artigo/slug)
   if (currentArticle) {
     return (
       <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
@@ -142,7 +172,7 @@ export default function App() {
           contact={emergencyContact}
         />
 
-        {/* Modais Globais de Atendimento */}
+        {/* Modais Globais */}
         <EmergencyModal
           isOpen={isEmergencyModalOpen}
           onClose={() => setIsEmergencyModalOpen(false)}
@@ -162,11 +192,54 @@ export default function App() {
     );
   }
 
+  // 2. Rota: Página Dedicada do Blog (/blog)
+  if (isBlogPageActive) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
+        <BlogPage
+          contact={emergencyContact}
+          onNavigateHome={handleNavigateHome}
+          onSelectArticle={handleSelectArticle}
+          onOpenEmergencyModal={handleOpenModal}
+          onOpenAdminAuth={handleOpenBlogAdminAuth}
+          isAdminAuthenticated={isAdminAuthenticated}
+          setIsAdminAuthenticated={setIsAdminAuthenticated}
+          isAuthModalOpen={isBlogAuthModalOpen}
+          setIsAuthModalOpen={setIsBlogAuthModalOpen}
+          isAdminModalOpen={isBlogAdminModalOpen}
+          setIsAdminModalOpen={setIsBlogAdminModalOpen}
+        />
+
+        {/* Modais Globais */}
+        <EmergencyModal
+          isOpen={isEmergencyModalOpen}
+          onClose={() => setIsEmergencyModalOpen(false)}
+          contact={emergencyContact}
+        />
+        <ScheduleAppointmentModal
+          isOpen={isScheduleModalOpen}
+          onClose={handleCloseScheduleModal}
+          contact={emergencyContact}
+        />
+        <Urgent24hModal
+          isOpen={isUrgentModalOpen}
+          onClose={handleCloseUrgentModal}
+          contact={emergencyContact}
+        />
+      </div>
+    );
+  }
+
+  // 3. Rota: Página Principal / Landing Page (Sem o Blog no meio)
   return (
     <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
       
       {/* Header Navigation Bar */}
-      <DobraHeaderNav onOpenEmergencyModal={handleOpenModal} />
+      <DobraHeaderNav 
+        onOpenEmergencyModal={handleOpenModal} 
+        onNavigateBlog={handleNavigateBlog}
+        onNavigateHome={handleNavigateHome}
+      />
 
       {/* Main Content Sections */}
       <main className="flex-1 w-full">
@@ -194,19 +267,6 @@ export default function App() {
         {/* 5. Como Funciona o Atendimento */}
         <HowItWorksFold onOpenEmergencyModal={handleOpenModal} />
 
-        {/* 6. Blog & Artigos Jurídicos Estratégicos */}
-        <BlogFold 
-          contact={emergencyContact}
-          onOpenEmergencyModal={handleOpenModal}
-          isAdminAuthenticated={isAdminAuthenticated}
-          setIsAdminAuthenticated={setIsAdminAuthenticated}
-          isAuthModalOpen={isBlogAuthModalOpen}
-          setIsAuthModalOpen={setIsBlogAuthModalOpen}
-          isAdminModalOpen={isBlogAdminModalOpen}
-          setIsAdminModalOpen={setIsBlogAdminModalOpen}
-          onSelectArticle={handleSelectArticle}
-        />
-
         {/* 8. Chamada Final */}
         <FinalCallFold 
           onOpenEmergencyModal={handleOpenModal}
@@ -218,10 +278,12 @@ export default function App() {
         <TestimonialsFold onOpenEmergencyModal={handleOpenModal} />
       </main>
 
-      {/* Rodapé com botão de cadeado discreto */}
+      {/* Rodapé com botão de cadeado discreto e link de navegação para o Blog */}
       <FooterFold 
         onOpenEmergencyModal={handleOpenModal}
         onOpenAdminAuth={handleOpenBlogAdminAuth}
+        onNavigateBlog={handleNavigateBlog}
+        onNavigateHome={handleNavigateHome}
       />
 
       {/* Floating WhatsApp Balloon (Mobile & Desktop - Aparece após a 1ª dobra) */}

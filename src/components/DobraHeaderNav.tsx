@@ -4,10 +4,14 @@ import logoImg from '../assets/images/logoadvogada.png';
 
 interface DobraHeaderNavProps {
   onOpenEmergencyModal: () => void;
+  onNavigateBlog?: () => void;
+  onNavigateHome?: () => void;
 }
 
 export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
   onOpenEmergencyModal,
+  onNavigateBlog,
+  onNavigateHome
 }) => {
   const [activeTab, setActiveTab] = useState('INÍCIO');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -17,17 +21,37 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
     { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
     { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
-    { label: 'BLOG', href: '#blog' },
+    { label: 'BLOG', href: '/blog' },
     { label: 'COMO FUNCIONA', href: '#como-funciona' },
     { label: 'CONTATO', href: '#contato' },
   ];
+
+  const handleNavClick = (item: { label: string; href: string }, e: React.MouseEvent) => {
+    setActiveTab(item.label);
+    if (item.label === 'BLOG' && onNavigateBlog) {
+      e.preventDefault();
+      onNavigateBlog();
+    } else if (item.label === 'INÍCIO' && onNavigateHome) {
+      e.preventDefault();
+      onNavigateHome();
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0B0B0C]/95 backdrop-blur-md border-b border-[#18191B] py-2.5 sm:py-3 transition-all duration-300 font-sans-clean">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[64px]">
         
         {/* Brand Logo Image */}
-        <a href="#" className="flex items-center group shrink-0 py-0.5">
+        <a 
+          href="#" 
+          onClick={(e) => {
+            if (onNavigateHome) {
+              e.preventDefault();
+              onNavigateHome();
+            }
+          }}
+          className="flex items-center group shrink-0 py-0.5"
+        >
           <img
             src={logoImg}
             alt="Deyse Ramaiane Advocacia Criminal"
@@ -41,7 +65,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setActiveTab(item.label)}
+              onClick={(e) => handleNavClick(item, e)}
               className={`relative py-1 transition-colors duration-200 hover:text-white ${
                 activeTab === item.label ? 'text-white font-semibold' : 'text-[#B8BBC0]'
               }`}
@@ -84,9 +108,9 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => {
-                  setActiveTab(item.label);
+                onClick={(e) => {
                   setMobileMenuOpen(false);
+                  handleNavClick(item, e);
                 }}
                 className={`w-full block text-xs font-semibold tracking-widest py-2.5 border-b border-[#18191B]/50 uppercase transition-colors ${
                   activeTab === item.label ? 'text-white pl-2 border-l-2 border-[#B8BBC0]' : 'text-slate-300 hover:text-white'

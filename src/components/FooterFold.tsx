@@ -12,11 +12,15 @@ import {
 interface FooterFoldProps {
   onOpenEmergencyModal: () => void;
   onOpenAdminAuth?: () => void;
+  onNavigateBlog?: () => void;
+  onNavigateHome?: () => void;
 }
 
 export const FooterFold: React.FC<FooterFoldProps> = ({ 
   onOpenEmergencyModal,
-  onOpenAdminAuth
+  onOpenAdminAuth,
+  onNavigateBlog,
+  onNavigateHome
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -51,7 +55,16 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
         
         {/* Column 1: Brand & Lawyer Info */}
         <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
-          <a href="#" className="flex items-center justify-center md:justify-start group">
+          <a 
+            href="#" 
+            onClick={(e) => {
+              if (onNavigateHome) {
+                e.preventDefault();
+                onNavigateHome();
+              }
+            }}
+            className="flex items-center justify-center md:justify-start group"
+          >
             <img
               src={logoImg}
               alt="Deyse Ramaiane Advocacia Criminal Logo"
@@ -72,7 +85,18 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           </h4>
           <ul className="space-y-2.5 text-sm text-[#D1D4D9] flex flex-col items-center md:items-start">
             <li>
-              <a href="#" className="hover:text-[#F7F7F5] transition-colors">Início</a>
+              <a 
+                href="#" 
+                onClick={(e) => {
+                  if (onNavigateHome) {
+                    e.preventDefault();
+                    onNavigateHome();
+                  }
+                }}
+                className="hover:text-[#F7F7F5] transition-colors"
+              >
+                Início
+              </a>
             </li>
             <li>
               <a href="#apresentacao" className="hover:text-[#F7F7F5] transition-colors">Sobre Ramaiane</a>
@@ -84,7 +108,18 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               <a href="#nucleo-civel" className="hover:text-[#F7F7F5] transition-colors">Núcleo Cível</a>
             </li>
             <li>
-              <a href="#blog" className="hover:text-[#F7F7F5] transition-colors">Blog</a>
+              <a 
+                href="/blog" 
+                onClick={(e) => {
+                  if (onNavigateBlog) {
+                    e.preventDefault();
+                    onNavigateBlog();
+                  }
+                }}
+                className="hover:text-[#CCA668] transition-colors"
+              >
+                Blog
+              </a>
             </li>
             <li>
               <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Como Funciona</a>
