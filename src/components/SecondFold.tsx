@@ -24,27 +24,26 @@ export const SecondFold: React.FC = () => {
         <div className="lg:col-span-7 space-y-8 text-left">
           
           {/* Header */}
-          <div className="space-y-3">
-            <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#74777C] uppercase font-semibold">
-              <span className="w-8 h-[1px] bg-[#74777C]"></span>
-              <span>SOBRE RAMAIANE</span>
-            </div>
+          <div className="space-y-3 text-center lg:text-left">
+            <h2 className="text-xs tracking-[0.25em] text-[#74777C] uppercase font-semibold text-center lg:text-left">
+              SOBRE RAMAIANE
+            </h2>
           </div>
 
           {/* Paragraphs */}
           <div className="space-y-4 text-[#18191B] text-base sm:text-lg leading-relaxed font-light">
             <p>
-              Há mais de uma década, atuo na advocacia criminal com técnica, estratégia e análise individualizada de cada caso.
+              Há mais de uma década, atuo na advocacia com técnica, estratégia e análise individualizada de cada caso.
             </p>
             <p>
-              Minha atuação vai além da defesa tradicional, com foco na proteção de pessoas, profissionais, empresários e empresas diante de riscos e situações de natureza criminal.
+              Minha atuação é pautada pela proteção de pessoas, profissionais e empresas, com soluções jurídicas construídas de acordo com as particularidades e os desafios de cada situação.
             </p>
           </div>
 
           {/* Quote & Signature Block */}
           <div className="pt-6 border-t border-[#B8BBC0]/50 space-y-4">
             <blockquote className="font-serif-title italic text-lg sm:text-xl text-[#0B0B0C] leading-snug">
-              “Cada caso exige mais do que uma defesa. Exige estratégia.”
+              “Cada caso exige mais do que uma solução. Exige estratégia.”
             </blockquote>
             
             <div className="pt-2 flex flex-col items-start relative">

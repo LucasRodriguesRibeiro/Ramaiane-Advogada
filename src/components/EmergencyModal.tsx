@@ -95,13 +95,13 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-lg my-6 bg-[#0E0F12] border border-[#CCA668]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-lg my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 text-[#CCA668] hover:text-[#F7F7F5] hover:bg-[#1A1C22] rounded-full transition-colors z-20 cursor-pointer"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 text-[#B8BBC0] hover:text-[#F7F7F5] hover:bg-[#1A1C22] rounded-full transition-colors z-20 cursor-pointer"
           aria-label="Fechar"
         >
           <X className="w-5 h-5" />
@@ -111,7 +111,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
         <div className="p-6 sm:p-7 pb-4 border-b border-[#252830]/80">
           <div className="flex items-center space-x-3.5">
             {/* Avatar of Dra. Ramaiane */}
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#CCA668]/70 shrink-0 shadow-md bg-[#18191B]">
+            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#B8BBC0]/60 shrink-0 shadow-md bg-[#18191B]">
               <img
                 src={dobra2Img}
                 alt="Dra. Ramaiane"
@@ -133,8 +133,8 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
         <form onSubmit={handleSubmit} className="p-6 sm:p-7 space-y-4 max-h-[calc(85vh-140px)] overflow-y-auto custom-scrollbar">
           
           {/* Info Banner */}
-          <div className="flex items-start space-x-3 p-3.5 bg-[#14151B] border border-[#CCA668]/20 rounded-lg text-left">
-            <ShieldCheck className="w-5 h-5 text-[#CCA668] shrink-0 mt-0.5" />
+          <div className="flex items-start space-x-3 p-3.5 bg-[#14151B] border border-[#B8BBC0]/20 rounded-lg text-left">
+            <ShieldCheck className="w-5 h-5 text-[#B8BBC0] shrink-0 mt-0.5" />
             <p className="text-xs text-[#B8BBC0] font-light leading-relaxed">
               Preencha os dados abaixo para falar diretamente com a Dra. Ramaiane. Responderemos o mais breve possível.
             </p>
@@ -151,7 +151,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
               placeholder="Ex.: João da Silva"
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
             />
           </div>
 
@@ -165,7 +165,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Ex.: joao@email.com"
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
             />
           </div>
 
@@ -175,15 +175,15 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               NÚMERO PARA CONTATO (WHATSAPP)
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#CCA668]">
-                <MessageCircle className="w-4 h-4 fill-[#CCA668]/20" />
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
+                <MessageCircle className="w-4 h-4" />
               </div>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="(92) 90000-0000"
-                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -197,7 +197,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               <select
                 value={practiceArea}
                 onChange={(e) => setPracticeArea(e.target.value)}
-                className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
+                className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
                   practiceArea === '' ? 'text-[#5A5D66]' : 'text-[#F7F7F5]'
                 }`}
               >
@@ -256,7 +256,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
                   Outra Área de Atuação
                 </option>
               </select>
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#CCA668]">
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#B8BBC0]">
                 <ChevronDown className="w-4 h-4" />
               </div>
             </div>
@@ -271,7 +271,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               <select
                 value={contactReason}
                 onChange={(e) => setContactReason(e.target.value)}
-                className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
+                className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
                   contactReason === '' ? 'text-[#5A5D66]' : 'text-[#F7F7F5]'
                 }`}
               >
@@ -297,7 +297,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
                   Outro Motivo
                 </option>
               </select>
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#CCA668]">
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#B8BBC0]">
                 <ChevronDown className="w-4 h-4" />
               </div>
             </div>
@@ -313,13 +313,13 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               value={situation}
               onChange={(e) => setSituation(e.target.value)}
               placeholder="Descreva brevemente a sua situação"
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
             />
           </div>
 
           {/* Security Note */}
           <div className="flex items-center space-x-2 text-[10.5px] text-[#B8BBC0] pt-1">
-            <Lock className="w-3.5 h-3.5 text-[#CCA668] shrink-0" />
+            <Lock className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0" />
             <span className="leading-snug">
               Seus dados estão protegidos e serão utilizados apenas para contato relacionado ao seu atendimento.
             </span>
@@ -329,7 +329,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
           <div className="pt-2 space-y-2.5">
             <button
               type="submit"
-              className="w-full py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2.5"
+              className="w-full py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2.5 shadow-lg"
             >
               <MessageCircle className="w-4 h-4 fill-current shrink-0" />
               <span>ENVIAR MENSAGEM</span>
@@ -339,9 +339,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
             <button
               type="button"
               onClick={handleDirectEmergency}
-              className="w-full py-2.5 px-4 bg-[#14151B] hover:bg-[#1A1C24] border border-[#2D3039] hover:border-[#CCA668]/50 rounded-md text-xs text-[#CCA668] hover:text-[#DFB77C] font-medium flex items-center justify-center space-x-2 transition-all cursor-pointer"
+              className="w-full py-2.5 px-4 bg-[#14151B] hover:bg-[#1A1C24] border border-[#2D3039] hover:border-[#B8BBC0]/50 rounded-md text-xs text-[#B8BBC0] hover:text-white font-medium flex items-center justify-center space-x-2 transition-all cursor-pointer"
             >
-              <PhoneCall className="w-3.5 h-3.5 text-[#CCA668]" />
+              <PhoneCall className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Urgência criminal? Falar agora via WhatsApp</span>
             </button>
           </div>
@@ -349,15 +349,15 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
           {/* Trust Badges */}
           <div className="pt-3 border-t border-[#252830] grid grid-cols-3 gap-2 text-center text-[10px] sm:text-[11px] text-[#B8BBC0]">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Shield className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Atendimento sigiloso</span>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Scale className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Análise estratégica</span>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Target className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Target className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Defesa especializada</span>
             </div>
           </div>
@@ -367,3 +367,4 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
     </div>
   );
 };
+

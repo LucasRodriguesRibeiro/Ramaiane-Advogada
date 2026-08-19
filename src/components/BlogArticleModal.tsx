@@ -53,7 +53,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-3xl my-6 bg-[#0E0F12] border border-[#CCA668]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-3xl my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Floating Close Button */}
@@ -76,7 +76,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
           
           {/* Top Breadcrumb & Category Badge inside Banner */}
           <div className="absolute top-5 left-6 sm:left-8 flex items-center space-x-2">
-            <span className="text-[11px] font-mono tracking-widest text-[#CCA668] bg-[#0E0F12]/80 backdrop-blur-md px-3 py-1 rounded border border-[#CCA668]/30 uppercase font-semibold">
+            <span className="text-[11px] font-mono tracking-widest text-[#E2E4E8] bg-[#0E0F12]/80 backdrop-blur-md px-3 py-1 rounded border border-[#B8BBC0]/30 uppercase font-semibold">
               {article.category || 'Direito Penal'}
             </span>
           </div>
@@ -84,16 +84,16 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
           {/* Number & Date Overlay */}
           <div className="absolute bottom-4 left-6 sm:left-8 right-6 sm:right-8 flex items-center justify-between text-xs text-[#B8BBC0]">
             <div className="flex items-center space-x-4">
-              <span className="font-mono font-bold text-[#CCA668] text-sm">
+              <span className="font-mono font-bold text-[#F7F7F5] text-sm">
                 Artigo #{article.num}
               </span>
               <span className="flex items-center space-x-1 font-light">
-                <Calendar className="w-3.5 h-3.5 text-[#CCA668]" />
+                <Calendar className="w-3.5 h-3.5 text-[#B8BBC0]" />
                 <span>{article.updatedAt}</span>
               </span>
               {article.readTime && (
                 <span className="hidden sm:flex items-center space-x-1 font-light">
-                  <Clock className="w-3.5 h-3.5 text-[#CCA668]" />
+                  <Clock className="w-3.5 h-3.5 text-[#B8BBC0]" />
                   <span>{article.readTime}</span>
                 </span>
               )}
@@ -101,7 +101,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
 
             <button
               onClick={handleShare}
-              className="flex items-center space-x-1.5 text-xs text-[#B8BBC0] hover:text-[#CCA668] transition-colors cursor-pointer bg-[#18191B]/80 px-2.5 py-1 rounded border border-[#2D3039]"
+              className="flex items-center space-x-1.5 text-xs text-[#B8BBC0] hover:text-white transition-colors cursor-pointer bg-[#18191B]/80 px-2.5 py-1 rounded border border-[#2D3039]"
             >
               <Share2 className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Compartilhar</span>
@@ -119,7 +119,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
 
           {/* Author Signature Section */}
           <div className="flex items-center space-x-3.5 py-3 border-y border-[#252830]">
-            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-[#CCA668]/60 shrink-0 bg-[#18191B]">
+            <div className="relative w-11 h-11 rounded-full overflow-hidden border border-[#B8BBC0]/50 shrink-0 bg-[#18191B]">
               <img
                 src={article.author?.avatarUrl || dobra2Img}
                 alt={article.author?.name || "Dra. Deyse Ramaiane"}
@@ -130,28 +130,28 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
               <div className="text-xs font-semibold text-[#F7F7F5] uppercase tracking-wider">
                 {article.author?.name || "Deyse Ramaiane"}
               </div>
-              <div className="text-[11px] text-[#CCA668] font-light">
+              <div className="text-[11px] text-[#B8BBC0] font-light">
                 {article.author?.title || "Advocacia Criminal Estratégica"}
               </div>
             </div>
           </div>
 
           {/* Executive Summary */}
-          <div className="p-4 rounded-lg bg-[#14151B] border-l-2 border-[#CCA668] text-xs sm:text-sm text-[#D4D7DC] leading-relaxed italic">
+          <div className="p-4 rounded-lg bg-[#14151B] border-l-2 border-[#B8BBC0] text-xs sm:text-sm text-[#D4D7DC] leading-relaxed italic">
             "{article.summary}"
           </div>
 
           {/* Key Points Box (Pontos Importantes) */}
           {Array.isArray(article.keyPoints) && article.keyPoints.length > 0 && (
-            <div className="p-5 rounded-xl bg-[#090A0C] border border-[#CCA668]/25 space-y-3 shadow-inner">
-              <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-[#CCA668]">
-                <ShieldCheck className="w-4 h-4 text-[#CCA668]" />
+            <div className="p-5 rounded-xl bg-[#090A0C] border border-[#B8BBC0]/25 space-y-3 shadow-inner">
+              <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-[#E2E4E8]">
+                <ShieldCheck className="w-4 h-4 text-[#B8BBC0]" />
                 <span>PONTOS IMPORTANTES</span>
               </div>
               <ul className="space-y-2 text-xs text-[#B8BBC0]">
                 {article.keyPoints.map((point, index) => (
                   <li key={index} className="flex items-start space-x-2.5 leading-snug">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#CCA668] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 mt-0.5" />
                     <span>{point}</span>
                   </li>
                 ))}
@@ -164,8 +164,8 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
             {article.content}
           </div>
 
-          {/* Golden WhatsApp Contact Box */}
-          <div className="p-6 rounded-xl bg-gradient-to-br from-[#18191B] via-[#14151B] to-[#0B0B0C] border border-[#CCA668]/40 space-y-4 text-center mt-8 shadow-xl">
+          {/* WhatsApp Contact Box */}
+          <div className="p-6 rounded-xl bg-gradient-to-br from-[#18191B] via-[#14151B] to-[#0B0B0C] border border-[#B8BBC0]/30 space-y-4 text-center mt-8 shadow-xl">
             <div className="space-y-1">
               <h3 className="font-serif-title text-base sm:text-lg text-[#F7F7F5] uppercase">
                 Precisa de análise jurídica sobre este caso?
@@ -177,7 +177,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
 
             <button
               onClick={handleContactWhatsApp}
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 py-3 px-8 rounded-md text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 py-3 px-8 rounded-md text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-95 shadow-md"
             >
               <MessageCircle className="w-4 h-4 fill-current shrink-0" />
               <span>CONSULTAR COM A ADVOGADA NO WHATSAPP</span>
@@ -188,7 +188,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
           <div className="pt-2 text-center">
             <button
               onClick={onClose}
-              className="text-xs text-[#74777C] hover:text-[#CCA668] transition-colors cursor-pointer inline-flex items-center space-x-1 uppercase tracking-wider font-semibold"
+              className="text-xs text-[#74777C] hover:text-white transition-colors cursor-pointer inline-flex items-center space-x-1 uppercase tracking-wider font-semibold"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>Voltar para todos os artigos</span>
@@ -200,3 +200,4 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
     </div>
   );
 };
+

@@ -116,7 +116,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
                     onNavigateBlog();
                   }
                 }}
-                className="hover:text-[#CCA668] transition-colors"
+                className="hover:text-[#F7F7F5] transition-colors"
               >
                 Blog
               </a>
@@ -170,7 +170,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               {onOpenAdminAuth && (
                 <button
                   onClick={onOpenAdminAuth}
-                  className="opacity-25 hover:opacity-100 hover:text-[#CCA668] transition-all p-1 rounded cursor-pointer"
+                  className="opacity-25 hover:opacity-100 hover:text-white transition-all p-1 rounded cursor-pointer"
                   title="Acesso da Advogada"
                   aria-label="Acesso Restrito"
                 >

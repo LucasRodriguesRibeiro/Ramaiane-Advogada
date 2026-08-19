@@ -80,7 +80,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           <div className="flex items-center space-x-4">
             <button
               onClick={onNavigateHome}
-              className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#B8BBC0] hover:text-[#CCA668] transition-colors p-2 rounded hover:bg-[#14151B] cursor-pointer"
+              className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#B8BBC0] hover:text-white transition-colors p-2 rounded hover:bg-[#14151B] cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Voltar ao Site</span>
@@ -96,13 +96,13 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
               onClick={handleShare}
               className="flex items-center space-x-1.5 text-xs text-[#B8BBC0] hover:text-white bg-[#16171C] border border-[#2D3039] px-3 py-2 rounded transition-colors cursor-pointer"
             >
-              <Share2 className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Share2 className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span className="hidden sm:inline">{copied ? 'Link Copiado!' : 'Compartilhar'}</span>
             </button>
 
             <button
               onClick={handleContactWhatsApp}
-              className="py-2 px-4 rounded bg-gradient-to-r from-[#DFB77C] to-[#CCA668] text-[#0B0B0C] text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer shadow-md hover:brightness-110"
+              className="py-2 px-4 rounded bg-[#E5E7EB] hover:bg-white text-[#0B0B0C] text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer shadow-md transition-all"
             >
               <MessageCircle className="w-3.5 h-3.5 fill-current" />
               <span>Falar no WhatsApp</span>
@@ -119,19 +119,19 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <button 
               onClick={onNavigateHome}
-              className="text-[#8F9299] hover:text-[#CCA668] transition-colors"
+              className="text-[#8F9299] hover:text-white transition-colors"
             >
               Início
             </button>
             <span className="text-[#555861]">&gt;</span>
             <button 
               onClick={onNavigateHome}
-              className="text-[#8F9299] hover:text-[#CCA668] transition-colors"
+              className="text-[#8F9299] hover:text-white transition-colors"
             >
               Blog
             </button>
             <span className="text-[#555861]">&gt;</span>
-            <span className="text-[#CCA668] font-semibold uppercase tracking-wider">
+            <span className="text-[#E2E4E8] font-semibold uppercase tracking-wider">
               {article.category || 'Direito Penal'}
             </span>
           </div>
@@ -144,7 +144,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           {/* Author & Meta row */}
           <div className="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-[#1E2028]">
             <div className="flex items-center space-x-3">
-              <div className="w-11 h-11 rounded-full overflow-hidden border border-[#CCA668]/60 shrink-0 bg-[#18191B]">
+              <div className="w-11 h-11 rounded-full overflow-hidden border border-[#B8BBC0]/50 shrink-0 bg-[#18191B]">
                 <img
                   src={article.author?.avatarUrl || dobra2Img}
                   alt={article.author?.name || "Dra. Deyse Ramaiane"}
@@ -155,7 +155,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                 <div className="text-sm font-semibold text-[#F7F7F5]">
                   {article.author?.name || "Dra. Deyse Ramaiane"}
                 </div>
-                <div className="text-xs text-[#CCA668]">
+                <div className="text-xs text-[#B8BBC0]">
                   {article.author?.title || "Advocacia Criminal Estratégica"}
                 </div>
               </div>
@@ -163,11 +163,11 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
 
             <div className="flex items-center space-x-4 text-xs text-[#8F9299]">
               <span className="flex items-center space-x-1.5 font-light">
-                <Calendar className="w-3.5 h-3.5 text-[#CCA668]" />
+                <Calendar className="w-3.5 h-3.5 text-[#B8BBC0]" />
                 <span>Atualizado em {article.updatedAt}</span>
               </span>
               <span className="flex items-center space-x-1.5 font-light">
-                <Clock className="w-3.5 h-3.5 text-[#CCA668]" />
+                <Clock className="w-3.5 h-3.5 text-[#B8BBC0]" />
                 <span>{article.readTime || '4 min de leitura'}</span>
               </span>
             </div>
@@ -185,21 +185,21 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
         </div>
 
         {/* Executive Summary Box */}
-        <div className="p-6 sm:p-7 rounded-xl bg-[#14151B] border-l-4 border-[#CCA668] text-sm sm:text-base text-[#D4D7DC] leading-relaxed italic shadow-md">
+        <div className="p-6 sm:p-7 rounded-xl bg-[#14151B] border-l-4 border-[#B8BBC0] text-sm sm:text-base text-[#D4D7DC] leading-relaxed italic shadow-md">
           "{article.summary}"
         </div>
 
         {/* Key Points (Pontos Importantes) */}
         {Array.isArray(article.keyPoints) && article.keyPoints.length > 0 && (
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#121318] border border-[#CCA668]/30 space-y-4 shadow-xl">
-            <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#CCA668]">
-              <ShieldCheck className="w-5 h-5 text-[#CCA668]" />
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#121318] border border-[#B8BBC0]/30 space-y-4 shadow-xl">
+            <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E2E4E8]">
+              <ShieldCheck className="w-5 h-5 text-[#B8BBC0]" />
               <span>PONTOS IMPORTANTES & ORIENTAÇÕES PRINCIPAIS</span>
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               {article.keyPoints.map((point, index) => (
                 <li key={index} className="flex items-start space-x-3 text-xs sm:text-sm text-[#C8CBD0] leading-snug">
-                  <CheckCircle2 className="w-4 h-4 text-[#CCA668] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#B8BBC0] shrink-0 mt-0.5" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -216,7 +216,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
 
         {/* Lawyer Bio & Specialty Card */}
         <div className="p-6 sm:p-8 rounded-2xl bg-[#14151B] border border-[#252830] flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left shadow-lg">
-          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#CCA668] shrink-0 shadow-md">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#B8BBC0] shrink-0 shadow-md">
             <img
               src={article.author?.avatarUrl || dobra2Img}
               alt="Dra. Deyse Ramaiane"
@@ -224,7 +224,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             />
           </div>
           <div className="space-y-2 flex-1">
-            <div className="inline-block text-[10px] uppercase font-bold tracking-widest text-[#CCA668] bg-[#1B1D24] px-2.5 py-0.5 rounded border border-[#CCA668]/30">
+            <div className="inline-block text-[10px] uppercase font-bold tracking-widest text-[#E2E4E8] bg-[#1B1D24] px-2.5 py-0.5 rounded border border-[#B8BBC0]/30">
               SOBRE A AUTORA
             </div>
             <h3 className="font-serif-title text-xl text-[#F7F7F5]">
@@ -237,7 +237,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
         </div>
 
         {/* WhatsApp Strategic Legal Consultation CTA Banner */}
-        <div className="p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-[#18191B] via-[#14151B] to-[#0A0A0D] border border-[#CCA668]/50 text-center space-y-5 shadow-2xl relative overflow-hidden">
+        <div className="p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-[#18191B] via-[#14151B] to-[#0A0A0D] border border-[#B8BBC0]/30 text-center space-y-5 shadow-2xl relative overflow-hidden">
           <div className="space-y-2 max-w-xl mx-auto">
             <h2 className="font-serif-title text-2xl sm:text-3xl text-[#F7F7F5] uppercase">
               Precisa de orientação jurídica estratégica sobre este tema?
@@ -250,7 +250,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           <div className="pt-2">
             <button
               onClick={handleContactWhatsApp}
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 py-4 px-8 rounded-lg text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-xl shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 py-4 px-8 rounded-lg text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all shadow-xl cursor-pointer active:scale-95"
             >
               <MessageCircle className="w-5 h-5 fill-current shrink-0" />
               <span>CONSULTAR DIRETAMENTE NO WHATSAPP</span>
@@ -267,7 +267,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
               </h3>
               <button
                 onClick={onNavigateHome}
-                className="text-xs text-[#CCA668] hover:underline uppercase tracking-wider font-semibold"
+                className="text-xs text-[#B8BBC0] hover:text-white hover:underline uppercase tracking-wider font-semibold cursor-pointer"
               >
                 Ver Todos os Artigos →
               </button>
@@ -278,20 +278,20 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                 <div
                   key={rel.id}
                   onClick={() => onSelectArticle(rel)}
-                  className="bg-[#14151B] border border-[#2D3039] hover:border-[#CCA668]/60 rounded-xl p-4 flex flex-col justify-between transition-all cursor-pointer group shadow-md"
+                  className="bg-[#14151B] border border-[#2D3039] hover:border-[#B8BBC0]/50 rounded-xl p-4 flex flex-col justify-between transition-all cursor-pointer group shadow-md"
                 >
                   <div className="space-y-3">
                     <div className="relative w-full h-28 rounded-lg overflow-hidden bg-[#07080A]">
                       <img src={rel.coverUrl} alt={rel.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                     </div>
-                    <div className="text-[10px] text-[#CCA668] font-mono">
+                    <div className="text-[10px] text-[#B8BBC0] font-mono">
                       Artigo #{rel.num}
                     </div>
-                    <h4 className="font-serif-title text-sm text-[#F7F7F5] group-hover:text-[#CCA668] transition-colors leading-snug line-clamp-2 uppercase">
+                    <h4 className="font-serif-title text-sm text-[#F7F7F5] group-hover:text-white transition-colors leading-snug line-clamp-2 uppercase">
                       {rel.title}
                     </h4>
                   </div>
-                  <div className="pt-3 text-[11px] text-[#CCA668] font-semibold flex items-center space-x-1 uppercase">
+                  <div className="pt-3 text-[11px] text-[#B8BBC0] group-hover:text-white font-semibold flex items-center space-x-1 uppercase transition-colors">
                     <span>Ler Artigo</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>

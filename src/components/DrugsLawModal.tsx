@@ -143,7 +143,7 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-xl my-6 bg-[#0E0F12] border border-[#CCA668]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-xl my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -158,8 +158,8 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
         {/* Modal Header */}
         <div className="p-6 sm:p-8 pb-4 text-center border-b border-[#252830]/80">
           <div className="flex flex-col items-center space-y-2.5">
-            {/* Gold Circular Icon */}
-            <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full border border-[#CCA668]/60 bg-[#16171C] flex items-center justify-center text-[#CCA668] shadow-lg shadow-[#CCA668]/10">
+            {/* Silver Circular Icon */}
+            <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full border border-[#B8BBC0]/50 bg-[#16171C] flex items-center justify-center text-[#F7F7F5] shadow-lg shadow-white/5">
               <Scale className="w-7 h-7 stroke-[1.5]" />
             </div>
 
@@ -167,7 +167,7 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
               <div className="font-serif-title text-xl sm:text-2xl font-normal text-[#F7F7F5] uppercase tracking-wide">
                 ATENDIMENTO ESPECIALIZADO
               </div>
-              <h2 className="text-sm sm:text-base font-bold text-[#E5B869] uppercase tracking-widest">
+              <h2 className="text-sm sm:text-base font-bold text-[#E2E4E8] uppercase tracking-widest">
                 CRIMES DA LEI DE DROGAS
               </h2>
             </div>
@@ -194,7 +194,7 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
                 value={personName}
                 onChange={(e) => setPersonName(e.target.value)}
                 placeholder="Ex.: João da Silva"
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
 
@@ -207,7 +207,7 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ex.: joao@email.com"
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -223,7 +223,7 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
                 value={cityState}
                 onChange={(e) => setCityState(e.target.value)}
                 placeholder="Ex.: Manaus - AM"
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
 
@@ -232,15 +232,15 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
                 NÚMERO PARA CONTATO (WHATSAPP)
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#CCA668]">
-                  <MessageCircle className="w-4 h-4 fill-[#CCA668]/20" />
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
+                  <MessageCircle className="w-4 h-4" />
                 </div>
                 <input
                   type="tel"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="(92) 90000-0000"
-                  className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -262,16 +262,16 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
                     onClick={() => setServiceType(opt.label)}
                     className={`relative p-2.5 sm:p-3 rounded-md border flex flex-col items-center justify-center text-center space-y-1.5 transition-all cursor-pointer min-h-[74px] ${
                       isSelected
-                        ? 'border-[#CCA668] bg-[#CCA668]/15 text-[#F7F7F5] shadow-sm shadow-[#CCA668]/20'
+                        ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] shadow-sm'
                         : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]/60 hover:text-[#F7F7F5]'
                     }`}
                   >
                     {isSelected && (
-                      <div className="absolute top-1.5 left-1.5 w-3 h-3 rounded-full bg-[#CCA668] text-[#0B0B0C] flex items-center justify-center">
+                      <div className="absolute top-1.5 left-1.5 w-3 h-3 rounded-full bg-[#E5E7EB] text-[#0B0B0C] flex items-center justify-center">
                         <Check className="w-2 h-2 stroke-[3]" />
                       </div>
                     )}
-                    <OptionIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-[#CCA668]' : 'text-[#8F9299]'}`} />
+                    <OptionIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isSelected ? 'text-[#FFFFFF]' : 'text-[#8F9299]'}`} />
                     <span className="text-[10px] sm:text-[10.5px] font-medium leading-tight line-clamp-2">
                       {opt.label}
                     </span>
@@ -291,15 +291,15 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
               value={situation}
               onChange={(e) => setSituation(e.target.value)}
               placeholder="Descreva brevemente o seu caso para que possamos entender melhor."
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
             />
           </div>
 
-          {/* Golden CTA Button */}
+          {/* Silver CTA Button */}
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2"
+              className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
             >
               <span>SOLICITAR ATENDIMENTO</span>
               <span className="text-base font-bold leading-none">→</span>
@@ -309,17 +309,17 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
           {/* Trust Badges Row */}
           <div className="pt-3 border-t border-[#252830] flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-center text-[10.5px] sm:text-[11px] text-[#B8BBC0]">
             <div className="flex items-center space-x-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Lock className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Atendimento sigiloso</span>
             </div>
             <span className="text-[#3D404A] hidden sm:inline">|</span>
             <div className="flex items-center space-x-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#CCA668]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Análise estratégica</span>
             </div>
             <span className="text-[#3D404A] hidden sm:inline">|</span>
             <div className="flex items-center space-x-1.5">
-              <Scale className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Defesa especializada</span>
             </div>
           </div>
@@ -329,3 +329,4 @@ export const DrugsLawModal: React.FC<DrugsLawModalProps> = ({
     </div>
   );
 };
+

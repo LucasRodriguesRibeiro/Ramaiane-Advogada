@@ -159,7 +159,7 @@ export const Urgent24hModal: React.FC<Urgent24hModalProps> = ({
 
           {/* Security Note */}
           <div className="flex items-center space-x-2 text-[10.5px] text-[#B8BBC0] pt-1 text-left">
-            <Lock className="w-3.5 h-3.5 text-[#CCA668] shrink-0" />
+            <Lock className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0" />
             <span>
               Seus dados estão protegidos e serão utilizados apenas para contato relacionado ao seu atendimento.
             </span>

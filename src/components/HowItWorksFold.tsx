@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Compass, ShieldCheck, UserCheck } from 'lucide-react';
+import logoImg from '../assets/images/logoadvogada.png';
 
 interface HowItWorksFoldProps {
   onOpenEmergencyModal?: () => void;
@@ -10,14 +11,14 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
     {
       num: "01",
       icon: Search,
-      title: "ANÁLISE INICIAL DO CASO",
-      desc: "Compreensão detalhada da situação, análise das informações apresentadas e identificação dos aspectos jurídicos relevantes."
+      title: "ANÁLISE INICIAL",
+      desc: "Entendemos o seu caso e identificamos os pontos jurídicos essenciais."
     },
     {
       num: "02",
       icon: Compass,
       title: "DEFINIÇÃO DA ESTRATÉGIA",
-      desc: "Avaliação dos cenários jurídicos, definição das medidas adequadas e construção da estratégia de atuação."
+      desc: "Desenhamos a melhor estratégia jurídica para alcançar o seu objetivo."
     },
     {
       num: "03",
@@ -34,51 +35,64 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
   ];
 
   return (
-    <section id="como-funciona" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-20 sm:py-28 font-sans-clean border-t border-[#B8BBC0]/30">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16">
+    <section id="como-funciona" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] scroll-mt-16 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
         
-        {/* Section Header */}
-        <div className="space-y-3 text-left max-w-3xl">
-          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#55585D] uppercase font-semibold">
-            <span className="w-8 h-[1px] bg-[#55585D]"></span>
+        {/* Section Header - Centered & Clean */}
+        <div className="space-y-4 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold justify-center">
+            <span className="w-8 h-[1px] bg-[#74777C]"></span>
             <span>NOSSA METODOLOGIA</span>
+            <span className="w-8 h-[1px] bg-[#74777C]"></span>
           </div>
 
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#0B0B0C] tracking-tight uppercase">
+          <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-[0.15em] uppercase">
             COMO CONDUZIMOS O SEU CASO
           </h2>
-          <p className="text-[#3B3C3E] text-sm sm:text-base font-normal leading-relaxed">
-            Atendimento jurídico individualizado, sigiloso e estratégico, com acompanhamento direto em todas as etapas da atuação.
-          </p>
+
+          {/* Central Logo Divider */}
+          <div className="flex items-center justify-center space-x-4 max-w-xs sm:max-w-md mx-auto pt-2">
+            <div className="flex-1 h-[1px] bg-[#74777C]/30"></div>
+            <img 
+              src={logoImg} 
+              alt="Deyse Ramaiane Advocacia" 
+              className="w-7 h-7 object-contain opacity-75 filter brightness-110" 
+            />
+            <div className="flex-1 h-[1px] bg-[#74777C]/30"></div>
+          </div>
         </div>
 
-        {/* 4 Steps Visual Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 4 Steps Centralized Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.num}
-                className="bg-[#FFFFFF] border border-[#B8BBC0]/50 p-6 sm:p-7 rounded-md shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between space-y-6"
+                className="bg-[#121316] border border-[#74777C]/20 p-7 sm:p-8 rounded-xl shadow-md hover:border-[#B8BBC0]/50 transition-all duration-300 flex flex-col items-center text-center space-y-4 group"
               >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold tracking-widest text-[#4A4B4D]">
-                      {step.num}
-                    </span>
-                    <Icon className="w-5 h-5 text-[#18191B]" />
-                  </div>
-
-                  <h3 className="font-semibold text-sm sm:text-[0.95rem] tracking-wide uppercase text-[#0B0B0C] leading-snug pt-2">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-[11px] sm:text-xs text-[#3B3C3E] leading-relaxed font-normal">
-                    {step.desc}
-                  </p>
+                {/* Circle Number Badge */}
+                <div className="w-11 h-11 rounded-full border border-[#74777C]/40 flex items-center justify-center font-mono text-xs font-semibold text-[#B8BBC0] group-hover:border-[#B8BBC0] group-hover:text-white transition-colors">
+                  {step.num}
                 </div>
 
-                <div className="w-full h-[2px] bg-[#0B0B0C]/10"></div>
+                {/* Icon */}
+                <div className="text-[#E2E4E8] group-hover:text-white transition-colors pt-1">
+                  <Icon className="w-6 h-6 stroke-[1.5]" />
+                </div>
+
+                {/* Title */}
+                <h3 className="font-semibold text-xs sm:text-[13px] tracking-wider uppercase text-[#F7F7F5] leading-snug">
+                  {step.title}
+                </h3>
+
+                {/* Small Divider */}
+                <div className="w-8 h-[1.5px] bg-[#B8BBC0]/40"></div>
+
+                {/* Description */}
+                <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                  {step.desc}
+                </p>
               </div>
             );
           })}
@@ -88,3 +102,4 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
     </section>
   );
 };
+

@@ -142,13 +142,13 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-4xl my-6 bg-[#0E0F12] border border-[#CCA668]/40 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-4xl my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
         <div className="p-6 sm:p-8 pb-4 border-b border-[#252830] flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-[#16171C] border border-[#CCA668]/50 flex items-center justify-center text-[#CCA668]">
+            <div className="w-10 h-10 rounded-full bg-[#16171C] border border-[#B8BBC0]/40 flex items-center justify-center text-[#F7F7F5]">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -185,7 +185,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Ex.: RECEBI UMA INTIMAÇÃO CRIMINAL. E AGORA?"
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
               />
             </div>
 
@@ -198,16 +198,18 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] focus:outline-none"
                 >
-                  <option value="Direito Penal Geral">Direito Penal Geral</option>
-                  <option value="Saúde & Medicina">Saúde & Medicina</option>
-                  <option value="Defesa do Paciente">Defesa do Paciente</option>
-                  <option value="Crimes Digitais">Crimes Digitais</option>
-                  <option value="Direito Penal Empresarial">Direito Penal Empresarial</option>
-                  <option value="Urgências Criminais">Urgências Criminais</option>
+                  <option value="Direito Penal Geral">Núcleo Criminal (Direito Penal Geral)</option>
+                  <option value="Urgências Criminais">Núcleo Criminal (Urgências e Prisão)</option>
+                  <option value="Núcleo Cível">Núcleo Cível (Contratos e Imobiliário)</option>
+                  <option value="Saúde & Medicina">Direito Médico (Saúde e Clínicas)</option>
+                  <option value="Defesa do Paciente">Pacientes (Defesa do Paciente e Erro Médico)</option>
+                  <option value="Direito Penal Empresarial">Empresarial (Compliance e Penal Empresarial)</option>
+                  <option value="Crimes Digitais">Crimes Digitais (Fraudes e Cibernéticos)</option>
+                  <option value="Lei de Drogas">Lei de Drogas (Uso, Tráfico e Flagrante)</option>
+                  <option value="Segurança Pública & Militares">Segurança Pública (Militares e Forças de Segurança)</option>
                   <option value="Fraudes & Delitos Financeiros">Fraudes & Delitos Financeiros</option>
-                  <option value="Segurança Pública & Militares">Segurança Pública & Militares</option>
                 </select>
               </div>
 
@@ -220,7 +222,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                   value={readTime}
                   onChange={(e) => setReadTime(e.target.value)}
                   placeholder="Ex.: 4 min de leitura"
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
                 />
               </div>
             </div>
@@ -249,7 +251,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                 </div>
               ) : (
                 <div className="w-full h-24 rounded-lg border border-dashed border-[#2D3039] bg-[#07080A] flex flex-col items-center justify-center text-[#74777C] text-xs space-y-1 mb-2">
-                  <Upload className="w-5 h-5 text-[#CCA668]" />
+                  <Upload className="w-5 h-5 text-[#B8BBC0]" />
                   <span>Nenhuma capa selecionada (envie uma imagem ou insira a URL)</span>
                 </div>
               )}
@@ -261,11 +263,11 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                   value={coverUrl}
                   onChange={(e) => setCoverUrl(e.target.value)}
                   placeholder="Cole a URL da foto (https://...)"
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
                 />
 
-                <label className="flex items-center justify-center space-x-2 px-3.5 py-2.5 bg-[#18191B] border border-[#2D3039] hover:border-[#CCA668] rounded-md text-xs text-[#B8BBC0] hover:text-[#F7F7F5] cursor-pointer transition-colors">
-                  <Upload className="w-4 h-4 text-[#CCA668]" />
+                <label className="flex items-center justify-center space-x-2 px-3.5 py-2.5 bg-[#18191B] border border-[#2D3039] hover:border-[#B8BBC0] rounded-md text-xs text-[#B8BBC0] hover:text-[#F7F7F5] cursor-pointer transition-colors">
+                  <Upload className="w-4 h-4 text-[#B8BBC0]" />
                   <span>Enviar foto do computador</span>
                   <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 </label>
@@ -283,7 +285,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
                 placeholder="Breve resumo em 2 ou 3 frases sobre o artigo..."
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none"
               />
             </div>
 
@@ -291,12 +293,12 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-                  PONTOS IMPORTANTES (DESTAQUES COM ÍCONE DOURADO)
+                  PONTOS IMPORTANTES
                 </label>
                 <button
                   type="button"
                   onClick={handleAddKeyPoint}
-                  className="text-[11px] text-[#CCA668] hover:underline flex items-center space-x-1"
+                  className="text-[11px] text-[#B8BBC0] hover:text-white hover:underline flex items-center space-x-1 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Adicionar Ponto</span>
@@ -306,19 +308,19 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
               <div className="space-y-2">
                 {keyPoints.map((point, idx) => (
                   <div key={idx} className="flex items-center space-x-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#CCA668] shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#B8BBC0] shrink-0" />
                     <input
                       type="text"
                       value={point}
                       onChange={(e) => handleUpdateKeyPoint(idx, e.target.value)}
                       placeholder={`Ponto importante ${idx + 1}`}
-                      className="flex-1 px-3 py-2 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
+                      className="flex-1 px-3 py-2 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none"
                     />
                     {keyPoints.length > 1 && (
                       <button
                         type="button"
                         onClick={() => handleRemoveKeyPoint(idx)}
-                        className="p-2 text-[#74777C] hover:text-red-400 transition-colors"
+                        className="p-2 text-[#74777C] hover:text-red-400 transition-colors cursor-pointer"
                         title="Remover ponto"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -340,7 +342,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Escreva ou cole o texto completo do artigo..."
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none custom-scrollbar"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none custom-scrollbar"
               />
             </div>
 
@@ -349,7 +351,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="py-3 px-5 rounded-md text-xs font-semibold text-[#B8BBC0] hover:text-white bg-[#18191B] hover:bg-[#202228] transition-colors"
+                className="py-3 px-5 rounded-md text-xs font-semibold text-[#B8BBC0] hover:text-white bg-[#18191B] hover:bg-[#202228] transition-colors cursor-pointer"
               >
                 Cancelar
               </button>
@@ -357,7 +359,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
               <button
                 type="submit"
                 disabled={isSaving}
-                className="py-3 px-8 rounded-md text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all flex items-center space-x-2 cursor-pointer disabled:opacity-50"
+                className="py-3 px-8 rounded-md text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all shadow-md flex items-center space-x-2 cursor-pointer disabled:opacity-50"
               >
                 {isSaving ? (
                   <>
@@ -377,3 +379,4 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
     </div>
   );
 };
+

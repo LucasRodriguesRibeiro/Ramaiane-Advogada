@@ -116,7 +116,7 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
                   </ul>
                 </div>
 
-                {/* Bottom Action */}
+                {/* Bottom Action: SAIBA MAIS → */}
                 <div className="pt-6 mt-6 border-t border-[#74777C]/15">
                   <a
                     href={whatsappCivilUrl}
@@ -124,7 +124,7 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
                     rel="noopener noreferrer"
                     className="text-[11px] font-semibold tracking-wider text-[#B8BBC0] group-hover:text-[#F7F7F5] flex items-center space-x-2 transition-colors cursor-pointer uppercase"
                   >
-                    <span>AGENDAR ATENDIMENTO</span>
+                    <span>SAIBA MAIS</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>

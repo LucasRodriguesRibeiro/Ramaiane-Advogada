@@ -15,7 +15,7 @@ import { BlogArticle, FirebaseCustomConfig, generateSlug } from '../types/blog';
 import dobra2Img from '../assets/images/dobra2.jpeg';
 
 // Chave do localStorage para persistência local e fallback
-const LOCAL_STORAGE_KEY = 'ramaiane_blog_articles_v1';
+const LOCAL_STORAGE_KEY = 'ramaiane_blog_articles_v2';
 const FIREBASE_CONFIG_KEY = 'ramaiane_firebase_config_v1';
 
 // Artigos Iniciais Semente (Exatamente como nas fotos de referência)
@@ -336,11 +336,102 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
       title: "Advocacia Criminal Estratégica",
       avatarUrl: dobra2Img
     }
+  },
+  {
+    id: "artigo-12",
+    slug: "lei-de-drogas-flagrante-e-criterios-de-defesa",
+    num: "12",
+    title: "LEI DE DROGAS: PRISÃO EM FLAGRANTE E CRITÉRIOS DE DIFERENCIAÇÃO ENTRE USO E TRÁFICO",
+    updatedAt: "23 de maio de 2025",
+    coverUrl: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=800&q=80",
+    summary: "A distinção entre posse para consumo e tráfico de drogas na Lei 11.343/06 exige análise técnica rigorosa dos elementos circunstanciais da apreensão e garantias constitucionais.",
+    keyPoints: [
+      "Critérios do art. 28 x art. 33 da Lei 11.343/06.",
+      "Nulidades frequentes em abordagens policiais e invasões de domicílio sem mandado.",
+      "Importância da Audiência de Custódia nas primeiras 24 horas.",
+      "Possibilidade de Tráfico Privilegiado e substituição por penas alternativas.",
+      "Direito ao silêncio e acompanhamento de advogado especialista desde o auto de flagrante."
+    ],
+    content: `A Lei de Drogas (Lei nº 11.343/06) é uma das áreas mais sensíveis do Direito Penal brasileiro. A caracterização da conduta imputada depende da análise do local da apreensão, quantidade de substância, condições em que se desenvolveu a ação policial e antecedentes do agente.
+
+### Pontos fundamentais da atuação defensiva:
+1. **Legalidade da Busca Pessoal e Domiciliar:** A jurisprudência dos Tribunais Superiores (STJ e STF) é pacífica de que denúncias anônimas isoladas não autorizam a invasão de domicílio sem mandado.
+2. **Audiência de Custódia:** Momento essencial para requerer o relaxamento de prisão ilegal ou a concessão de liberdade provisória com aplicação de medidas cautelares diversas da prisão.
+3. **Aplicação do Tráfico Privilegiado (§ 4º do art. 33):** Redução de pena substancial quando o acusado é primário, de bons antecedentes e não integra organização criminosa.`,
+    category: "Lei de Drogas",
+    isNew: true,
+    readTime: "4 min de leitura",
+    author: {
+      name: "Deyse Ramaiane",
+      title: "Advocacia Criminal Estratégica",
+      avatarUrl: dobra2Img
+    }
+  },
+  {
+    id: "artigo-13",
+    slug: "seguranca-juridica-em-contratos-imobiliarios-e-civeis",
+    num: "13",
+    title: "SEGURANÇA JURÍDICA EM CONTRATOS, DIREITO IMOBILIÁRIO E RESPONSABILIDADE CÍVEL",
+    updatedAt: "23 de maio de 2025",
+    coverUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+    summary: "Negócios imobiliários, contratos civis e planejamento patrimonial exigem prevenção contra riscos de inadimplemento, rescisões e litígios judiciais.",
+    keyPoints: [
+      "Due diligence imobiliária completa antes da aquisição de bens.",
+      "Cláusulas essenciais de proteção e rescisão contratual.",
+      "Ações de despejo, posse, usucapião e regularização fundiária.",
+      "Indenizações por danos materiais, morais e responsabilidade civil.",
+      "Estratégia jurídica em disputas patrimoniais e sucessórias."
+    ],
+    content: `No âmbito do Direito Cível e Imobiliário, a atuação preventiva é a forma mais eficaz de resguardar o patrimônio familiar e empresarial.
+
+### Áreas de destaque na atuação cível:
+- **Contratos e Negócios Imobiliários:** Análise de certidões, riscos de evicção e elaboração de minutas personalizadas.
+- **Responsabilidade Civil e Indenizações:** Reparação integral de prejuízos decorrentes de descumprimento contratual ou atos ilícitos.
+- **Família e Sucessões:** Planejamento sucessório, inventários e partilhas com foco na preservação patrimonial e conciliação.`,
+    category: "Núcleo Cível",
+    isNew: true,
+    readTime: "4 min de leitura",
+    author: {
+      name: "Deyse Ramaiane",
+      title: "Advocacia Criminal Estratégica",
+      avatarUrl: dobra2Img
+    }
+  },
+  {
+    id: "artigo-14",
+    slug: "direitos-do-paciente-e-vitimas-de-erro-medico",
+    num: "14",
+    title: "DEFESA DO PACIENTE: COMO AGIR DIANTE DE SUPOSTO ERRO MÉDICO OU FALHA HOSPITALAR",
+    updatedAt: "23 de maio de 2025",
+    coverUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+    summary: "Pacientes e familiares têm direito a transparência, acesso integral ao prontuário médico e reparação em casos de negligência, imprudência ou imperícia em procedimentos de saúde.",
+    keyPoints: [
+      "Direito de obter cópia integral e legível do prontuário médico.",
+      "Preservação de laudos, receitas, exames e comprovantes de atendimento.",
+      "Diferença entre obrigação de meio e obrigação de resultado (ex: cirurgia plástica).",
+      "Responsabilização nas esferas cível, criminal e ética perante o CRM.",
+      "Assessoria jurídica especializada para condução técnica de perícias médicas."
+    ],
+    content: `Diante de um evento adverso ou complicações graves em ambiente hospitalar, o paciente ou sua família necessitam de amparo técnico imediato para resguardar evidências.
+
+### Providências indispensáveis:
+1. **Solicitação formal do Prontuário:** É dever legal do hospital fornecer a via completa no menor prazo possível.
+2. **Perícia Técnica Independente:** Avaliação por especialistas para verificar se houve desvio dos protocolos médicos recomendados.
+3. **Adoção de Medidas Judiciais:** Pedidos de custeio de tratamento reparador em tutela de urgência e indenizações correspondentes.`,
+    category: "Defesa do Paciente",
+    isNew: true,
+    readTime: "4 min de leitura",
+    author: {
+      name: "Deyse Ramaiane",
+      title: "Advocacia Criminal Estratégica",
+      avatarUrl: dobra2Img
+    }
   }
 ];
 
 // Instância lazy do Firestore
 let dbInstance: Firestore | null = null;
+
 
 export const getStoredFirebaseConfig = (): FirebaseCustomConfig | null => {
   try {

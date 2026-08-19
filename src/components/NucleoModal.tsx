@@ -528,7 +528,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-xl my-6 bg-[#0E0F12] border border-[#CCA668]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-xl my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -543,19 +543,19 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
         {/* Modal Header */}
         <div className="p-6 sm:p-8 pb-4 border-b border-[#252830]/80">
           <div className="flex items-start space-x-4">
-            {/* Gold Circular Icon */}
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#CCA668]/60 bg-[#16171C] flex items-center justify-center text-[#CCA668] shrink-0 shadow-lg shadow-[#CCA668]/10 mt-1">
+            {/* Silver Circular Icon */}
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-[#B8BBC0]/50 bg-[#16171C] flex items-center justify-center text-[#F7F7F5] shrink-0 shadow-lg shadow-white/5 mt-1">
               <HeaderIcon className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.5]" />
             </div>
 
             <div className="space-y-1.5 pr-6">
-              <div className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#CCA668] uppercase">
+              <div className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] text-[#B8BBC0] uppercase">
                 {currentConfig.subtitle}
               </div>
               <h2 className="font-serif-title text-xl sm:text-2xl font-normal text-[#F7F7F5] uppercase tracking-wide leading-none">
                 {currentConfig.mainTitle}
               </h2>
-              <div className="text-xs sm:text-sm font-bold text-[#E5B869] uppercase tracking-wider">
+              <div className="text-xs sm:text-sm font-bold text-[#E2E4E8] uppercase tracking-wider">
                 {currentConfig.nucleusTitle}
               </div>
               <p className="text-xs text-[#B8BBC0] font-light leading-relaxed pt-1">
@@ -579,7 +579,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
               value={personName}
               onChange={(e) => setPersonName(e.target.value)}
               placeholder={currentConfig.namePlaceholder}
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
             />
           </div>
 
@@ -595,7 +595,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                   value={secondaryField}
                   onChange={(e) => setSecondaryField(e.target.value)}
                   placeholder={currentConfig.secondaryPlaceholder}
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
               <div className="space-y-1.5">
@@ -607,7 +607,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                   value={originCountry}
                   onChange={(e) => setOriginCountry(e.target.value)}
                   placeholder={currentConfig.originCountryPlaceholder}
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -621,7 +621,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                 value={secondaryField}
                 onChange={(e) => setSecondaryField(e.target.value)}
                 placeholder={currentConfig.secondaryPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
           ) : null}
@@ -642,11 +642,11 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                     onClick={() => setSelectedProfile(isSelected ? '' : prof.label)}
                     className={`p-2.5 rounded-md border flex flex-col items-center justify-center text-center space-y-1.5 transition-all cursor-pointer ${
                       isSelected
-                        ? 'border-[#CCA668] bg-[#CCA668]/15 text-[#F7F7F5] shadow-sm shadow-[#CCA668]/20'
+                        ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] shadow-sm'
                         : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]/60 hover:text-[#F7F7F5]'
                     }`}
                   >
-                    <ProfIcon className={`w-4 h-4 ${isSelected ? 'text-[#CCA668]' : 'text-[#8F9299]'}`} />
+                    <ProfIcon className={`w-4 h-4 ${isSelected ? 'text-[#FFFFFF]' : 'text-[#8F9299]'}`} />
                     <span className="text-[10px] font-medium leading-tight line-clamp-2">
                       {prof.label}
                     </span>
@@ -669,12 +669,12 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                     key={motivo}
                     onClick={() => toggleMotivo(motivo)}
                     className={`flex items-start space-x-2 p-1.5 rounded cursor-pointer transition-colors text-left select-none ${
-                      isChecked ? 'bg-[#CCA668]/10' : 'hover:bg-[#15161A]'
+                      isChecked ? 'bg-white/10' : 'hover:bg-[#15161A]'
                     }`}
                   >
                     <div className={`w-4 h-4 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${
                       isChecked 
-                        ? 'border-[#CCA668] bg-[#CCA668] text-[#0B0B0C]' 
+                        ? 'border-[#B8BBC0] bg-[#E5E7EB] text-[#0B0B0C]' 
                         : 'border-[#454852] bg-[#0E0F12]'
                     }`}>
                       {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
@@ -699,7 +699,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                 value={cityState}
                 onChange={(e) => setCityState(e.target.value)}
                 placeholder={currentConfig.locationPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
 
@@ -712,7 +712,7 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={currentConfig.emailPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -723,15 +723,15 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
               NÚMERO PARA CONTATO (WHATSAPP)
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#CCA668]">
-                <MessageCircle className="w-4 h-4 fill-[#CCA668]/20" />
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
+                <MessageCircle className="w-4 h-4" />
               </div>
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder={currentConfig.whatsappPlaceholder}
-                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -746,15 +746,15 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
               value={situation}
               onChange={(e) => setSituation(e.target.value)}
               placeholder={currentConfig.situationPlaceholder}
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
+              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
             />
           </div>
 
-          {/* Golden CTA Button */}
+          {/* Silver CTA Button */}
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2"
+              className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
             >
               <span>SOLICITAR ATENDIMENTO</span>
               <span className="text-base font-bold leading-none">→</span>
@@ -764,15 +764,15 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
           {/* Trust Badges */}
           <div className="pt-3 border-t border-[#252830] grid grid-cols-3 gap-2 text-center text-[10px] sm:text-[11px] text-[#B8BBC0]">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Shield className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Atendimento sigiloso</span>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Scale className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Análise individualizada</span>
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Target className="w-3.5 h-3.5 text-[#CCA668]" />
+              <Target className="w-3.5 h-3.5 text-[#B8BBC0]" />
               <span>Atuação estratégica</span>
             </div>
           </div>
@@ -790,3 +790,4 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
     </div>
   );
 };
+

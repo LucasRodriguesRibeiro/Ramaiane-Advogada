@@ -1,88 +1,96 @@
 import React from 'react';
-import { ShieldCheck, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
+import logoImg from '../assets/images/logoadvogada.png';
 
 interface TestimonialsFoldProps {
-  onOpenEmergencyModal: () => void;
+  onOpenEmergencyModal?: () => void;
 }
 
-export const TestimonialsFold: React.FC<TestimonialsFoldProps> = ({ onOpenEmergencyModal }) => {
+export const TestimonialsFold: React.FC<TestimonialsFoldProps> = () => {
   const testimonials = [
     {
       name: 'M. S.',
-      role: 'Atendimento Prisão em Flagrante',
-      date: 'Atendimento presencial',
+      role: 'CLIENTE',
       comment:
         'A Dra. Ramaiane agiu com extrema rapidez na audiência de custódia do meu irmão. Conseguiu a liberdade provisória no mesmo dia com uma fundamentação impecável. Eterna gratidão!',
     },
     {
       name: 'R. A. F.',
-      role: 'Defesa em Inquérito Policial',
-      date: 'Investigação criminal',
+      role: 'CLIENTE',
       comment:
         'Excelente profissional! Manteve a família informada a todo momento com total transparência e discrição. Conseguiu o arquivamento do inquérito antes de qualquer denúncia.',
     },
     {
       name: 'L. C. V.',
-      role: 'Processo Lei de Drogas',
-      date: 'Ação Penal',
+      role: 'CLIENTE',
       comment:
         'A melhor advogada criminalista. Tinha um caso extremamente delicado envolvendo a Lei de Drogas, e a Dra. Ramaiane elaborou uma tese técnica impecável que levou à absolvição.',
     },
     {
       name: 'A. P. M.',
-      role: 'Habeas Corpus / Liberdade',
-      date: 'Medida urgente',
+      role: 'CLIENTE',
       comment:
         'Atendimento humanizado e resposta imediata. O Habeas Corpus impetrado por ela foi concedido no Tribunal. Transmite segurança e domínio total da matéria.',
     },
   ];
 
   return (
-    <section id="depoimentos" className="relative w-full bg-[#18191B] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#74777C]/20">
+    <section id="depoimentos" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] scroll-mt-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12">
         
-        {/* Section Header */}
-        <div className="space-y-3 text-left max-w-3xl">
-          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold">
-            <span className="w-8 h-[1px] bg-[#B8BBC0]"></span>
+        {/* Section Header - Centered with Logo */}
+        <div className="space-y-4 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold justify-center">
+            <span className="w-8 h-[1px] bg-[#74777C]"></span>
             <span>DEPOIMENTOS</span>
+            <span className="w-8 h-[1px] bg-[#74777C]"></span>
           </div>
 
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#F7F7F5] tracking-tight uppercase">
+          <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-[0.15em] uppercase">
             O QUE DIZEM NOSSOS CLIENTES
           </h2>
-          <p className="text-[#B8BBC0] text-base sm:text-lg font-light leading-relaxed">
-            Experiências de quem confiou sua defesa ao nosso trabalho.
-          </p>
+
+          {/* Central Logo Divider */}
+          <div className="flex items-center justify-center space-x-4 max-w-xs sm:max-w-md mx-auto pt-2">
+            <div className="flex-1 h-[1px] bg-[#74777C]/30"></div>
+            <img 
+              src={logoImg} 
+              alt="Deyse Ramaiane Advocacia" 
+              className="w-7 h-7 object-contain opacity-75 filter brightness-110" 
+            />
+            <div className="flex-1 h-[1px] bg-[#74777C]/30"></div>
+          </div>
         </div>
 
-        {/* Minimalist Graphite Testimonial Cards (No Gold Stars) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Centralized Testimonial Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#0B0B0C] border border-[#74777C]/25 rounded-md p-6 flex flex-col justify-between hover:border-[#B8BBC0]/50 transition-colors space-y-6"
+              className="bg-[#121316] border border-[#74777C]/20 rounded-2xl p-7 sm:p-8 flex flex-col items-center justify-between text-center space-y-6 hover:border-[#B8BBC0]/50 transition-all duration-300 shadow-md group"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between text-[#B8BBC0]">
-                  <span className="text-[10px] tracking-widest font-mono uppercase">
-                    {item.date}
-                  </span>
-                  <Quote className="w-4 h-4 text-[#74777C]" />
+              <div className="space-y-4 flex flex-col items-center">
+                {/* Quote Icon Centered */}
+                <div className="text-[#74777C] group-hover:text-[#B8BBC0] transition-colors">
+                  <Quote className="w-7 h-7 rotate-180 opacity-60" />
                 </div>
 
-                <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                {/* Comment Text Centered */}
+                <p className="text-xs sm:text-[13px] text-[#D1D4D9] leading-relaxed font-light text-center">
                   "{item.comment}"
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#74777C]/20 flex items-center justify-between">
-                <div>
-                  <div className="flex items-center space-x-1.5">
-                    <span className="font-semibold text-xs text-[#F7F7F5]">{item.name}</span>
-                    <ShieldCheck className="w-3.5 h-3.5 text-[#B8BBC0]" />
-                  </div>
-                  <span className="text-[10px] text-[#74777C] block">{item.role}</span>
+              {/* Author & Role Centered */}
+              <div className="w-full pt-4 flex flex-col items-center space-y-2">
+                <div className="w-10 h-[1px] bg-[#74777C]/40"></div>
+                <div className="space-y-0.5 text-center">
+                  <span className="font-semibold text-xs sm:text-sm text-[#F7F7F5] tracking-widest block">
+                    {item.name}
+                  </span>
+                  <span className="text-[10px] text-[#74777C] tracking-[0.2em] uppercase block">
+                    {item.role}
+                  </span>
                 </div>
               </div>
             </div>
@@ -93,3 +101,4 @@ export const TestimonialsFold: React.FC<TestimonialsFoldProps> = ({ onOpenEmerge
     </section>
   );
 };
+

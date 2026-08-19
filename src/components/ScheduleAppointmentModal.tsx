@@ -93,7 +93,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-lg my-6 bg-[#0E0F12] border border-[#CCA668]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
+        className="relative w-full max-w-lg my-6 bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -117,9 +117,9 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
           {/* Stepper Indicator */}
           <div className="flex items-center justify-center space-x-2 sm:space-x-4 pt-4 text-[10px] sm:text-xs font-semibold tracking-wider uppercase">
             {/* Step 1 */}
-            <div className={`flex items-center space-x-1.5 ${step >= 1 ? 'text-[#CCA668]' : 'text-[#5A5D66]'}`}>
+            <div className={`flex items-center space-x-1.5 ${step >= 1 ? 'text-[#F7F7F5]' : 'text-[#5A5D66]'}`}>
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                step >= 1 ? 'bg-[#CCA668] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
+                step >= 1 ? 'bg-[#E5E7EB] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
               }`}>
                 1
               </span>
@@ -129,9 +129,9 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
             <span className="w-4 sm:w-6 h-[1px] bg-[#2D3039]"></span>
 
             {/* Step 2 */}
-            <div className={`flex items-center space-x-1.5 ${step >= 2 ? 'text-[#CCA668]' : 'text-[#5A5D66]'}`}>
+            <div className={`flex items-center space-x-1.5 ${step >= 2 ? 'text-[#F7F7F5]' : 'text-[#5A5D66]'}`}>
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                step >= 2 ? 'bg-[#CCA668] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
+                step >= 2 ? 'bg-[#E5E7EB] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
               }`}>
                 2
               </span>
@@ -141,9 +141,9 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
             <span className="w-4 sm:w-6 h-[1px] bg-[#2D3039]"></span>
 
             {/* Step 3 */}
-            <div className={`flex items-center space-x-1.5 ${step === 3 ? 'text-[#CCA668]' : 'text-[#5A5D66]'}`}>
+            <div className={`flex items-center space-x-1.5 ${step === 3 ? 'text-[#F7F7F5]' : 'text-[#5A5D66]'}`}>
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                step === 3 ? 'bg-[#CCA668] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
+                step === 3 ? 'bg-[#E5E7EB] text-[#0B0B0C]' : 'bg-[#1C1E24] text-[#5A5D66]'
               }`}>
                 3
               </span>
@@ -168,7 +168,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Ex.: João da Silva"
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
 
@@ -181,7 +181,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Ex.: joao@email.com"
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
 
@@ -190,8 +190,8 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   TELEFONE / WHATSAPP
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#CCA668]">
-                    <MessageCircle className="w-4 h-4 fill-[#CCA668]/20" />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
+                    <MessageCircle className="w-4 h-4" />
                   </div>
                   <input
                     type="tel"
@@ -199,7 +199,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="(92) 90000-0000"
-                    className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                    className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -212,7 +212,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   <select
                     value={practiceArea}
                     onChange={(e) => setPracticeArea(e.target.value)}
-                    className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
+                    className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
                       practiceArea === '' ? 'text-[#5A5D66]' : 'text-[#F7F7F5]'
                     }`}
                   >
@@ -271,7 +271,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                       Outra Área de Atuação
                     </option>
                   </select>
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#CCA668]">
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#B8BBC0]">
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </div>
@@ -286,12 +286,12 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   value={caseDescription}
                   onChange={(e) => setCaseDescription(e.target.value)}
                   placeholder="Descreva brevemente sua situação"
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
                 />
               </div>
 
               <div className="flex items-center space-x-2 text-[10.5px] text-[#B8BBC0] pt-1">
-                <Lock className="w-3.5 h-3.5 text-[#CCA668] shrink-0" />
+                <Lock className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0" />
                 <span>
                   Seus dados estão protegidos e serão utilizados apenas para contato relacionado ao seu atendimento.
                 </span>
@@ -300,7 +300,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
               <div className="pt-2 space-y-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2"
+                  className="w-full py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <span>CONTINUAR</span>
                   <ArrowRight className="w-4 h-4" />
@@ -328,7 +328,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                   type="date"
                   value={preferredDate}
                   onChange={(e) => setPreferredDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] focus:outline-none transition-colors"
                 />
               </div>
 
@@ -344,7 +344,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                       onClick={() => setPreferredPeriod(turno)}
                       className={`p-3 rounded-md border text-center text-xs transition-all cursor-pointer ${
                         preferredPeriod === turno
-                          ? 'border-[#CCA668] bg-[#CCA668]/15 text-[#F7F7F5] font-semibold'
+                          ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] font-semibold'
                           : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]'
                       }`}
                     >
@@ -366,7 +366,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                       onClick={() => setMeetingFormat(fmt)}
                       className={`p-3 rounded-md border text-center text-xs transition-all cursor-pointer ${
                         meetingFormat === fmt
-                          ? 'border-[#CCA668] bg-[#CCA668]/15 text-[#F7F7F5] font-semibold'
+                          ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] font-semibold'
                           : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]'
                       }`}
                     >
@@ -388,7 +388,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
 
                 <button
                   type="submit"
-                  className="flex-1 py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2"
+                  className="flex-1 py-3.5 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
                 >
                   <span>AVANÇAR PARA CONFIRMAÇÃO</span>
                   <ArrowRight className="w-4 h-4" />
@@ -400,9 +400,9 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
           {/* STEP 3: CONFIRMAÇÃO */}
           {step === 3 && (
             <div className="space-y-5 text-left">
-              <div className="p-4 bg-[#14151B] border border-[#CCA668]/30 rounded-lg space-y-2 text-xs">
-                <div className="flex items-center space-x-2 text-[#CCA668] font-bold pb-1 border-b border-[#252830]">
-                  <CheckCircle2 className="w-4 h-4" />
+              <div className="p-4 bg-[#14151B] border border-[#B8BBC0]/30 rounded-lg space-y-2 text-xs">
+                <div className="flex items-center space-x-2 text-[#F7F7F5] font-bold pb-1 border-b border-[#252830]">
+                  <CheckCircle2 className="w-4 h-4 text-[#B8BBC0]" />
                   <span>Resumo do Agendamento</span>
                 </div>
                 <div><strong className="text-[#B8BBC0]">Nome:</strong> {fullName || 'Não informado'}</div>
@@ -418,7 +418,7 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
                 <button
                   type="button"
                   onClick={handleFinalSubmit}
-                  className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2"
+                  className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-xl"
                 >
                   <MessageCircle className="w-4 h-4 fill-current shrink-0" />
                   <span>CONFIRMAR E ENVIAR NO WHATSAPP</span>
@@ -437,23 +437,23 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
 
           {/* COMO FUNCIONA Section */}
           <div className="pt-4 border-t border-[#252830] space-y-3">
-            <h3 className="text-[11px] font-bold tracking-widest text-[#CCA668] uppercase text-left">
+            <h3 className="text-[11px] font-bold tracking-widest text-[#E2E4E8] uppercase text-left">
               COMO FUNCIONA:
             </h3>
 
             <div className="space-y-2.5 text-xs text-[#B8BBC0] text-left">
               <div className="flex items-start space-x-3">
-                <Calendar className="w-4 h-4 text-[#CCA668] shrink-0 mt-0.5" />
+                <Calendar className="w-4 h-4 text-[#B8BBC0] shrink-0 mt-0.5" />
                 <span>Você escolhe o melhor dia e horário para ser atendido.</span>
               </div>
 
               <div className="flex items-start space-x-3">
-                <ShieldCheck className="w-4 h-4 text-[#CCA668] shrink-0 mt-0.5" />
+                <ShieldCheck className="w-4 h-4 text-[#B8BBC0] shrink-0 mt-0.5" />
                 <span>Receba a confirmação por e-mail e WhatsApp.</span>
               </div>
 
               <div className="flex items-start space-x-3">
-                <User className="w-4 h-4 text-[#CCA668] shrink-0 mt-0.5" />
+                <User className="w-4 h-4 text-[#B8BBC0] shrink-0 mt-0.5" />
                 <span>Nossa equipe entrará em contato para confirmar os detalhes.</span>
               </div>
             </div>
@@ -464,3 +464,4 @@ export const ScheduleAppointmentModal: React.FC<ScheduleAppointmentModalProps> =
     </div>
   );
 };
+

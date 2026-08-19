@@ -78,7 +78,7 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #CCA668;
+  background: #74777C;
 }
 
 @keyframes fadeIn {

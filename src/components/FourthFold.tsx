@@ -1,7 +1,6 @@
 import React from 'react';
 import dobra4Img from '../assets/images/dobra4.jpeg';
 import { 
-  ArrowRight, 
   Siren, 
   Gavel, 
   Folder, 
@@ -18,15 +17,18 @@ interface FourthFoldProps {
 }
 
 export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, onOpenDrugsModal }) => {
-  const steps = [
+  const stepsCol1 = [
     { label: "Prisão em Flagrante", icon: Siren },
     { label: "Audiência de Custódia", icon: Gavel },
     { label: "Inquérito Policial", icon: Folder },
     { label: "Busca e Apreensão", icon: Search },
+  ];
+
+  const stepsCol2 = [
     { label: "Habeas Corpus", icon: Scale },
     { label: "Defesa no Processo", icon: FileText },
     { label: "Recursos", icon: BookOpen },
-    { label: "Execução Penal", icon: Unlock }
+    { label: "Execução Penal", icon: Unlock },
   ];
 
   const handleOpenModal = () => {
@@ -38,12 +40,12 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, on
   };
 
   return (
-    <section id="trafico-de-drogas" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-20 sm:py-28 font-sans-clean overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <section id="trafico-de-drogas" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-16 sm:py-24 font-sans-clean border-t border-[#18191B] overflow-hidden scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         
-        {/* Photo Column */}
-        <div className="lg:col-span-5 flex justify-center lg:sticky lg:top-28">
-          <div className="relative w-full max-w-md aspect-[4/3] sm:aspect-[14/10] lg:aspect-[4/5] rounded-lg overflow-hidden border border-[#B8BBC0]/50 shadow-xl group">
+        {/* Photo Column (Left) */}
+        <div className="lg:col-span-5 flex justify-center">
+          <div className="relative w-full max-w-md aspect-[4/5] rounded-lg overflow-hidden border border-[#B8BBC0]/40 shadow-2xl group">
             <img
               src={dobra4Img}
               alt="Deyse Ramaiane - Defesa em Crimes da Lei de Drogas"
@@ -53,56 +55,66 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, on
           </div>
         </div>
 
-        {/* Text & Content Column */}
-        <div className="lg:col-span-7 space-y-8 text-left">
-          {/* Header Tag */}
-          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#74777C] uppercase font-semibold">
-            <span className="w-8 h-[1px] bg-[#74777C]"></span>
-            <span>POSICIONAMENTO ESPECIALIZADO</span>
-          </div>
-
-          {/* Title */}
-          <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-[2.75rem] font-normal text-[#0B0B0C] tracking-tight uppercase">
+        {/* Text & Content Column (Right) */}
+        <div className="lg:col-span-7 space-y-6 text-left">
+          
+          {/* Main Title - Clean & Direct */}
+          <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-[2.25rem] font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
             DEFESA EM CRIMES DA LEI DE DROGAS
           </h2>
 
-          {/* Text Paragraph */}
-          <p className="text-[#18191B] text-base sm:text-lg leading-relaxed font-light">
+          {/* Descriptive Paragraph */}
+          <p className="text-[#B8BBC0] text-xs sm:text-sm leading-relaxed font-light max-w-2xl">
             Atuação estratégica em casos envolvendo tráfico de drogas e associação para o tráfico, desde a prisão em flagrante e investigação até o processo, recursos e execução penal, com análise rigorosa das provas e da legalidade dos atos praticados.
           </p>
 
-          {/* Discrete Services List - 1 column (um embaixo do outro com mesma largura e altura) */}
-          <div className="flex flex-col space-y-3 max-w-xl w-full">
-            {steps.map((step) => {
-              const IconComponent = step.icon;
-              return (
-                <div 
-                  key={step.label}
-                  onClick={handleOpenModal}
-                  className="bg-[#18191B] text-[#F7F7F5] px-4 h-11 sm:h-12 rounded-lg flex items-center justify-center space-x-2.5 sm:space-x-3 w-full border border-[#2A2B2E] hover:border-[#CCA668]/60 hover:bg-[#202225] transition-all group shadow-xs cursor-pointer"
-                >
-                  <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-[#CCA668] transition-colors" />
-                  <span className="text-xs font-medium tracking-wider uppercase text-[#F7F7F5] leading-none text-center group-hover:text-white transition-colors">
-                    {step.label}
-                  </span>
-                </div>
-              );
-            })}
+          {/* 2-Column Discrete Services Grid matching reference */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 max-w-2xl">
+            {/* Column 1 */}
+            <div className="flex flex-col space-y-2.5">
+              {stepsCol1.map((step) => {
+                const IconComponent = step.icon;
+                return (
+                  <button 
+                    key={step.label}
+                    onClick={handleOpenModal}
+                    type="button"
+                    className="bg-[#121316] text-[#F7F7F5] px-4 h-11 rounded-md flex items-center justify-center space-x-2.5 w-full border border-[#2A2B2E] hover:border-[#B8BBC0]/60 hover:bg-[#18191B] transition-all group shadow-xs cursor-pointer active:scale-[0.99]"
+                  >
+                    <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-white transition-colors" />
+                    <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#F7F7F5] leading-none text-center group-hover:text-white transition-colors">
+                      {step.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Column 2 */}
+            <div className="flex flex-col space-y-2.5">
+              {stepsCol2.map((step) => {
+                const IconComponent = step.icon;
+                return (
+                  <button 
+                    key={step.label}
+                    onClick={handleOpenModal}
+                    type="button"
+                    className="bg-[#121316] text-[#F7F7F5] px-4 h-11 rounded-md flex items-center justify-center space-x-2.5 w-full border border-[#2A2B2E] hover:border-[#B8BBC0]/60 hover:bg-[#18191B] transition-all group shadow-xs cursor-pointer active:scale-[0.99]"
+                  >
+                    <IconComponent className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0 group-hover:text-white transition-colors" />
+                    <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-[#F7F7F5] leading-none text-center group-hover:text-white transition-colors">
+                      {step.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Action Button */}
-          <div className="pt-2">
-            <button
-              onClick={handleOpenModal}
-              className="silver-button w-full sm:w-auto px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer"
-            >
-              <span>AGENDAR ATENDIMENTO</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
       </div>
     </section>
   );
 };
+

@@ -34,7 +34,7 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-sm bg-[#0E0F12] border border-[#CCA668]/40 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden p-6 sm:p-7 space-y-5"
+        className="relative w-full max-w-sm bg-[#0E0F12] border border-[#B8BBC0]/30 rounded-2xl shadow-2xl text-[#F7F7F5] overflow-hidden p-6 sm:p-7 space-y-5"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -45,7 +45,7 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
         </button>
 
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-full border border-[#CCA668]/60 bg-[#16171C] flex items-center justify-center text-[#CCA668] mx-auto shadow-lg shadow-[#CCA668]/15">
+          <div className="w-12 h-12 rounded-full border border-[#B8BBC0]/40 bg-[#16171C] flex items-center justify-center text-[#F7F7F5] mx-auto shadow-lg">
             <Lock className="w-6 h-6 stroke-[1.5]" />
           </div>
           <h3 className="font-serif-title text-xl text-[#F7F7F5] uppercase tracking-wider">
@@ -62,7 +62,7 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
               SENHA DE ACESSO
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#CCA668]">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
                 <KeyRound className="w-4 h-4" />
               </div>
               <input
@@ -75,7 +75,7 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
                   setError(false);
                 }}
                 placeholder="••••••••"
-                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#CCA668] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors tracking-widest"
+                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors tracking-widest"
               />
             </div>
           </div>
@@ -89,7 +89,7 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
 
           <button
             type="submit"
-            className="w-full py-3 px-4 rounded-md text-center text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-gradient-to-r from-[#DFB77C] via-[#EAD2B2] to-[#CCA668] hover:brightness-110 shadow-lg shadow-[#CCA668]/20 transition-all duration-200 cursor-pointer active:scale-98 flex items-center justify-center space-x-2"
+            className="w-full py-3 px-4 rounded-md text-center text-xs font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all shadow-md cursor-pointer active:scale-98 flex items-center justify-center space-x-2"
           >
             <Sparkles className="w-4 h-4" />
             <span>ACESSAR</span>
@@ -99,3 +99,4 @@ export const BlogAdminAuthModal: React.FC<BlogAdminAuthModalProps> = ({
     </div>
   );
 };
+
