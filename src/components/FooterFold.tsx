@@ -144,8 +144,8 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
 
             <div className="flex items-center space-x-3">
               <Mail className="w-5 h-5 text-[#9DA0A6] shrink-0" />
-              <a href="mailto:deyeramaianeadv@gmail.com" className="font-medium text-[#F7F7F5] hover:text-[#FFFFFF] transition-colors break-all sm:break-normal">
-                deyeramaianeadv@gmail.com
+              <a href="mailto:deyseramaianeadv@gmail.com" className="font-medium text-[#F7F7F5] hover:text-[#FFFFFF] transition-colors break-all sm:break-normal">
+                deyseramaianeadv@gmail.com
               </a>
             </div>
 
