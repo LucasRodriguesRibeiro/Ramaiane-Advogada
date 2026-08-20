@@ -48,7 +48,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "3 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -77,7 +77,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -106,7 +106,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -135,7 +135,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "3 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -163,7 +163,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "3 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -191,7 +191,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -219,7 +219,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -247,7 +247,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -275,7 +275,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -303,7 +303,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -333,7 +333,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "5 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -363,7 +363,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -393,7 +393,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   },
@@ -423,7 +423,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
     readTime: "4 min de leitura",
     author: {
       name: "Deyse Ramaiane",
-      title: "Advocacia Criminal Estratégica",
+      title: "Advocacia Estratégica",
       avatarUrl: dobra2Img
     }
   }
@@ -497,7 +497,7 @@ export const sanitizeArticle = (art: any, index: number): BlogArticle => {
     isNew: Boolean(art?.isNew),
     author: {
       name: String(art?.author?.name || "Deyse Ramaiane"),
-      title: String(art?.author?.title || "Advocacia Criminal Estratégica"),
+      title: String(art?.author?.title || "Advocacia Estratégica"),
       avatarUrl: art?.author?.avatarUrl || dobra2Img
     }
   };

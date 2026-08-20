@@ -58,16 +58,16 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
   ];
 
   return (
-    <section id="nucleo-civel" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-14">
+    <section id="nucleo-civel" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
         
-        {/* Section Header - Centered as in photo */}
+        {/* Section Header */}
         <div className="space-y-3 text-center max-w-3xl mx-auto">
           <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-[0.15em] uppercase">
-            — NÚCLEO CÍVEL —
+            NÚCLEO CÍVEL
           </h2>
 
-          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wide">
+          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wide text-justify">
             SOLUÇÕES JURÍDICAS ESTRATÉGICAS PARA RELAÇÕES PRIVADAS, PATRIMÔNIO E NEGÓCIOS.
           </p>
         </div>
@@ -94,14 +94,14 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
 
                   {/* Title */}
                   <div className="space-y-2.5">
-                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] leading-snug tracking-wide uppercase group-hover:text-[#FFFFFF] transition-colors">
+                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] leading-snug tracking-wide uppercase group-hover:text-[#FFFFFF] transition-colors text-justify">
                       {item.title}
                     </h3>
                     <div className="w-10 h-[1.5px] bg-[#B8BBC0]/40"></div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify">
                     {item.desc}
                   </p>
 

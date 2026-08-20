@@ -46,7 +46,7 @@ export const HeroFold: React.FC<HeroFoldProps> = ({ onOpenEmergencyModal }) => {
               RAMAIANE
             </h1>
             <p className="text-xs sm:text-sm tracking-[0.3em] text-[#B8BBC0] uppercase font-medium pt-1.5 text-center lg:text-left">
-              ADVOCACIA CRIMINAL ESTRATÉGICA
+              ADVOCACIA ESTRATÉGICA
             </p>
           </div>
 

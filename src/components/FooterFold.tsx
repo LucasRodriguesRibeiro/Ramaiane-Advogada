@@ -36,7 +36,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               ATENDIMENTO EM ÂMBITO NACIONAL
             </div>
             <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] uppercase">
-              DEFESA CRIMINAL EXIGE RESPOSTA ESTRATÉGICA DESDE O PRIMEIRO MOMENTO.
+              ATUAÇÃO JURÍDICA EXIGE RESPOSTA ESTRATÉGICA DESDE O PRIMEIRO MOMENTO.
             </h3>
           </div>
 
@@ -73,8 +73,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           </a>
           <div className="text-sm text-[#D1D4D9] space-y-1">
             <p className="font-semibold text-[#F7F7F5] uppercase tracking-wider">DEYSE RAMAIANE</p>
-            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ADVOCACIA CRIMINAL</p>
-            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ATENDIMENTO EM ÂMBITO NACIONAL</p>
+            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ADVOCACIA ESTRATÉGICA</p>
           </div>
         </div>
 
@@ -122,7 +121,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               </a>
             </li>
             <li>
-              <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Como Funciona</a>
+              <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Nossa Metodologia</a>
             </li>
             <li>
               <a href="#contato" className="hover:text-[#F7F7F5] transition-colors">Contato</a>
@@ -165,7 +164,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#9DA0A6] gap-2">
             <div className="flex items-center space-x-2">
               <span>
-                © {new Date().getFullYear()} Deyse Ramaiane Advocacia Criminal. Todos os direitos reservados.
+                © {new Date().getFullYear()} Deyse Ramaiane Advocacia Estratégica. Todos os direitos reservados.
               </span>
               {onOpenAdminAuth && (
                 <button

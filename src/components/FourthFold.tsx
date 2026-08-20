@@ -40,7 +40,7 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, on
   };
 
   return (
-    <section id="trafico-de-drogas" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-16 sm:py-24 font-sans-clean border-t border-[#18191B] overflow-hidden scroll-mt-16">
+    <section id="trafico-de-drogas" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] overflow-hidden scroll-mt-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         
         {/* Photo Column (Left) */}
@@ -59,13 +59,13 @@ export const FourthFold: React.FC<FourthFoldProps> = ({ onOpenEmergencyModal, on
         <div className="lg:col-span-7 space-y-6 text-left">
           
           {/* Main Title - Clean & Direct */}
-          <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-[2.25rem] font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
+          <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-[2.25rem] font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight text-center">
             DEFESA EM CRIMES DA LEI DE DROGAS
           </h2>
 
           {/* Descriptive Paragraph */}
-          <p className="text-[#B8BBC0] text-xs sm:text-sm leading-relaxed font-light max-w-2xl">
-            Atuação estratégica em casos envolvendo tráfico de drogas e associação para o tráfico, desde a prisão em flagrante e investigação até o processo, recursos e execução penal, com análise rigorosa das provas e da legalidade dos atos praticados.
+          <p className="text-[#B8BBC0] text-xs sm:text-sm leading-relaxed font-light max-w-2xl text-justify">
+            Atuação estratégica em casos de tráfico de drogas e associação para o tráfico, com foco em liberdade, investigação e execução penal.
           </p>
 
           {/* 2-Column Discrete Services Grid matching reference */}

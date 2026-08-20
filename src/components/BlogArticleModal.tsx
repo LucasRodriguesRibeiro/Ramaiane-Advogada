@@ -131,7 +131,7 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
                 {article.author?.name || "Deyse Ramaiane"}
               </div>
               <div className="text-[11px] text-[#B8BBC0] font-light">
-                {article.author?.title || "Advocacia Criminal Estratégica"}
+                {article.author?.title || "Advocacia Estratégica"}
               </div>
             </div>
           </div>

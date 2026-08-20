@@ -18,7 +18,7 @@ export const generateArticleWithAI = async (
   if (effectiveApiKey) {
     try {
       const ai = new GoogleGenAI({ apiKey: effectiveApiKey });
-      const prompt = `Você é uma advogada criminalista especialista de alto padrão (Dra. Deyse Ramaiane - Advocacia Criminal Estratégica).
+      const prompt = `Você é uma advogada especialista de alto padrão (Dra. Deyse Ramaiane - Advocacia Estratégica).
 Escreva um artigo jurídico completo, elegante, persuasivo, técnico e didático sobre o tema: "${topic}".
 
 Retorne EXCLUSIVAMENTE um objeto JSON válido (sem blocos de código extras) com a seguinte estrutura:

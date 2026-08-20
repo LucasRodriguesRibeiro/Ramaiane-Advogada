@@ -22,7 +22,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
     { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
     { label: 'BLOG', href: '/blog' },
-    { label: 'COMO FUNCIONA', href: '#como-funciona' },
+    { label: 'NOSSA METODOLOGIA', href: '#como-funciona' },
     { label: 'CONTATO', href: '#contato' },
   ];
 

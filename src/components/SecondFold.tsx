@@ -4,7 +4,7 @@ import assinaturaImg from '../assets/images/assinatura_transparente.png';
 
 export const SecondFold: React.FC = () => {
   return (
-    <section id="sobre" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-16 sm:py-24 font-sans-clean overflow-hidden">
+    <section id="sobre" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-12 sm:py-16 font-sans-clean overflow-hidden">
       <div id="apresentacao" className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         
         {/* Left Column: Professional Portrait */}
@@ -12,7 +12,7 @@ export const SecondFold: React.FC = () => {
           <div className="relative w-full max-w-md aspect-[4/5] rounded-lg overflow-hidden border border-[#B8BBC0]/60 shadow-xl">
             <img
               src={dobra2Img}
-              alt="Deyse Ramaiane - Advocacia Criminal Estratégica"
+              alt="Deyse Ramaiane - Advocacia Estratégica"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover object-top contrast-105 brightness-100"
             />
@@ -31,7 +31,7 @@ export const SecondFold: React.FC = () => {
           </div>
 
           {/* Paragraphs */}
-          <div className="space-y-4 text-[#18191B] text-base sm:text-lg leading-relaxed font-light">
+          <div className="space-y-4 text-[#18191B] text-base sm:text-lg leading-relaxed font-light text-justify">
             <p>
               Há mais de uma década, atuo na advocacia com técnica, estratégia e análise individualizada de cada caso.
             </p>

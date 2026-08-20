@@ -121,7 +121,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
         isNew: true,
         author: {
           name: "Deyse Ramaiane",
-          title: "Advocacia Criminal Estratégica",
+          title: "Advocacia Estratégica",
           avatarUrl: dobra2Img
         }
       };

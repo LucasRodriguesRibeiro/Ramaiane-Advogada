@@ -17,7 +17,7 @@ export const ThirdFold: React.FC<ThirdFoldProps> = ({ onOpenEmergencyModal }) =>
   ];
 
   return (
-    <section id="urgencias" className="relative w-full bg-[#18191B] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#74777C]/20 overflow-hidden">
+    <section id="urgencias" className="relative w-full bg-[#18191B] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#74777C]/20 overflow-hidden">
       {/* Dark Dramatic Background Image */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
         <img
@@ -28,12 +28,11 @@ export const ThirdFold: React.FC<ThirdFoldProps> = ({ onOpenEmergencyModal }) =>
         <div className="absolute inset-0 bg-gradient-to-b from-[#18191B] via-[#18191B]/80 to-[#18191B]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8 relative z-10">
         
         {/* Section Header */}
         <div className="space-y-4 text-left max-w-3xl">
-          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold">
-            <span className="w-8 h-[1px] bg-[#B8BBC0]"></span>
+          <div className="inline-flex items-center text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold">
             <span>SITUAÇÕES QUE EXIGEM ATUAÇÃO IMEDIATA</span>
           </div>
 

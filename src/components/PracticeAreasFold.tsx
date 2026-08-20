@@ -23,7 +23,7 @@ export const PracticeAreasFold: React.FC<PracticeAreasFoldProps> = ({ onOpenEmer
   ];
 
   return (
-    <section id="atuacao-tecnica" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] overflow-hidden">
+    <section id="atuacao-tecnica" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] overflow-hidden">
       {/* Background Metallic Hourglass Image */}
       <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full z-0 opacity-15 pointer-events-none">
         <img
@@ -35,12 +35,11 @@ export const PracticeAreasFold: React.FC<PracticeAreasFoldProps> = ({ onOpenEmer
         <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0C] via-transparent to-[#0B0B0C]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8 relative z-10">
         
         {/* Section Title */}
         <div className="space-y-3 text-left">
-          <div className="inline-flex items-center space-x-3 text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold">
-            <span className="w-8 h-[1px] bg-[#74777C]"></span>
+          <div className="inline-flex items-center text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold">
             <span>ÁREAS DE ATUAÇÃO</span>
           </div>
 

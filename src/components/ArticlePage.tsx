@@ -156,7 +156,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                   {article.author?.name || "Dra. Deyse Ramaiane"}
                 </div>
                 <div className="text-xs text-[#B8BBC0]">
-                  {article.author?.title || "Advocacia Criminal Estratégica"}
+                  {article.author?.title || "Advocacia Estratégica"}
                 </div>
               </div>
             </div>

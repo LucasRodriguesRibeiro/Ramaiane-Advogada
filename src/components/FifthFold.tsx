@@ -6,7 +6,18 @@ import {
   User, 
   Leaf, 
   Monitor, 
-  Shield 
+  Shield,
+  Globe,
+  Landmark,
+  Coins,
+  PlaySquare,
+  Search,
+  Gavel,
+  DollarSign,
+  Vote,
+  Car,
+  Lock,
+  ShieldAlert
 } from 'lucide-react';
 
 interface FifthFoldProps {
@@ -57,6 +68,83 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       icon: Leaf,
       title: "Produtores Rurais e Atividade Ambiental",
       desc: "Defesa em investigações e processos relacionados ao agronegócio, crimes ambientais, irregularidades e fiscalização."
+    },
+    {
+      id: "estrangeiros",
+      category: "DEMANDAS TRANSNACIONAIS",
+      icon: Globe,
+      title: "Clientes Estrangeiros e Empresas Internacionais",
+      desc: "Assistência e defesa criminal em investigações e processos que envolvem elementos internacionais, cooperação jurídica e demandas transnacionais."
+    },
+    {
+      id: "gestores-publicos",
+      category: "FUNÇÃO PÚBLICA",
+      icon: Landmark,
+      title: "Gestores e Agentes Públicos",
+      desc: "Defesa em investigações e processos relacionados ao exercício da função pública, licitações, contratos administrativos e crimes contra a Administração Pública."
+    },
+    {
+      id: "instituicoes-financeiras",
+      category: "MERCADO FINANCEIRO",
+      icon: Coins,
+      title: "Instituições Financeiras, Fintechs e Investidores",
+      desc: "Atuação em investigações envolvendo operações financeiras, lavagem de dinheiro, patrimônio, delitos econômicos e proteção de investidores."
+    },
+    {
+      id: "influenciadores",
+      category: "MÍDIA E CRIADORES",
+      icon: PlaySquare,
+      title: "Influenciadores e Criadores de Conteúdo",
+      desc: "Defesa em crimes digitais, exposição indevida, crimes contra a honra, fraudes, publicidade e riscos penais relacionados à atividade digital."
+    },
+    {
+      id: "investigacoes-operacoes",
+      category: "PERSECUÇÃO PENAL",
+      icon: Search,
+      title: "Investigações, Prisões e Operações Policiais",
+      desc: "Atuação estratégica em inquéritos, prisões, buscas e apreensões, operações policiais, tráfico de drogas e crimes de maior complexidade."
+    },
+    {
+      id: "defesa-tribunais",
+      category: "ATUAÇÃO NOS TRIBUNAIS",
+      icon: Gavel,
+      title: "Defesa em Tribunais e Recursos Criminais",
+      desc: "Atuação em processos criminais em todas as instâncias, recursos especiais, habeas corpus, revisões criminais e medidas processuais estratégicas."
+    },
+    {
+      id: "crimes-economicos",
+      category: "DIREITO PENAL ECONÔMICO",
+      icon: DollarSign,
+      title: "Crimes Econômicos, Tributários e Contra o Patrimônio",
+      desc: "Defesa em crimes tributários, sonegação, fraudes fiscais, estelionato, apropriação indébita, lavagem de dinheiro e demais crimes patrimoniais."
+    },
+    {
+      id: "crimes-eleitorais",
+      category: "DIREITO ELEITORAL PENAL",
+      icon: Vote,
+      title: "Crimes Eleitorais",
+      desc: "Defesa e consultoria em investigações e processos relacionados a crimes eleitorais, abuso de poder, caixa 2, corrupção eleitoral e condutas ilícitas em campanhas."
+    },
+    {
+      id: "crimes-transito",
+      category: "DIREITO PENAL DE TRÂNSITO",
+      icon: Car,
+      title: "Crimes de Trânsito",
+      desc: "Defesa em crimes de trânsito, embriaguez ao volante, homicídio culposo, lesão corporal culposa e demais infrações penais relacionadas ao trânsito."
+    },
+    {
+      id: "execucao-penal",
+      category: "EXECUÇÃO PENAL",
+      icon: Lock,
+      title: "Execução Penal e Sistema Prisional",
+      desc: "Atuação em execuções penais, progressão de regime, livramento condicional, incidentes, transferência, falta grave e direitos do preso."
+    },
+    {
+      id: "crimes-honra",
+      category: "HONRA E LIBERDADE",
+      icon: ShieldAlert,
+      title: "Crimes Contra a Honra, Liberdade e Imagem",
+      desc: "Defesa em calúnia, difamação, injúria, ameaças, perseguição e condutas que afetam a honra, liberdade e imagem de pessoas físicas e jurídicas."
     }
   ];
 
@@ -69,13 +157,13 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
   };
 
   return (
-    <section id="nucleo-criminal" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-20 sm:py-28 font-sans-clean border-t border-[#18191B] scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-14">
+    <section id="nucleo-criminal" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
         
-        {/* Section Header - Centered matching Núcleo Cível */}
+        {/* Section Header */}
         <div className="space-y-3 text-center max-w-3xl mx-auto">
           <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-[0.15em] uppercase">
-            — NÚCLEO CRIMINAL —
+            NÚCLEO CRIMINAL
           </h2>
 
           <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wide">
@@ -83,7 +171,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           </p>
         </div>
 
-        {/* 6 Cards Grid (2 rows of 3) matching reference */}
+        {/* 17 Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {nucleos.map((item) => {
             const Icon = item.icon;
@@ -109,7 +197,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify">
                     {item.desc}
                   </p>
                 </div>

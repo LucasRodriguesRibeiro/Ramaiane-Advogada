@@ -8,15 +8,60 @@ import {
   BookOpen,
   Search,
   X,
-  Scale
+  Scale,
+  ChevronDown,
+  ChevronRight,
+  Shield,
+  Gavel,
+  Monitor,
+  Stethoscope,
+  Coins,
+  Briefcase,
+  FileText,
+  UserCheck,
+  Leaf,
+  Car,
+  Landmark,
+  Vote,
+  ShoppingBag,
+  DollarSign,
+  Home,
+  Users
 } from 'lucide-react';
 import { BlogArticle, BLOG_MAIN_AREAS, isArticleInMainArea } from '../types/blog';
 import { getBlogArticles, deleteBlogArticle, createBlogArticle, updateBlogArticle } from '../services/firebase';
 import { BlogAdminModal } from './BlogAdminModal';
 import { BlogAdminAuthModal } from './BlogAdminAuthModal';
 import { EmergencyContact } from '../types';
-import blogLawImg from '../assets/images/blog_law_header.jpg';
-import dobra2Img from '../assets/images/dobra2.jpeg';
+
+const CRIMINAL_CATEGORIES = [
+  { label: 'Direito Penal Estratégico', icon: Shield },
+  { label: 'Tráfico de Drogas', icon: Scale },
+  { label: 'Investigações, Prisões e Operações Policiais', icon: Search },
+  { label: 'Tribunal do Júri', icon: Gavel },
+  { label: 'Crimes Digitais', icon: Monitor },
+  { label: 'Direito Penal Médico', icon: Stethoscope },
+  { label: 'Crimes Econômicos e Financeiros', icon: Coins },
+  { label: 'Crimes Empresariais', icon: Briefcase },
+  { label: 'Crimes Tributários e Patrimoniais', icon: FileText },
+  { label: 'Crimes Contra a Honra, Imagem e Liberdade', icon: UserCheck },
+  { label: 'Crimes Ambientais e Agronegócio', icon: Leaf },
+  { label: 'Crimes de Trânsito', icon: Car },
+  { label: 'Execução Penal', icon: Landmark },
+  { label: 'Crimes Eleitorais', icon: Vote },
+  { label: 'Recursos e Defesa em Tribunais', icon: BookOpen },
+];
+
+const CIVEL_CATEGORIES = [
+  { label: 'Responsabilidade Civil e Indenizações', icon: Shield },
+  { label: 'Contratos e Obrigações', icon: FileText },
+  { label: 'Direito do Consumidor', icon: ShoppingBag },
+  { label: 'Direito Empresarial', icon: Briefcase },
+  { label: 'Cobranças e Recuperação de Crédito', icon: DollarSign },
+  { label: 'Direito Imobiliário', icon: Home },
+  { label: 'Família e Sucessões', icon: Users },
+  { label: 'Planejamento Patrimonial e Sucessório', icon: FileText },
+];
 
 interface BlogFoldProps {
   contact: EmergencyContact;
@@ -44,6 +89,8 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
   const [articles, setArticles] = useState<BlogArticle[]>([]);
   const [editingArticle, setEditingArticle] = useState<BlogArticle | null>(null);
   const [selectedArea, setSelectedArea] = useState<'all' | 'criminal' | 'civel'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Carrega artigos
@@ -109,10 +156,32 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
     await loadArticles();
   };
 
-  // Filtragem de artigos por área principal (Todos, Núcleo Criminal, Núcleo Cível) e busca
+  const handleSelectSubCategory = (categoryLabel: string, mainArea: 'criminal' | 'civel') => {
+    setSelectedArea(mainArea);
+    setSelectedCategory(categoryLabel);
+    setIsCategoriesDrawerOpen(false);
+  };
+
+  // Filtragem de artigos por área principal, subcategoria e busca
   const filteredArticles = articles.filter(article => {
     const matchesArea = isArticleInMainArea(article, selectedArea);
     if (!matchesArea) return false;
+
+    if (selectedCategory) {
+      const normalize = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const catNorm = normalize(selectedCategory);
+      const articleCat = normalize(article.category || '');
+      const articleTitle = normalize(article.title || '');
+      const articleSummary = normalize(article.summary || '');
+      const articleContent = normalize(article.content || '');
+
+      const matchesCat = articleCat.includes(catNorm) || 
+                         articleTitle.includes(catNorm) || 
+                         articleSummary.includes(catNorm) || 
+                         articleContent.includes(catNorm) ||
+                         catNorm.split(' ').some(w => w.length > 3 && (articleCat.includes(w) || articleTitle.includes(w)));
+      if (!matchesCat) return false;
+    }
 
     if (!searchQuery.trim()) return true;
 
@@ -126,37 +195,22 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
   });
 
   return (
-    <section id="blog" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] pt-12 pb-24 sm:pt-16 sm:pb-32 font-sans-clean scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+    <section id="blog" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] pt-2 pb-14 sm:pt-4 sm:pb-20 font-sans-clean scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
-        {/* 1. Hero Header Banner (Matching the reference screenshot) */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 pt-2">
-          
-          {/* Left Text Block */}
-          <div className="space-y-4 text-left max-w-2xl flex-1">
-            <div className="text-xs tracking-[0.25em] text-[#8F9299] uppercase font-semibold">
-              BLOG
-            </div>
-
-            <h1 className="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
-              CONTEÚDO JURÍDICO
-            </h1>
-
-            <p className="text-[#B8BBC0] text-sm sm:text-base font-light leading-relaxed max-w-xl">
-              Análises e informações jurídicas sobre temas que fazem parte da nossa atuação.
-            </p>
+        {/* 1. Hero Header Banner (Without image, clean & elevated) */}
+        <div className="space-y-2 text-left max-w-3xl pt-0 pb-2">
+          <div className="text-xs tracking-[0.25em] text-[#8F9299] uppercase font-semibold">
+            BLOG
           </div>
 
-          {/* Right Hero Image Card */}
-          <div className="w-full lg:w-[460px] xl:w-[500px] h-52 sm:h-64 rounded-2xl overflow-hidden relative shadow-2xl border border-[#252830] shrink-0 bg-[#121316]">
-            <img 
-              src={blogLawImg} 
-              alt="Conteúdo Jurídico - Dra. Deyse Ramaiane" 
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0C]/70 via-transparent to-transparent"></div>
-          </div>
+          <h1 className="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
+            CONTEÚDO JURÍDICO
+          </h1>
 
+          <p className="text-[#B8BBC0] text-sm sm:text-base font-light leading-relaxed">
+            Análise jurídica estratégica.
+          </p>
         </div>
 
         {/* Admin Toolbar (Exibido apenas quando autenticado via cadeado do rodapé) */}
@@ -185,24 +239,27 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
           </div>
         )}
 
-        {/* 2. Área Filter Bar ("ESCOLHA UMA ÁREA") */}
+        {/* 2. Área Filter Bar ("EXPLORE POR ÁREA") */}
         <div className="space-y-6 pt-4 border-t border-[#18191B]">
           
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             
-            {/* Filter Buttons: TODOS | NÚCLEO CRIMINAL | NÚCLEO CÍVEL */}
+            {/* Filter Buttons: TODOS | CRIMINAL | CÍVEL | CATEGORIAS ˅ */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8F9299] mr-2">
-                ESCOLHA UMA ÁREA
+                EXPLORE POR ÁREA
               </span>
 
               {BLOG_MAIN_AREAS.map((area) => {
-                const isActive = selectedArea === area.id;
+                const isActive = selectedArea === area.id && !selectedCategory;
 
                 return (
                   <button
                     key={area.id}
-                    onClick={() => setSelectedArea(area.id)}
+                    onClick={() => {
+                      setSelectedArea(area.id);
+                      setSelectedCategory(null);
+                    }}
                     className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-[#E5E7EB] text-[#0B0B0C] font-bold shadow-md shadow-white/5'
@@ -213,6 +270,19 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
                   </button>
                 );
               })}
+
+              {/* CATEGORIAS ˅ Button */}
+              <button
+                onClick={() => setIsCategoriesDrawerOpen(true)}
+                className={`px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer flex items-center space-x-2 ${
+                  selectedCategory || isCategoriesDrawerOpen
+                    ? 'bg-[#E5E7EB] text-[#0B0B0C] font-bold shadow-md shadow-white/5'
+                    : 'bg-[#14151B] border border-[#2D3039] text-[#B8BBC0] hover:text-[#FFFFFF] hover:border-[#8F9299] hover:bg-[#1A1C23]'
+                }`}
+              >
+                <span>CATEGORIAS</span>
+                <ChevronDown className="w-3.5 h-3.5" />
+              </button>
             </div>
 
             {/* Quick Search */}
@@ -237,6 +307,23 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
 
           </div>
 
+          {/* Active Sub-category Tag indicator */}
+          {selectedCategory && (
+            <div className="flex items-center space-x-2.5 text-xs text-[#E2E4E8] pt-1">
+              <span className="text-[#8F9299]">Filtrando por:</span>
+              <span className="bg-[#1A1C24] border border-[#2D3039] px-3 py-1 rounded-full flex items-center space-x-2 font-medium">
+                <span>{selectedCategory}</span>
+                <button 
+                  onClick={() => setSelectedCategory(null)}
+                  className="hover:text-white text-[#8F9299] cursor-pointer"
+                  title="Remover filtro de categoria"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </span>
+            </div>
+          )}
+
         </div>
 
         {/* 3. "ARTIGOS EM DESTAQUE" Section */}
@@ -251,7 +338,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
             </span>
           </div>
 
-          {/* Grid of Articles (Matching reference screenshot cards) */}
+          {/* Grid of Articles */}
           {filteredArticles.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
               {filteredArticles.map((item) => (
@@ -278,7 +365,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
                       )}
                     </div>
 
-                    {/* Specific Niche / Category Tag (Exposed inside the card as requested) */}
+                    {/* Specific Niche / Category Tag */}
                     <div className="text-[10px] tracking-wider uppercase font-semibold text-[#8F9299] group-hover:text-[#F7F7F5] transition-colors">
                       {item.category || 'DIREITO PENAL'}
                     </div>
@@ -343,6 +430,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
               <button
                 onClick={() => {
                   setSelectedArea('all');
+                  setSelectedCategory(null);
                   setSearchQuery('');
                 }}
                 className="py-2.5 px-5 rounded-md text-xs font-semibold bg-[#1E2028] hover:bg-[#262933] text-[#F7F7F5] transition-colors cursor-pointer"
@@ -371,6 +459,97 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
 
       </div>
 
+      {/* Categories Drawer / Modal */}
+      {isCategoriesDrawerOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex justify-end bg-black/80 backdrop-blur-sm animate-fadeIn"
+          onClick={() => setIsCategoriesDrawerOpen(false)}
+        >
+          <div 
+            className="w-full max-w-md bg-[#0E0F12] border-l border-[#232630] h-full flex flex-col shadow-2xl text-[#F7F7F5]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between p-6 border-b border-[#232630]">
+              <h3 className="text-sm sm:text-base font-bold tracking-widest uppercase text-[#F7F7F5]">
+                CATEGORIAS
+              </h3>
+              <button 
+                onClick={() => setIsCategoriesDrawerOpen(false)}
+                className="p-2 text-[#8F9299] hover:text-white hover:bg-[#1A1C24] rounded-full transition-colors cursor-pointer"
+                aria-label="Fechar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Drawer Content Body */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+              {/* CRIMINAL Section */}
+              <div className="space-y-3">
+                <div className="text-xs font-bold tracking-[0.2em] text-[#8F9299] uppercase pb-1 border-b border-[#232630]">
+                  CRIMINAL
+                </div>
+                <div className="space-y-1">
+                  {CRIMINAL_CATEGORIES.map((cat) => {
+                    const CatIcon = cat.icon;
+                    const isCatSelected = selectedCategory === cat.label;
+                    return (
+                      <button
+                        key={cat.label}
+                        onClick={() => handleSelectSubCategory(cat.label, 'criminal')}
+                        className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors group cursor-pointer text-left ${
+                          isCatSelected ? 'bg-[#1A1C24] text-white' : 'hover:bg-[#1A1C24]/70 text-[#D1D4D9]'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3 pr-2">
+                          <CatIcon className={`w-4 h-4 shrink-0 transition-colors ${isCatSelected ? 'text-white' : 'text-[#8F9299] group-hover:text-white'}`} />
+                          <span className={`text-xs font-medium transition-colors ${isCatSelected ? 'text-white font-semibold' : 'group-hover:text-white'}`}>
+                            {cat.label}
+                          </span>
+                        </div>
+                        <ChevronRight className={`w-4 h-4 shrink-0 transition-all ${isCatSelected ? 'text-white translate-x-0.5' : 'text-[#6E717B] group-hover:text-white group-hover:translate-x-0.5'}`} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* CÍVEL Section */}
+              <div className="space-y-3">
+                <div className="text-xs font-bold tracking-[0.2em] text-[#8F9299] uppercase pb-1 border-b border-[#232630]">
+                  CÍVEL
+                </div>
+                <div className="space-y-1">
+                  {CIVEL_CATEGORIES.map((cat) => {
+                    const CatIcon = cat.icon;
+                    const isCatSelected = selectedCategory === cat.label;
+                    return (
+                      <button
+                        key={cat.label}
+                        onClick={() => handleSelectSubCategory(cat.label, 'civel')}
+                        className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors group cursor-pointer text-left ${
+                          isCatSelected ? 'bg-[#1A1C24] text-white' : 'hover:bg-[#1A1C24]/70 text-[#D1D4D9]'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3 pr-2">
+                          <CatIcon className={`w-4 h-4 shrink-0 transition-colors ${isCatSelected ? 'text-white' : 'text-[#8F9299] group-hover:text-white'}`} />
+                          <span className={`text-xs font-medium transition-colors ${isCatSelected ? 'text-white font-semibold' : 'group-hover:text-white'}`}>
+                            {cat.label}
+                          </span>
+                        </div>
+                        <ChevronRight className={`w-4 h-4 shrink-0 transition-all ${isCatSelected ? 'text-white translate-x-0.5' : 'text-[#6E717B] group-hover:text-white group-hover:translate-x-0.5'}`} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
       {/* Admin Creator / Editor Modal */}
       <BlogAdminModal
         isOpen={isAdminModalOpen}
@@ -390,5 +569,3 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
     </section>
   );
 };
-
-

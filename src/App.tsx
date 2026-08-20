@@ -40,8 +40,8 @@ export default function App() {
   const [isBlogAdminModalOpen, setIsBlogAdminModalOpen] = useState(false);
 
   const emergencyContact: EmergencyContact = {
-    lawyerName: "Ramaiane Advogada Criminal",
-    oabNumber: "Advocacia Criminal Estratégica",
+    lawyerName: "Ramaiane Advogada",
+    oabNumber: "Advocacia Estratégica",
     phone: "(92) 99348-0017",
     whatsappNumber: "5592993480017",
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
@@ -100,7 +100,7 @@ export default function App() {
 
       setIsBlogPageActive(false);
       setCurrentArticle(null);
-      document.title = 'Deyse Ramaiane | Advocacia Criminal Estratégica';
+      document.title = 'Deyse Ramaiane | Advocacia Estratégica';
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -127,7 +127,7 @@ export default function App() {
     setCurrentArticle(null);
     setIsBlogPageActive(false);
     window.history.pushState({}, '', '/');
-    document.title = 'Deyse Ramaiane | Advocacia Criminal Estratégica';
+    document.title = 'Deyse Ramaiane | Advocacia Estratégica';
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 

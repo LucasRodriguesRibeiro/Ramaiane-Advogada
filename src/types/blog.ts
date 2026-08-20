@@ -36,8 +36,8 @@ export interface BlogMainArea {
 
 export const BLOG_MAIN_AREAS: BlogMainArea[] = [
   { id: 'all', label: 'TODOS' },
-  { id: 'criminal', label: 'NÚCLEO CRIMINAL' },
-  { id: 'civel', label: 'NÚCLEO CÍVEL' }
+  { id: 'criminal', label: 'CRIMINAL' },
+  { id: 'civel', label: 'CÍVEL' }
 ];
 
 export const isArticleInMainArea = (article: BlogArticle, areaId: string): boolean => {
