@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   ArrowRight, 
   Building2, 
@@ -17,7 +17,9 @@ import {
   Vote,
   Car,
   Lock,
-  ShieldAlert
+  ShieldAlert,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 interface FifthFoldProps {
@@ -26,6 +28,8 @@ interface FifthFoldProps {
 }
 
 export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSelectNucleo }) => {
+  const [showMore, setShowMore] = useState(false);
+
   const nucleos = [
     {
       id: "medicos",
@@ -173,13 +177,16 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
 
         {/* 17 Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {nucleos.map((item) => {
+          {nucleos.map((item, index) => {
             const Icon = item.icon;
+            const isDesktopCollapsible = index >= 15;
             return (
               <div
                 key={item.id}
                 onClick={() => handleCardClick(item.id)}
-                className="bg-[#18191B] border border-[#74777C]/20 rounded-md p-6 sm:p-8 flex flex-col justify-between hover:border-[#B8BBC0]/50 transition-all duration-300 group shadow-md cursor-pointer"
+                className={`bg-[#18191B] border border-[#74777C]/20 rounded-md p-6 sm:p-8 flex flex-col justify-between hover:border-[#B8BBC0]/50 transition-all duration-300 group shadow-md cursor-pointer ${
+                  isDesktopCollapsible && !showMore ? 'lg:hidden' : ''
+                }`}
               >
                 <div className="space-y-4">
                   {/* Category with Icon */}
@@ -214,10 +221,27 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           })}
         </div>
 
+        {/* Desktop Ver Mais / Ver Menos Button */}
+        <div className="hidden lg:flex justify-center pt-2">
+          <button
+            type="button"
+            onClick={() => setShowMore(!showMore)}
+            className="inline-flex items-center space-x-2.5 px-8 py-3.5 bg-[#18191B] hover:bg-[#222428] text-[#F7F7F5] border border-[#74777C]/30 hover:border-[#B8BBC0]/60 rounded-md text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md group cursor-pointer"
+          >
+            <span>{showMore ? 'Ver Menos' : 'Ver Mais'}</span>
+            {showMore ? (
+              <ChevronUp className="w-4 h-4 text-[#B8BBC0] group-hover:text-[#F7F7F5] group-hover:-translate-y-0.5 transition-transform duration-300" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-[#B8BBC0] group-hover:text-[#F7F7F5] group-hover:translate-y-0.5 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
+
       </div>
     </section>
   );
 };
+
 
 
 
