@@ -9,6 +9,7 @@ import {
   Upload
 } from 'lucide-react';
 import { BlogArticle, generateSlug } from '../types/blog';
+import { formatCurrentDate } from '../services/firebase';
 import dobra2Img from '../assets/images/dobra2.jpeg';
 
 interface BlogAdminModalProps {
@@ -22,7 +23,7 @@ interface BlogAdminModalProps {
 const DEFAULT_COVER = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80';
 
 // Função para comprimir fotos enviadas localmente antes do envio
-const compressImage = (file: File, maxWidth = 1000, quality = 0.75): Promise<string> => {
+const compressImage = (file: File, maxWidth = 800, quality = 0.70): Promise<string> => {
   return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -142,8 +143,8 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
       const articlePayload: Omit<BlogArticle, 'id'> = {
         num: numString,
         title: title.trim(),
-        slug: editingArticle?.slug || generateSlug(title.trim()),
-        updatedAt: editingArticle ? editingArticle.updatedAt : 'Hoje',
+        slug: generateSlug(title.trim()),
+        updatedAt: formatCurrentDate(),
         coverUrl: coverUrl.trim() || DEFAULT_COVER,
         summary: summary.trim(),
         keyPoints: keyPoints.filter(p => p.trim().length > 0),

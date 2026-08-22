@@ -13,6 +13,7 @@ import {
   Firestore
 } from 'firebase/firestore';
 import { BlogArticle, FirebaseCustomConfig, generateSlug } from '../types/blog';
+export type { FirebaseCustomConfig };
 import dobra2Img from '../assets/images/dobra2.jpeg';
 
 // Chave do localStorage para persistência local e fallback
@@ -461,14 +462,14 @@ const getDb = (): Firestore | null => {
 
   const customConfig = getStoredFirebaseConfig();
   
-  // Se não houver configuração salva, tenta ler variáveis de ambiente se disponíveis
+  // Se não houver configuração salva, lê variáveis de ambiente ou usa as credenciais padrão do projeto ramaiane-blog
   const config = customConfig || {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || ""
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAUC3x46U_CtyIdPk6woNnZjNbgSq8ZkIM",
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "ramaiane-blog.firebaseapp.com",
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "ramaiane-blog",
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "ramaiane-blog.firebasestorage.app",
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "76799696653",
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:76799696653:web:6f38a0dbb5e27b2b84da44"
   };
 
   if (!config.apiKey || !config.projectId) {
@@ -511,8 +512,49 @@ export const sanitizeArticle = (art: any, index: number): BlogArticle => {
   };
 };
 
+// Helper para formatar a data atual em português
+export const formatCurrentDate = (): string => {
+  try {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const months = [
+      'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
+      'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'
+    ];
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    return `${day} de ${month} de ${year}`;
+  } catch (e) {
+    return 'Hoje';
+  }
+};
+
+const getRawLocalArticles = (): BlogArticle[] => {
+  try {
+    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (localRaw) {
+      const parsed = JSON.parse(localRaw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map((item, idx) => sanitizeArticle(item, idx));
+      }
+    }
+  } catch (e) {
+    console.warn('Erro ao ler do LocalStorage:', e);
+  }
+  return INITIAL_SEED_ARTICLES.map((item, idx) => sanitizeArticle(item, idx));
+};
+
+const saveLocalArticles = (articles: BlogArticle[]) => {
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(articles));
+  } catch (e) {
+    console.warn('Erro ao salvar no LocalStorage:', e);
+  }
+};
+
 // Funções de CRUD de Artigos
 export const getBlogArticles = async (): Promise<BlogArticle[]> => {
+  const localArticles = getRawLocalArticles();
   const db = getDb();
 
   // 1. Se o Firebase estiver ativo, tenta buscar dele
@@ -531,67 +573,61 @@ export const getBlogArticles = async (): Promise<BlogArticle[]> => {
             ...(docSnap.data() as Omit<BlogArticle, 'id'>)
           }, idx++));
         });
-        // Atualiza cache local
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(firestoreArticles));
-        return firestoreArticles;
+
+        // Mesclar para não perder artigos locais recém-criados ou editados
+        const mergedMap = new Map<string, BlogArticle>();
+        firestoreArticles.forEach(art => mergedMap.set(art.id, art));
+        localArticles.forEach(art => {
+          if (!mergedMap.has(art.id)) {
+            mergedMap.set(art.id, art);
+          }
+        });
+
+        const mergedList = Array.from(mergedMap.values());
+        saveLocalArticles(mergedList);
+        return mergedList;
       }
     } catch (err) {
-      console.warn('Erro ao carregar do Firestore, caindo para armazenamento local:', err);
+      console.warn('Erro ao carregar do Firestore, utilizando cópia local:', err);
     }
   }
 
   // 2. Fallback: Lê do LocalStorage ou Inicializa com os Artigos Semente
-  try {
-    const localData = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (localData) {
-      const parsed = JSON.parse(localData);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed.map((item, idx) => sanitizeArticle(item, idx));
-      }
-    }
-  } catch (e) {
-    console.warn('Erro ao ler localStorage:', e);
-  }
-
-  // Inicializa com seed data
-  const sanitizedSeed = INITIAL_SEED_ARTICLES.map((item, idx) => sanitizeArticle(item, idx));
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sanitizedSeed));
-  return sanitizedSeed;
+  saveLocalArticles(localArticles);
+  return localArticles;
 };
 
 export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promise<BlogArticle> => {
   const db = getDb();
-  let createdId = `artigo-${Date.now()}`;
+  const createdId = `artigo-${Date.now()}`;
   const generatedSlug = article.slug || generateSlug(article.title);
+  const updatedDate = article.updatedAt && article.updatedAt !== 'Hoje' ? article.updatedAt : formatCurrentDate();
 
-  const fullPayload = {
+  const newArticle: BlogArticle = {
     ...article,
-    slug: generatedSlug
+    id: createdId,
+    slug: generatedSlug,
+    updatedAt: updatedDate
   };
 
+  // 1. Salva imediatamente no LocalStorage
+  const current = getRawLocalArticles();
+  const updatedList = [newArticle, ...current];
+  saveLocalArticles(updatedList);
+
+  // 2. Salva no Firestore usando setDoc com o ID fixo
   if (db) {
     try {
-      const colRef = collection(db, 'articles');
-      const docRef = await addDoc(colRef, fullPayload);
-      createdId = docRef.id;
+      const docRef = doc(db, 'articles', createdId);
+      await setDoc(docRef, newArticle);
     } catch (err) {
-      console.warn('Erro ao salvar no Firestore, salvando localmente:', err);
+      console.warn('Erro ao salvar novo artigo no Firestore, mantido em cache local:', err);
     }
   }
 
-  const newArticle: BlogArticle = {
-    ...fullPayload,
-    id: createdId
-  };
-
-  // Salva no LocalStorage sem sobrescrever do Firestore
-  try {
-    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
-    const updated = [newArticle, ...current];
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
-  } catch (e) {
-    console.warn('Erro ao salvar no LocalStorage:', e);
+  // Dispara evento para sincronizar a interface
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('articlesUpdated'));
   }
 
   return newArticle;
@@ -599,46 +635,55 @@ export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promi
 
 export const updateBlogArticle = async (id: string, updatedFields: Partial<BlogArticle>): Promise<void> => {
   const db = getDb();
+  const currentDate = formatCurrentDate();
 
+  const payloadToUpdate: Partial<BlogArticle> = {
+    ...updatedFields,
+    updatedAt: currentDate,
+    ...(updatedFields.title ? { slug: generateSlug(updatedFields.title) } : {})
+  };
+
+  // 1. Atualiza imediatamente no LocalStorage
+  const current = getRawLocalArticles();
+  const updatedList = current.map(item => item.id === id ? { ...item, ...payloadToUpdate } : item);
+  saveLocalArticles(updatedList);
+
+  // 2. Tenta atualizar no Firestore se o DB estiver ativo
   if (db) {
     try {
       const docRef = doc(db, 'articles', id);
-      await setDoc(docRef, updatedFields, { merge: true });
+      await setDoc(docRef, payloadToUpdate, { merge: true });
     } catch (err) {
-      console.warn('Erro ao atualizar no Firestore:', err);
+      console.warn('Erro ao atualizar artigo no Firestore, mantido em cache local:', err);
     }
   }
 
-  // Atualiza LocalStorage diretamente sem depender de busca assíncrona que pode falhar
-  try {
-    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
-    const updated = current.map(item => item.id === id ? { ...item, ...updatedFields } : item);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
-  } catch (e) {
-    console.warn('Erro ao atualizar no LocalStorage:', e);
+  // Dispara evento para atualizar a interface imediatamente
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('articlesUpdated'));
   }
 };
 
 export const deleteBlogArticle = async (id: string): Promise<void> => {
   const db = getDb();
 
+  // 1. Remove imediatamente do LocalStorage
+  const current = getRawLocalArticles();
+  const updatedList = current.filter(item => item.id !== id);
+  saveLocalArticles(updatedList);
+
+  // 2. Tenta remover do Firestore se ativo
   if (db) {
     try {
       const docRef = doc(db, 'articles', id);
       await deleteDoc(docRef);
     } catch (err) {
-      console.warn('Erro ao excluir no Firestore:', err);
+      console.warn('Erro ao excluir artigo no Firestore:', err);
     }
   }
 
-  // Remove do LocalStorage
-  try {
-    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
-    const updated = current.filter(item => item.id !== id);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
-  } catch (e) {
-    console.warn('Erro ao remover do LocalStorage:', e);
+  // Dispara evento para atualizar a interface
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('articlesUpdated'));
   }
 };

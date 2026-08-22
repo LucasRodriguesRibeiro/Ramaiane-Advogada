@@ -26,12 +26,14 @@ import {
   ShoppingBag,
   DollarSign,
   Home,
-  Users
+  Users,
+  Database
 } from 'lucide-react';
 import { BlogArticle, BLOG_MAIN_AREAS, isArticleInMainArea } from '../types/blog';
 import { getBlogArticles, deleteBlogArticle, createBlogArticle, updateBlogArticle } from '../services/firebase';
 import { BlogAdminModal } from './BlogAdminModal';
 import { BlogAdminAuthModal } from './BlogAdminAuthModal';
+import { FirebaseConfigModal } from './FirebaseConfigModal';
 import { EmergencyContact } from '../types';
 
 const CRIMINAL_CATEGORIES = [
@@ -93,6 +95,8 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
   const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  const [isFirebaseModalOpen, setIsFirebaseModalOpen] = useState<boolean>(false);
+
   // Carrega artigos
   const loadArticles = async () => {
     try {
@@ -109,6 +113,15 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
     if (savedAdminSession === 'true') {
       setIsAdminAuthenticated(true);
     }
+
+    const handleArticlesUpdated = () => {
+      loadArticles();
+    };
+
+    window.addEventListener('articlesUpdated', handleArticlesUpdated);
+    return () => {
+      window.removeEventListener('articlesUpdated', handleArticlesUpdated);
+    };
   }, []);
 
   const handleAdminLoginSuccess = () => {
@@ -217,11 +230,11 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
 
         {/* Admin Toolbar (Exibido apenas quando autenticado via cadeado do rodapé) */}
         {isAdminAuthenticated && (
-          <div className="flex items-center justify-between bg-[#16171C] border border-[#B8BBC0]/30 p-3 rounded-xl">
-            <div className="text-xs text-[#E2E4E8] font-semibold tracking-wider uppercase">
-              Modo de Gestão do Blog Ativo
+          <div className="flex flex-col sm:flex-row items-center justify-between bg-[#16171C] border border-[#B8BBC0]/30 p-3 rounded-xl gap-3">
+            <div className="text-xs text-[#E2E4E8] font-semibold tracking-wider uppercase flex items-center space-x-2">
+              <span>Modo de Gestão do Blog Ativo</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleOpenCreateArticle}
                 className="py-2 px-4 rounded bg-[#E5E7EB] hover:bg-white text-[#0B0B0C] text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer shadow-md transition-all"
@@ -229,6 +242,16 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
                 <Plus className="w-4 h-4" />
                 <span>+ Criar Artigo</span>
               </button>
+
+              <button
+                onClick={() => setIsFirebaseModalOpen(true)}
+                className="py-2 px-3.5 rounded bg-[#1C1D24] border border-[#343742] hover:border-[#8F9299] text-[#F7F7F5] text-xs font-semibold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer transition-all"
+                title="Configurar credenciais do banco de dados Firebase"
+              >
+                <Database className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Conectar Firebase</span>
+              </button>
+
               <button
                 onClick={handleAdminLogout}
                 className="py-2 px-3 text-xs text-[#B8BBC0] hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
@@ -566,6 +589,15 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onSuccess={handleAdminLoginSuccess}
+      />
+
+      {/* Firebase Database Config Modal */}
+      <FirebaseConfigModal
+        isOpen={isFirebaseModalOpen}
+        onClose={() => setIsFirebaseModalOpen(false)}
+        onSuccess={() => {
+          loadArticles();
+        }}
       />
 
     </section>
