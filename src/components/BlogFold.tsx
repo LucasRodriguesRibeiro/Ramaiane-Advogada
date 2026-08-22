@@ -33,8 +33,6 @@ import { getBlogArticles, deleteBlogArticle, createBlogArticle, updateBlogArticl
 import { BlogAdminModal } from './BlogAdminModal';
 import { BlogAdminAuthModal } from './BlogAdminAuthModal';
 import { EmergencyContact } from '../types';
-import dobra2Img from '../assets/images/dobra2.jpeg';
-
 const CRIMINAL_CATEGORIES = [
   { label: 'Direito Penal Estratégico', icon: Shield },
   { label: 'Tráfico de Drogas', icon: Scale },
@@ -210,43 +208,19 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
     <section id="blog" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] pt-2 pb-14 sm:pt-4 sm:pb-20 font-sans-clean scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         
-        {/* 1. Hero Header Banner with Lawyer Profile */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pt-0 pb-4 border-b border-[#18191B]">
-          <div className="space-y-2 text-left max-w-3xl">
-            <div className="text-xs tracking-[0.25em] text-[#8F9299] uppercase font-semibold">
-              BLOG
-            </div>
-
-            <h1 className="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
-              CONTEÚDO JURÍDICO
-            </h1>
-
-            <p className="text-[#B8BBC0] text-sm sm:text-base font-light leading-relaxed">
-              Análise jurídica estratégica e artigos explicativos por Dra. Deyse Ramaiane.
-            </p>
+        {/* Header */}
+        <div className="space-y-2 text-left pb-4 border-b border-[#18191B]">
+          <div className="text-xs tracking-[0.25em] text-[#8F9299] uppercase font-semibold">
+            BLOG
           </div>
 
-          {/* Lawyer Photo Profile Badge */}
-          <div className="flex items-center space-x-4 bg-[#14151B] border border-[#2D3039] p-3.5 sm:p-4 rounded-2xl shadow-xl shrink-0 self-start md:self-auto">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-[#B8BBC0]/50 shrink-0 bg-[#18191B] shadow-md">
-              <img
-                src={dobra2Img}
-                alt="Dra. Deyse Ramaiane"
-                className="w-full h-full object-cover object-top contrast-105"
-              />
-            </div>
-            <div>
-              <div className="text-sm sm:text-base font-semibold text-[#F7F7F5]">
-                Dra. Deyse Ramaiane
-              </div>
-              <div className="text-xs text-[#8F9299]">
-                Advocacia Estratégica
-              </div>
-              <div className="text-[10px] text-[#B8BBC0] mt-1 font-mono uppercase tracking-wider">
-                Defesa Técnica & Consultoria
-              </div>
-            </div>
-          </div>
+          <h1 className="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F7F7F5] tracking-tight uppercase leading-tight">
+            CONTEÚDO JURÍDICO
+          </h1>
+
+          <p className="text-[#B8BBC0] text-sm sm:text-base font-light leading-relaxed">
+            Análise jurídica estratégica.
+          </p>
         </div>
 
         {/* Admin Toolbar (Exibido apenas quando autenticado via cadeado do rodapé) */}
