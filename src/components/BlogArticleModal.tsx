@@ -121,7 +121,10 @@ export const BlogArticleModal: React.FC<BlogArticleModalProps> = ({
           <div className="flex items-center space-x-3.5 py-3 border-y border-[#252830]">
             <div className="relative w-11 h-11 rounded-full overflow-hidden border border-[#B8BBC0]/50 shrink-0 bg-[#18191B]">
               <img
-                src={article.author?.avatarUrl || dobra2Img}
+                src={article.author?.avatarUrl && article.author.avatarUrl.startsWith('http') ? article.author.avatarUrl : dobra2Img}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = dobra2Img;
+                }}
                 alt={article.author?.name || "Dra. Deyse Ramaiane"}
                 className="w-full h-full object-cover object-top"
               />
