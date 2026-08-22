@@ -223,7 +223,10 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
         <div className="p-6 sm:p-8 rounded-2xl bg-[#14151B] border border-[#252830] flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left shadow-lg">
           <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#B8BBC0] shrink-0 shadow-md">
             <img
-              src={article.author?.avatarUrl || dobra2Img}
+              src={article.author?.avatarUrl && article.author.avatarUrl.startsWith('http') ? article.author.avatarUrl : dobra2Img}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = dobra2Img;
+              }}
               alt="Dra. Deyse Ramaiane"
               className="w-full h-full object-cover object-top"
             />

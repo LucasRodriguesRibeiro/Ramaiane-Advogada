@@ -280,7 +280,7 @@ export const sanitizeArticle = (art: any, index: number): BlogArticle => {
     author: {
       name: String(art?.author?.name || "Deyse Ramaiane"),
       title: String(art?.author?.title || "Advocacia Estratégica"),
-      avatarUrl: art?.author?.avatarUrl || dobra2Img
+      avatarUrl: art?.author?.avatarUrl && typeof art.author.avatarUrl === 'string' && art.author.avatarUrl.startsWith('http') ? art.author.avatarUrl : dobra2Img
     }
   };
 };
