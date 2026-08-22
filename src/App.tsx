@@ -53,35 +53,71 @@ export default function App() {
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
   };
 
-  // Carrega lista de artigos e sincroniza com a URL atual (ex: /blog ou /artigo/nome-do-artigo)
+  // Função centralizada para resolver rotas de SPA (suporta recarregamento F5 em /blog e /artigo/slug)
+  const applyRouting = (pathname: string, items: BlogArticle[]) => {
+    // Verifica se houve redirecionamento salvo via 404.html
+    const savedRedirect = sessionStorage.getItem('spa_redirect_path');
+    if (savedRedirect) {
+      sessionStorage.removeItem('spa_redirect_path');
+      window.history.replaceState(null, '', savedRedirect);
+      pathname = window.location.pathname;
+    }
+
+    const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+    if (!cleanPath) {
+      setIsBlogPageActive(false);
+      setCurrentArticle(null);
+      document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+      return;
+    }
+
+    const parts = cleanPath.split('/').map(p => decodeURIComponent(p).toLowerCase());
+
+    // Rota exatamente /blog
+    if (parts.length === 1 && parts[0] === 'blog') {
+      setIsBlogPageActive(true);
+      setCurrentArticle(null);
+      document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+      return;
+    }
+
+    // Busca candidato a slug de artigo (/artigo/slug ou /blog/slug ou /slug)
+    const slugCandidate = parts.length > 1 ? parts[parts.length - 1] : parts[0];
+
+    if (slugCandidate && slugCandidate !== 'blog') {
+      const found = items.find(a => 
+        (a.slug && a.slug.toLowerCase() === slugCandidate) ||
+        a.id.toLowerCase() === slugCandidate ||
+        generateSlug(a.title) === slugCandidate
+      );
+
+      if (found) {
+        setCurrentArticle(found);
+        setIsBlogPageActive(false);
+        document.title = `${found.title} | Dra. Deyse Ramaiane`;
+        return;
+      }
+    }
+
+    // Se o caminho contém a palavra 'blog'
+    if (parts.includes('blog')) {
+      setIsBlogPageActive(true);
+      setCurrentArticle(null);
+      document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+      return;
+    }
+
+    setIsBlogPageActive(false);
+    setCurrentArticle(null);
+    document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+  };
+
+  // Sincroniza lista de artigos e rota atual
   useEffect(() => {
     const initArticlesAndRouting = async () => {
       const items = await getBlogArticles();
       setAllArticles(items);
-
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
-      const parts = path.split('/');
-
-      if (parts[0] === 'blog') {
-        setIsBlogPageActive(true);
-        setCurrentArticle(null);
-        document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
-      } else {
-        const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
-        if (slugToCheck) {
-          const decodedSlug = decodeURIComponent(slugToCheck).toLowerCase();
-          const found = items.find(a => 
-            a.slug === slugToCheck || 
-            a.id === slugToCheck ||
-            (a.slug && a.slug.toLowerCase() === decodedSlug) ||
-            generateSlug(a.title) === decodedSlug
-          );
-          if (found) {
-            setCurrentArticle(found);
-            setIsBlogPageActive(false);
-          }
-        }
-      }
+      applyRouting(window.location.pathname, items);
     };
 
     initArticlesAndRouting();
@@ -89,37 +125,8 @@ export default function App() {
     const handlePopState = async () => {
       const items = await getBlogArticles();
       setAllArticles(items);
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
-      const parts = path.split('/');
-
-      if (parts[0] === 'blog') {
-        setIsBlogPageActive(true);
-        setCurrentArticle(null);
-        document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        return;
-      }
-
-      const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
-      if (slugToCheck) {
-        const decodedSlug = decodeURIComponent(slugToCheck).toLowerCase();
-        const found = items.find(a => 
-          a.slug === slugToCheck || 
-          a.id === slugToCheck ||
-          (a.slug && a.slug.toLowerCase() === decodedSlug) ||
-          generateSlug(a.title) === decodedSlug
-        );
-        if (found) {
-          setCurrentArticle(found);
-          setIsBlogPageActive(false);
-          window.scrollTo({ top: 0, behavior: 'instant' });
-          return;
-        }
-      }
-
-      setIsBlogPageActive(false);
-      setCurrentArticle(null);
-      document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+      applyRouting(window.location.pathname, items);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     };
 
     const handleArticlesUpdated = async () => {
