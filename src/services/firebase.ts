@@ -529,19 +529,54 @@ export const formatCurrentDate = (): string => {
   }
 };
 
+const DELETED_ARTICLES_KEY = 'ramaiane_blog_deleted_ids_v2';
+const INITIALIZED_KEY = 'ramaiane_blog_initialized_v2';
+
+const getDeletedIds = (): string[] => {
+  try {
+    const raw = localStorage.getItem(DELETED_ARTICLES_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed.map(String);
+    }
+  } catch (e) {}
+  return [];
+};
+
+const markAsDeleted = (id: string) => {
+  try {
+    const current = getDeletedIds();
+    if (!current.includes(id)) {
+      const updated = [...current, id];
+      localStorage.setItem(DELETED_ARTICLES_KEY, JSON.stringify(updated));
+    }
+  } catch (e) {}
+};
+
 const getRawLocalArticles = (): BlogArticle[] => {
   try {
+    const isInitialized = localStorage.getItem(INITIALIZED_KEY) === 'true';
     const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+
     if (localRaw) {
       const parsed = JSON.parse(localRaw);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed.map((item, idx) => sanitizeArticle(item, idx));
+      if (Array.isArray(parsed)) {
+        if (parsed.length > 0 || isInitialized) {
+          return parsed.map((item, idx) => sanitizeArticle(item, idx));
+        }
       }
     }
   } catch (e) {
     console.warn('Erro ao ler do LocalStorage:', e);
   }
-  return INITIAL_SEED_ARTICLES.map((item, idx) => sanitizeArticle(item, idx));
+
+  const sanitizedSeed = INITIAL_SEED_ARTICLES.map((item, idx) => sanitizeArticle(item, idx));
+  saveLocalArticles(sanitizedSeed);
+  try {
+    localStorage.setItem(INITIALIZED_KEY, 'true');
+  } catch (e) {}
+
+  return sanitizedSeed;
 };
 
 const saveLocalArticles = (articles: BlogArticle[]) => {
@@ -554,7 +589,8 @@ const saveLocalArticles = (articles: BlogArticle[]) => {
 
 // Funções de CRUD de Artigos
 export const getBlogArticles = async (): Promise<BlogArticle[]> => {
-  const localArticles = getRawLocalArticles();
+  const deletedIds = getDeletedIds();
+  let localArticles = getRawLocalArticles().filter(art => !deletedIds.includes(art.id));
   const db = getDb();
 
   // 1. Se o Firebase estiver ativo, tenta buscar dele
@@ -568,22 +604,25 @@ export const getBlogArticles = async (): Promise<BlogArticle[]> => {
         const firestoreArticles: BlogArticle[] = [];
         let idx = 0;
         snapshot.forEach((docSnap) => {
-          firestoreArticles.push(sanitizeArticle({
-            id: docSnap.id,
-            ...(docSnap.data() as Omit<BlogArticle, 'id'>)
-          }, idx++));
+          const docId = docSnap.id;
+          if (!deletedIds.includes(docId)) {
+            firestoreArticles.push(sanitizeArticle({
+              id: docId,
+              ...(docSnap.data() as Omit<BlogArticle, 'id'>)
+            }, idx++));
+          }
         });
 
-        // Mesclar para não perder artigos locais recém-criados ou editados
+        // Mesclar dados do Firestore com atualizações locais (respeitando remoções)
         const mergedMap = new Map<string, BlogArticle>();
         firestoreArticles.forEach(art => mergedMap.set(art.id, art));
         localArticles.forEach(art => {
-          if (!mergedMap.has(art.id)) {
+          if (!deletedIds.includes(art.id)) {
             mergedMap.set(art.id, art);
           }
         });
 
-        const mergedList = Array.from(mergedMap.values());
+        const mergedList = Array.from(mergedMap.values()).filter(art => !deletedIds.includes(art.id));
         saveLocalArticles(mergedList);
         return mergedList;
       }
@@ -592,7 +631,6 @@ export const getBlogArticles = async (): Promise<BlogArticle[]> => {
     }
   }
 
-  // 2. Fallback: Lê do LocalStorage ou Inicializa com os Artigos Semente
   saveLocalArticles(localArticles);
   return localArticles;
 };
@@ -611,7 +649,7 @@ export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promi
   };
 
   // 1. Salva imediatamente no LocalStorage
-  const current = getRawLocalArticles();
+  const current = getRawLocalArticles().filter(art => art.id !== createdId);
   const updatedList = [newArticle, ...current];
   saveLocalArticles(updatedList);
 
@@ -667,12 +705,15 @@ export const updateBlogArticle = async (id: string, updatedFields: Partial<BlogA
 export const deleteBlogArticle = async (id: string): Promise<void> => {
   const db = getDb();
 
-  // 1. Remove imediatamente do LocalStorage
+  // 1. Marca como deletado
+  markAsDeleted(id);
+
+  // 2. Remove imediatamente do LocalStorage
   const current = getRawLocalArticles();
   const updatedList = current.filter(item => item.id !== id);
   saveLocalArticles(updatedList);
 
-  // 2. Tenta remover do Firestore se ativo
+  // 3. Tenta remover do Firestore se ativo
   if (db) {
     try {
       const docRef = doc(db, 'articles', id);
