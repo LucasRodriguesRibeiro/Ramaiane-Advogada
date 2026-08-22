@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { DobraHeaderNav } from './components/DobraHeaderNav';
 import { HeroFold } from './components/HeroFold';
@@ -33,6 +33,12 @@ export default function App() {
   const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
   const [currentArticle, setCurrentArticle] = useState<BlogArticle | null>(null);
   const [isBlogPageActive, setIsBlogPageActive] = useState<boolean>(false);
+
+  // Ref para ter o valor mais recente sem forçar o useEffect a rodar em loop
+  const currentArticleRef = useRef<BlogArticle | null>(null);
+  useEffect(() => {
+    currentArticleRef.current = currentArticle;
+  }, [currentArticle]);
 
   // Estados de Gestão do Blog (Acesso Discreto)
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
@@ -82,6 +88,7 @@ export default function App() {
 
     const handlePopState = async () => {
       const items = await getBlogArticles();
+      setAllArticles(items);
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '');
       const parts = path.split('/');
 
@@ -118,8 +125,9 @@ export default function App() {
     const handleArticlesUpdated = async () => {
       const items = await getBlogArticles();
       setAllArticles(items);
-      if (currentArticle) {
-        const updatedCurrent = items.find(a => a.id === currentArticle.id || a.slug === currentArticle.slug);
+      const active = currentArticleRef.current;
+      if (active) {
+        const updatedCurrent = items.find(a => a.id === active.id || a.slug === active.slug);
         if (updatedCurrent) {
           setCurrentArticle(updatedCurrent);
         }
@@ -132,7 +140,7 @@ export default function App() {
       window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('articlesUpdated', handleArticlesUpdated);
     };
-  }, [currentArticle]);
+  }, []);
 
   const handleSelectArticle = (article: BlogArticle) => {
     if (!article) return;
