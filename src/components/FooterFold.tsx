@@ -27,7 +27,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
   };
 
   return (
-    <footer id="contato" className="bg-[#0B0B0C] text-[#B8BBC0] border-t border-[#18191B] font-sans-clean">
+    <footer id="contato" className="bg-[#0B0B0C] text-[#B8BBC0] border-t border-[#18191B] font-sans-clean scroll-mt-20">
       {/* Upper Call Banner */}
       <div className="bg-[#18191B] border-b border-[#74777C]/20 py-8 px-6 sm:px-10 lg:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">

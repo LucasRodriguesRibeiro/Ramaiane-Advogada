@@ -4,8 +4,8 @@ import assinaturaImg from '../assets/images/assinatura_transparente.png';
 
 export const SecondFold: React.FC = () => {
   return (
-    <section id="sobre" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-12 sm:py-16 font-sans-clean overflow-hidden">
-      <div id="apresentacao" className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    <section id="sobre" className="relative w-full bg-[#F7F7F5] text-[#0B0B0C] py-12 sm:py-16 font-sans-clean overflow-hidden scroll-mt-20">
+      <div id="apresentacao" className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center scroll-mt-20">
         
         {/* Left Column: Professional Portrait */}
         <div className="lg:col-span-5 flex flex-col items-center relative">

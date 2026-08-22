@@ -9,7 +9,7 @@ interface HeroFoldProps {
 
 export const HeroFold: React.FC<HeroFoldProps> = ({ onOpenEmergencyModal }) => {
   return (
-    <section className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] font-sans-clean overflow-hidden min-h-[88vh] lg:min-h-[90vh] flex items-end lg:items-center">
+    <section id="inicio" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] font-sans-clean overflow-hidden min-h-[88vh] lg:min-h-[90vh] flex items-end lg:items-center scroll-mt-24">
       
       {/* Background Lawyer Photo - Sharp, clear, elegant overlay */}
       <div className="absolute top-0 right-0 bottom-0 w-full lg:w-[68%] pointer-events-none z-0 overflow-hidden">

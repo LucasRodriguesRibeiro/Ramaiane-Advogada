@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, Menu, X, Calendar } from 'lucide-react';
 import logoImg from '../assets/images/logoadvogada.png';
 
@@ -17,23 +17,101 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'INÍCIO', href: '#' },
+    { label: 'INÍCIO', href: '#inicio' },
     { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
     { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
+    { label: 'LEI DE DROGAS', href: '#trafico-de-drogas' },
     { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
-    { label: 'BLOG', href: '/blog' },
     { label: 'NOSSA METODOLOGIA', href: '#como-funciona' },
+    { label: 'BLOG', href: '/blog' },
     { label: 'CONTATO', href: '#contato' },
   ];
 
+  // ScrollSpy: Destaca a aba ativa conforme o usuário rola a página
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    if (window.location.pathname.includes('/blog') || window.location.pathname.includes('/artigo')) {
+      setActiveTab('BLOG');
+      return;
+    }
+
+    const sectionMapping = [
+      { label: 'INÍCIO', id: 'inicio' },
+      { label: 'SOBRE RAMAIANE', id: 'apresentacao' },
+      { label: 'NÚCLEO CRIMINAL', id: 'nucleo-criminal' },
+      { label: 'LEI DE DROGAS', id: 'trafico-de-drogas' },
+      { label: 'NÚCLEO CÍVEL', id: 'nucleo-civel' },
+      { label: 'NOSSA METODOLOGIA', id: 'como-funciona' },
+      { label: 'CONTATO', id: 'contato' },
+    ];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 180;
+
+      for (let i = sectionMapping.length - 1; i >= 0; i--) {
+        const sec = document.getElementById(sectionMapping[i].id);
+        if (sec) {
+          const top = sec.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveTab(sectionMapping[i].label);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleNavClick = (item: { label: string; href: string }, e: React.MouseEvent) => {
+    e.preventDefault();
     setActiveTab(item.label);
-    if (item.label === 'BLOG' && onNavigateBlog) {
-      e.preventDefault();
-      onNavigateBlog();
-    } else if (item.label === 'INÍCIO' && onNavigateHome) {
-      e.preventDefault();
-      onNavigateHome();
+
+    // Navegação para o Blog
+    if (item.label === 'BLOG') {
+      if (onNavigateBlog) {
+        onNavigateBlog();
+      } else {
+        window.history.pushState({}, '', '/blog');
+        window.dispatchEvent(new Event('popstate'));
+      }
+      return;
+    }
+
+    // Navegação para o Início / Topo
+    if (item.label === 'INÍCIO') {
+      if (onNavigateHome) {
+        onNavigateHome();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Se estiver no Blog ou na página de Artigo, volta primeiro para a Home e depois rola para a dobra
+    const targetId = item.href.replace('#', '');
+    const isOutsideHome = window.location.pathname.includes('/blog') || window.location.pathname.includes('/artigo');
+
+    if (isOutsideHome) {
+      if (onNavigateHome) {
+        onNavigateHome();
+      }
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 120);
+      return;
+    }
+
+    // Se já estiver na Home, faz o scroll suave diretamente para o ID da dobra
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -45,10 +123,11 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
         <a 
           href="#" 
           onClick={(e) => {
+            e.preventDefault();
             if (onNavigateHome) {
-              e.preventDefault();
               onNavigateHome();
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           className="flex items-center group shrink-0 py-0.5"
         >
@@ -60,7 +139,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7 text-[11px] font-medium tracking-[0.14em] text-slate-300 uppercase">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-[11px] font-medium tracking-[0.12em] text-slate-300 uppercase">
           {navItems.map((item) => (
             <a
               key={item.label}
@@ -137,6 +216,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     </header>
   );
 };
+
 
 
 
