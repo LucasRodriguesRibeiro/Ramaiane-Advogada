@@ -15,7 +15,8 @@ export type { FirebaseCustomConfig };
 import dobra2Img from '../assets/images/dobra2.jpeg';
 
 const FIREBASE_CONFIG_KEY = 'ramaiane_firebase_config_v1';
-const LOCAL_ARTICLES_KEY = 'ramaiane_blog_articles_v4';
+const LOCAL_ARTICLES_KEY = 'ramaiane_blog_articles_v5';
+const LOCAL_INITIALIZED_KEY = 'ramaiane_blog_initialized_v5';
 
 // 8 Artigos completos sobre as principais áreas de atuação da Dra. Deyse Ramaiane
 export const INITIAL_SEED_ARTICLES: BlogArticle[] = [
@@ -301,66 +302,132 @@ export const formatCurrentDate = (): string => {
   }
 };
 
-// Limpeza de qualquer cache local remanescente no localStorage
-try {
-  if (typeof window !== 'undefined') {
-    localStorage.removeItem('ramaiane_blog_articles_v4');
-    localStorage.removeItem('ramaiane_blog_articles_v3');
-    localStorage.removeItem('ramaiane_blog_articles_v2');
-    localStorage.removeItem('ramaiane_blog_deleted_ids_v2');
-    localStorage.removeItem('ramaiane_blog_initialized_v2');
-    localStorage.removeItem('ramaiane_blog_articles');
-  }
-} catch (e) {}
+const getLocalArticlesCache = (): BlogArticle[] => {
+  try {
+    if (typeof window !== 'undefined') {
+      const raw = localStorage.getItem(LOCAL_ARTICLES_KEY);
+      if (raw !== null) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed.map((art: any, idx: number) => sanitizeArticle(art, idx));
+        }
+      }
+    }
+  } catch (e) {}
+  return [];
+};
 
-// Funções de CRUD de Artigos EXCLUSIVAS do Banco de Dados Firebase Firestore (Sem Armazenamento Local)
+// Funções de CRUD de Artigos do Blog (Firestore + Cache Local de Alta Disponibilidade)
 
 export const getBlogArticles = async (): Promise<BlogArticle[]> => {
   const db = getDb();
-  if (!db) {
-    console.warn('Firebase Firestore não está conectado.');
-    return [];
-  }
 
-  try {
-    const colRef = collection(db, 'articles');
-    const q = query(colRef, orderBy('num', 'asc'));
-    const snapshot = await getDocs(q);
+  if (db) {
+    try {
+      const colRef = collection(db, 'articles');
+      const q = query(colRef, orderBy('num', 'asc'));
+      const snapshot = await getDocs(q);
 
-    if (!snapshot.empty) {
-      const firestoreArticles: BlogArticle[] = [];
-      let idx = 0;
-      snapshot.forEach((docSnap) => {
-        firestoreArticles.push(sanitizeArticle({
-          id: docSnap.id,
-          ...(docSnap.data() as Omit<BlogArticle, 'id'>)
-        }, idx++));
-      });
+      if (!snapshot.empty) {
+        const firestoreArticles: BlogArticle[] = [];
+        let idx = 0;
+        snapshot.forEach((docSnap) => {
+          firestoreArticles.push(sanitizeArticle({
+            id: docSnap.id,
+            ...(docSnap.data() as Omit<BlogArticle, 'id'>)
+          }, idx++));
+        });
 
-      return firestoreArticles;
-    } else {
-      // Coleção no Banco de Dados vazia: insere os 8 artigos das áreas de atuação diretamente no Firestore
-      console.log('Banco de Dados vazio. Semeando 8 artigos no Firestore...');
-      let idx = 0;
-      for (const art of INITIAL_SEED_ARTICLES) {
-        const sanitized = sanitizeArticle(art, idx++);
-        const docRef = doc(db, 'articles', sanitized.id);
-        await setDoc(docRef, sanitized);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+          localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(firestoreArticles));
+        }
+
+        try {
+          const initDocRef = doc(db, 'system', 'init');
+          await setDoc(initDocRef, { initialized: true }, { merge: true });
+        } catch (e) {}
+
+        return firestoreArticles;
+      } else {
+        // Coleção no Firestore está vazia. Verifica se já foi inicializado anteriormente.
+        let isAlreadyInitialized = false;
+
+        if (typeof window !== 'undefined' && localStorage.getItem(LOCAL_INITIALIZED_KEY) === 'true') {
+          isAlreadyInitialized = true;
+        }
+
+        if (!isAlreadyInitialized) {
+          try {
+            const initDocSnap = await getDocs(collection(db, 'system'));
+            if (!initDocSnap.empty) {
+              isAlreadyInitialized = true;
+            }
+          } catch (e) {}
+        }
+
+        if (isAlreadyInitialized) {
+          // O usuário apagou todos os artigos intencionalmente. Mantém a coleção vazia!
+          console.log('Coleção de artigos vazia. Sistema já inicializado previamente. Mantendo 0 artigos.');
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify([]));
+          }
+          return [];
+        } else {
+          // Primeira execução em um banco novo e limpo: Semeando 8 artigos iniciais
+          console.log('Primeira inicialização! Semeando 8 artigos no Firestore...');
+          let idx = 0;
+          for (const art of INITIAL_SEED_ARTICLES) {
+            const sanitized = sanitizeArticle(art, idx++);
+            const docRef = doc(db, 'articles', sanitized.id);
+            await setDoc(docRef, sanitized);
+          }
+
+          try {
+            await setDoc(doc(db, 'system', 'init'), { initialized: true });
+          } catch (e) {}
+
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+            localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(INITIAL_SEED_ARTICLES));
+          }
+
+          return INITIAL_SEED_ARTICLES;
+        }
       }
-      return INITIAL_SEED_ARTICLES;
+    } catch (err) {
+      console.error('Erro ao buscar artigos do Banco de Dados (Firestore):', err);
     }
-  } catch (err) {
-    console.error('Erro ao buscar artigos do Banco de Dados (Firestore):', err);
-    return [];
   }
+
+  // Fallback caso Firestore esteja desconectado ou apresente erro de permissão/rede
+  if (typeof window !== 'undefined') {
+    const raw = localStorage.getItem(LOCAL_ARTICLES_KEY);
+    if (raw !== null) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed.map((art: any, idx: number) => sanitizeArticle(art, idx));
+        }
+      } catch (e) {}
+    }
+
+    const isInitialized = localStorage.getItem(LOCAL_INITIALIZED_KEY) === 'true';
+    if (isInitialized) {
+      return [];
+    }
+
+    // Se nunca foi inicializado e Firestore falhou, salva e retorna semente inicial
+    localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+    localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(INITIAL_SEED_ARTICLES));
+    return INITIAL_SEED_ARTICLES;
+  }
+
+  return [];
 };
 
 export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promise<BlogArticle> => {
   const db = getDb();
-  if (!db) {
-    throw new Error('Firebase Firestore não está conectado.');
-  }
-
   const createdId = `artigo-${Date.now()}`;
   const generatedSlug = article.slug || generateSlug(article.title);
   const updatedDate = article.updatedAt && article.updatedAt !== 'Hoje' ? article.updatedAt : formatCurrentDate();
@@ -372,10 +439,23 @@ export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promi
     updatedAt: updatedDate
   };
 
-  const docRef = doc(db, 'articles', createdId);
-  await setDoc(docRef, newArticle);
+  if (db) {
+    try {
+      const docRef = doc(db, 'articles', createdId);
+      await setDoc(docRef, newArticle);
+      try {
+        await setDoc(doc(db, 'system', 'init'), { initialized: true }, { merge: true });
+      } catch (e) {}
+    } catch (err) {
+      console.error('Erro ao criar artigo no Firestore:', err);
+    }
+  }
 
   if (typeof window !== 'undefined') {
+    localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+    const current = getLocalArticlesCache();
+    const updatedList = [newArticle, ...current];
+    localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(updatedList));
     window.dispatchEvent(new Event('articlesUpdated'));
   }
 
@@ -384,10 +464,6 @@ export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promi
 
 export const updateBlogArticle = async (id: string, updatedFields: Partial<BlogArticle>): Promise<void> => {
   const db = getDb();
-  if (!db) {
-    throw new Error('Firebase Firestore não está conectado.');
-  }
-
   const currentDate = formatCurrentDate();
   const payloadToUpdate: Partial<BlogArticle> = {
     ...updatedFields,
@@ -395,24 +471,44 @@ export const updateBlogArticle = async (id: string, updatedFields: Partial<BlogA
     ...(updatedFields.title ? { slug: generateSlug(updatedFields.title) } : {})
   };
 
-  const docRef = doc(db, 'articles', id);
-  await setDoc(docRef, payloadToUpdate, { merge: true });
+  if (db) {
+    try {
+      const docRef = doc(db, 'articles', id);
+      await setDoc(docRef, payloadToUpdate, { merge: true });
+    } catch (err) {
+      console.error('Erro ao atualizar artigo no Firestore:', err);
+    }
+  }
 
   if (typeof window !== 'undefined') {
+    localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+    const current = getLocalArticlesCache();
+    const updatedList = current.map(art => art.id === id ? { ...art, ...payloadToUpdate } : art);
+    localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(updatedList));
     window.dispatchEvent(new Event('articlesUpdated'));
   }
 };
 
 export const deleteBlogArticle = async (id: string): Promise<void> => {
   const db = getDb();
-  if (!db) {
-    throw new Error('Firebase Firestore não está conectado.');
+
+  if (db) {
+    try {
+      const docRef = doc(db, 'articles', id);
+      await deleteDoc(docRef);
+      try {
+        await setDoc(doc(db, 'system', 'init'), { initialized: true }, { merge: true });
+      } catch (e) {}
+    } catch (err) {
+      console.error('Erro ao excluir artigo do Firestore:', err);
+    }
   }
 
-  const docRef = doc(db, 'articles', id);
-  await deleteDoc(docRef);
-
   if (typeof window !== 'undefined') {
+    localStorage.setItem(LOCAL_INITIALIZED_KEY, 'true');
+    const current = getLocalArticlesCache();
+    const updatedList = current.filter(art => art.id !== id);
+    localStorage.setItem(LOCAL_ARTICLES_KEY, JSON.stringify(updatedList));
     window.dispatchEvent(new Event('articlesUpdated'));
   }
 };
