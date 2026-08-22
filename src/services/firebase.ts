@@ -6,6 +6,7 @@ import {
   addDoc, 
   deleteDoc, 
   updateDoc, 
+  setDoc,
   doc, 
   query, 
   orderBy,
@@ -141,6 +142,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-05",
+    slug: "fizeram-um-emprestimo-no-meu-nome-e-agora",
     num: "05",
     title: "FIZERAM UM EMPRÉSTIMO NO MEU NOME. E AGORA?",
     updatedAt: "23 de maio de 2025",
@@ -169,6 +171,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-06",
+    slug: "como-preservar-provas-em-crimes-digitais",
     num: "06",
     title: "COMO PRESERVAR PROVAS EM CRIMES DIGITAIS?",
     updatedAt: "23 de maio de 2025",
@@ -197,6 +200,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-07",
+    slug: "minha-empresa-sofreu-uma-fraude-e-agora",
     num: "07",
     title: "MINHA EMPRESA SOFREU UMA FRAUDE. E AGORA?",
     updatedAt: "23 de maio de 2025",
@@ -225,6 +229,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-08",
+    slug: "quais-sao-os-principais-riscos-criminais-para-empresas",
     num: "08",
     title: "QUAIS SÃO OS PRINCIPAIS RISCOS CRIMINAIS PARA EMPRESAS?",
     updatedAt: "23 de maio de 2025",
@@ -253,6 +258,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-09",
+    slug: "medico-recebeu-uma-intimacao-o-que-fazer",
     num: "09",
     title: "MÉDICO RECEBEU UMA INTIMAÇÃO. O QUE FAZER?",
     updatedAt: "23 de maio de 2025",
@@ -281,6 +287,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-10",
+    slug: "riscos-criminais-para-medicos-e-clinicas-como-prevenir",
     num: "10",
     title: "RISCOS CRIMINAIS PARA MÉDICOS E CLÍNICAS: COMO PREVENIR?",
     updatedAt: "23 de maio de 2025",
@@ -309,6 +316,7 @@ A intimação pode ser para prestar esclarecimentos na condição de testemunha,
   },
   {
     id: "artigo-11",
+    slug: "policial-militar-quais-sao-seus-direitos-durante-a-investigacao",
     num: "11",
     title: "POLICIAL MILITAR: QUAIS SÃO SEUS DIREITOS DURANTE A INVESTIGAÇÃO?",
     updatedAt: "23 de maio de 2025",
@@ -576,10 +584,15 @@ export const createBlogArticle = async (article: Omit<BlogArticle, 'id'>): Promi
     id: createdId
   };
 
-  // Salva no LocalStorage
-  const current = await getBlogArticles();
-  const updated = [newArticle, ...current];
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  // Salva no LocalStorage sem sobrescrever do Firestore
+  try {
+    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
+    const updated = [newArticle, ...current];
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  } catch (e) {
+    console.warn('Erro ao salvar no LocalStorage:', e);
+  }
 
   return newArticle;
 };
@@ -590,16 +603,21 @@ export const updateBlogArticle = async (id: string, updatedFields: Partial<BlogA
   if (db) {
     try {
       const docRef = doc(db, 'articles', id);
-      await updateDoc(docRef, updatedFields);
+      await setDoc(docRef, updatedFields, { merge: true });
     } catch (err) {
       console.warn('Erro ao atualizar no Firestore:', err);
     }
   }
 
-  // Atualiza LocalStorage
-  const current = await getBlogArticles();
-  const updated = current.map(item => item.id === id ? { ...item, ...updatedFields } : item);
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  // Atualiza LocalStorage diretamente sem depender de busca assíncrona que pode falhar
+  try {
+    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
+    const updated = current.map(item => item.id === id ? { ...item, ...updatedFields } : item);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  } catch (e) {
+    console.warn('Erro ao atualizar no LocalStorage:', e);
+  }
 };
 
 export const deleteBlogArticle = async (id: string): Promise<void> => {
@@ -615,7 +633,12 @@ export const deleteBlogArticle = async (id: string): Promise<void> => {
   }
 
   // Remove do LocalStorage
-  const current = await getBlogArticles();
-  const updated = current.filter(item => item.id !== id);
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  try {
+    const localRaw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const current: BlogArticle[] = localRaw ? JSON.parse(localRaw) : INITIAL_SEED_ARTICLES;
+    const updated = current.filter(item => item.id !== id);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updated));
+  } catch (e) {
+    console.warn('Erro ao remover do LocalStorage:', e);
+  }
 };

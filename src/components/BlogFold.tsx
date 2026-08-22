@@ -140,6 +140,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
       try {
         await deleteBlogArticle(id);
         await loadArticles();
+        window.dispatchEvent(new Event('articlesUpdated'));
       } catch (err) {
         console.error(err);
         alert('Erro ao excluir artigo.');
@@ -154,6 +155,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
       await createBlogArticle(articleData);
     }
     await loadArticles();
+    window.dispatchEvent(new Event('articlesUpdated'));
   };
 
   const handleSelectSubCategory = (categoryLabel: string, mainArea: 'criminal' | 'civel') => {

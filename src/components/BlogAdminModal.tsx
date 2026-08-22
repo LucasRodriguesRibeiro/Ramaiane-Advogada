@@ -8,7 +8,7 @@ import {
   FileText,
   Upload
 } from 'lucide-react';
-import { BlogArticle } from '../types/blog';
+import { BlogArticle, generateSlug } from '../types/blog';
 import dobra2Img from '../assets/images/dobra2.jpeg';
 
 interface BlogAdminModalProps {
@@ -20,6 +20,40 @@ interface BlogAdminModalProps {
 }
 
 const DEFAULT_COVER = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80';
+
+// Função para comprimir fotos enviadas localmente antes do envio
+const compressImage = (file: File, maxWidth = 1000, quality = 0.75): Promise<string> => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+
+        if (width > maxWidth) {
+          height = Math.round((height * maxWidth) / width);
+          width = maxWidth;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        } else {
+          resolve(e.target?.result as string);
+        }
+      };
+      img.onerror = () => resolve(e.target?.result as string);
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = () => resolve('');
+    reader.readAsDataURL(file);
+  });
+};
 
 export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
   isOpen,
@@ -82,16 +116,13 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
     setKeyPoints(keyPoints.filter((_, i) => i !== index));
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (reader.result) {
-          setCoverUrl(reader.result.toString());
-        }
-      };
-      reader.readAsDataURL(file);
+      const compressedDataUrl = await compressImage(file);
+      if (compressedDataUrl) {
+        setCoverUrl(compressedDataUrl);
+      }
     }
   };
 
@@ -111,6 +142,7 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
       const articlePayload: Omit<BlogArticle, 'id'> = {
         num: numString,
         title: title.trim(),
+        slug: editingArticle?.slug || generateSlug(title.trim()),
         updatedAt: editingArticle ? editingArticle.updatedAt : 'Hoje',
         coverUrl: coverUrl.trim() || DEFAULT_COVER,
         summary: summary.trim(),

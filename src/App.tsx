@@ -103,9 +103,24 @@ export default function App() {
       document.title = 'Deyse Ramaiane | Advocacia Estratégica';
     };
 
+    const handleArticlesUpdated = async () => {
+      const items = await getBlogArticles();
+      setAllArticles(items);
+      if (currentArticle) {
+        const updatedCurrent = items.find(a => a.id === currentArticle.id);
+        if (updatedCurrent) {
+          setCurrentArticle(updatedCurrent);
+        }
+      }
+    };
+
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+    window.addEventListener('articlesUpdated', handleArticlesUpdated);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('articlesUpdated', handleArticlesUpdated);
+    };
+  }, [currentArticle]);
 
   const handleSelectArticle = (article: BlogArticle) => {
     setCurrentArticle(article);
