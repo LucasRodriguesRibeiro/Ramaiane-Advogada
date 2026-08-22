@@ -26,14 +26,12 @@ import {
   ShoppingBag,
   DollarSign,
   Home,
-  Users,
-  Database
+  Users
 } from 'lucide-react';
 import { BlogArticle, BLOG_MAIN_AREAS, isArticleInMainArea } from '../types/blog';
 import { getBlogArticles, deleteBlogArticle, createBlogArticle, updateBlogArticle } from '../services/firebase';
 import { BlogAdminModal } from './BlogAdminModal';
 import { BlogAdminAuthModal } from './BlogAdminAuthModal';
-import { FirebaseConfigModal } from './FirebaseConfigModal';
 import { EmergencyContact } from '../types';
 
 const CRIMINAL_CATEGORIES = [
@@ -94,8 +92,6 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  const [isFirebaseModalOpen, setIsFirebaseModalOpen] = useState<boolean>(false);
 
   // Carrega artigos
   const loadArticles = async () => {
@@ -241,15 +237,6 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
               >
                 <Plus className="w-4 h-4" />
                 <span>+ Criar Artigo</span>
-              </button>
-
-              <button
-                onClick={() => setIsFirebaseModalOpen(true)}
-                className="py-2 px-3.5 rounded bg-[#1C1D24] border border-[#343742] hover:border-[#8F9299] text-[#F7F7F5] text-xs font-semibold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer transition-all"
-                title="Configurar credenciais do banco de dados Firebase"
-              >
-                <Database className="w-3.5 h-3.5 text-[#B8BBC0]" />
-                <span>Conectar Firebase</span>
               </button>
 
               <button
@@ -589,15 +576,6 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onSuccess={handleAdminLoginSuccess}
-      />
-
-      {/* Firebase Database Config Modal */}
-      <FirebaseConfigModal
-        isOpen={isFirebaseModalOpen}
-        onClose={() => setIsFirebaseModalOpen(false)}
-        onSuccess={() => {
-          loadArticles();
-        }}
       />
 
     </section>
