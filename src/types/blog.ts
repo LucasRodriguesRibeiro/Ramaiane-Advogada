@@ -47,15 +47,16 @@ export const isArticleInMainArea = (article: BlogArticle, areaId: string): boole
   const cat = normalize(article.category || '');
   const title = normalize(article.title || '');
   const summary = normalize(article.summary || '');
+  const content = normalize(article.content || '');
 
   if (areaId === 'civel') {
-    const civelKeywords = ['cível', 'civil', 'imobiliário', 'família', 'sucessões', 'contrato', 'indenização', 'consumidor', 'imóvel'];
-    return civelKeywords.some(k => cat.includes(k) || title.includes(k) || summary.includes(k));
+    const civelKeywords = ['civel', 'civil', 'imobiliario', 'familia', 'sucessoes', 'contrato', 'indenizacao', 'consumidor', 'imovel', 'patrimonio', 'responsabilidade civil', 'partilha', 'inventario', 'divorcio'];
+    return civelKeywords.some(k => cat.includes(k) || title.includes(k) || summary.includes(k) || content.includes(k));
   }
 
   if (areaId === 'criminal') {
-    const criminalKeywords = ['criminal', 'penal', 'urgência', 'flagrante', 'prisão', 'intimação', 'busca', 'inquérito', 'júri', 'droga', 'digital', 'médico', 'saúde', 'empresarial', 'militar', 'segurança', 'fraude'];
-    return criminalKeywords.some(k => cat.includes(k) || title.includes(k) || summary.includes(k));
+    const criminalKeywords = ['criminal', 'penal', 'urgencia', 'flagrante', 'prisao', 'intimacao', 'busca', 'inquerito', 'juri', 'droga', 'digital', 'medico', 'saude', 'empresarial', 'militar', 'seguranca', 'fraude', 'habeas corpus', 'tributario', 'custodia', 'homicidio', 'pacote anticrime'];
+    return criminalKeywords.some(k => cat.includes(k) || title.includes(k) || summary.includes(k) || content.includes(k));
   }
 
   return true;

@@ -233,16 +233,19 @@ export const BlogAdminModal: React.FC<BlogAdminModalProps> = ({
                   onChange={(e) => setCategory(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] focus:outline-none"
                 >
-                  <option value="Direito Penal Geral">Núcleo Criminal (Direito Penal Geral)</option>
-                  <option value="Urgências Criminais">Núcleo Criminal (Urgências e Prisão)</option>
-                  <option value="Núcleo Cível">Núcleo Cível (Contratos e Imobiliário)</option>
-                  <option value="Saúde & Medicina">Direito Médico (Saúde e Clínicas)</option>
-                  <option value="Defesa do Paciente">Pacientes (Defesa do Paciente e Erro Médico)</option>
-                  <option value="Direito Penal Empresarial">Empresarial (Compliance e Penal Empresarial)</option>
-                  <option value="Crimes Digitais">Crimes Digitais (Fraudes e Cibernéticos)</option>
-                  <option value="Lei de Drogas">Lei de Drogas (Uso, Tráfico e Flagrante)</option>
-                  <option value="Segurança Pública & Militares">Segurança Pública (Militares e Forças de Segurança)</option>
-                  <option value="Fraudes & Delitos Financeiros">Fraudes & Delitos Financeiros</option>
+                  <option value="Investigações, Prisões e Operações Policiais">Investigações, Prisões e Operações Policiais</option>
+                  <option value="Tráfico de Drogas">Tráfico de Drogas (Lei de Drogas)</option>
+                  <option value="Crimes Empresariais">Crimes Empresariais e Econômicos</option>
+                  <option value="Tribunal do Júri">Tribunal do Júri</option>
+                  <option value="Crimes Digitais">Crimes Digitais e Cibernéticos</option>
+                  <option value="Direito Penal Médico">Direito Penal Médico e da Saúde</option>
+                  <option value="Responsabilidade Civil e Indenizações">Responsabilidade Civil e Indenizações</option>
+                  <option value="Família e Sucessões">Direito de Família e Sucessões</option>
+                  <option value="Direito Penal Estratégico">Direito Penal Estratégico</option>
+                  <option value="Contratos e Obrigações">Contratos e Obrigações</option>
+                  <option value="Direito Imobiliário">Direito Imobiliário</option>
+                  <option value="Execução Penal">Execução Penal</option>
+                  <option value="Crimes Contra a Honra, Imagem e Liberdade">Crimes Contra a Honra e Imagem</option>
                 </select>
               </div>
 

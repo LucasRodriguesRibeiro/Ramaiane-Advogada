@@ -228,12 +228,13 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
         {isAdminAuthenticated && (
           <div className="flex flex-col sm:flex-row items-center justify-between bg-[#16171C] border border-[#B8BBC0]/30 p-3 rounded-xl gap-3">
             <div className="text-xs text-[#E2E4E8] font-semibold tracking-wider uppercase flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Modo de Gestão do Blog Ativo</span>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleOpenCreateArticle}
-                className="py-2 px-4 rounded bg-[#E5E7EB] hover:bg-white text-[#0B0B0C] text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer shadow-md transition-all"
+                className="py-2 px-4 rounded bg-[#E5E7EB] hover:bg-white text-[#0B0B0C] text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 cursor-pointer shadow-md transition-all active:scale-95"
               >
                 <Plus className="w-4 h-4" />
                 <span>+ Criar Artigo</span>
@@ -241,7 +242,7 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
 
               <button
                 onClick={handleAdminLogout}
-                className="py-2 px-3 text-xs text-[#B8BBC0] hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
+                className="py-2 px-3 text-xs text-[#B8BBC0] hover:text-white bg-[#121316] hover:bg-[#1C1D24] border border-[#2D3039] rounded transition-colors cursor-pointer flex items-center space-x-1"
                 title="Sair do modo de gestão"
               >
                 <Unlock className="w-3.5 h-3.5 text-[#B8BBC0]" />
@@ -402,18 +403,18 @@ export const BlogFold: React.FC<BlogFoldProps> = ({
 
                     <div className="flex items-center space-x-2">
                       {isAdminAuthenticated && (
-                        <div className="flex items-center space-x-1 mr-1">
+                        <div className="flex items-center space-x-1.5 mr-1 bg-[#18191E] p-1 rounded-md border border-[#2D3039]">
                           <button
                             onClick={(e) => handleOpenEditArticle(item, e)}
-                            className="p-1 text-[#8F9299] hover:text-white rounded transition-colors"
-                            title="Editar Artigo"
+                            className="p-1.5 text-[#B8BBC0] hover:text-white hover:bg-[#252834] rounded transition-colors"
+                            title="Editar este artigo"
                           >
                             <Edit3 className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={(e) => handleDeleteArticle(item.id, e)}
-                            className="p-1 text-red-400 hover:text-red-300 rounded transition-colors"
-                            title="Excluir Artigo"
+                            className="p-1.5 text-red-400 hover:text-red-300 hover:bg-red-950/50 rounded transition-colors"
+                            title="Excluir este artigo"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
