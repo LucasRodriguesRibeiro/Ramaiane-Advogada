@@ -20,9 +20,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     { label: 'INÍCIO', href: '#inicio' },
     { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
     { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
-    { label: 'LEI DE DROGAS', href: '#trafico-de-drogas' },
     { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
-    { label: 'NOSSA METODOLOGIA', href: '#como-funciona' },
     { label: 'BLOG', href: '/blog' },
     { label: 'CONTATO', href: '#contato' },
   ];
@@ -40,9 +38,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
       { label: 'INÍCIO', id: 'inicio' },
       { label: 'SOBRE RAMAIANE', id: 'apresentacao' },
       { label: 'NÚCLEO CRIMINAL', id: 'nucleo-criminal' },
-      { label: 'LEI DE DROGAS', id: 'trafico-de-drogas' },
       { label: 'NÚCLEO CÍVEL', id: 'nucleo-civel' },
-      { label: 'NOSSA METODOLOGIA', id: 'como-funciona' },
       { label: 'CONTATO', id: 'contato' },
     ];
 
