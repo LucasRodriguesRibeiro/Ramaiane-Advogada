@@ -23,6 +23,7 @@ interface ArticlePageProps {
   article: BlogArticle;
   allArticles: BlogArticle[];
   onNavigateHome: () => void;
+  onNavigateBlog?: () => void;
   onSelectArticle: (article: BlogArticle) => void;
   onOpenEmergencyModal: () => void;
   onOpenAdminAuth?: () => void;
@@ -33,6 +34,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
   article,
   allArticles,
   onNavigateHome,
+  onNavigateBlog,
   onSelectArticle,
   onOpenEmergencyModal,
   onOpenAdminAuth,
@@ -79,11 +81,11 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
-              onClick={onNavigateHome}
+              onClick={onNavigateBlog || onNavigateHome}
               className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#B8BBC0] hover:text-white transition-colors p-2 rounded hover:bg-[#14151B] cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Voltar ao Site</span>
+              <span>Voltar ao Blog</span>
             </button>
             <div className="h-4 w-[1px] bg-[#252830] hidden sm:block"></div>
             <a href="/" onClick={(e) => { e.preventDefault(); onNavigateHome(); }} className="hidden sm:block">
@@ -125,7 +127,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             </button>
             <span className="text-[#555861]">&gt;</span>
             <button 
-              onClick={onNavigateHome}
+              onClick={onNavigateBlog || onNavigateHome}
               className="text-[#8F9299] hover:text-white transition-colors"
             >
               Blog
@@ -266,7 +268,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                 Outros Artigos Estratégicos
               </h3>
               <button
-                onClick={onNavigateHome}
+                onClick={onNavigateBlog || onNavigateHome}
                 className="text-xs text-[#B8BBC0] hover:text-white hover:underline uppercase tracking-wider font-semibold cursor-pointer"
               >
                 Ver Todos os Artigos →

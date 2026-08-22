@@ -18,7 +18,7 @@ import { DrugsLawModal } from './components/DrugsLawModal';
 import { ScheduleAppointmentModal } from './components/ScheduleAppointmentModal';
 import { Urgent24hModal } from './components/Urgent24hModal';
 import { EmergencyContact } from './types';
-import { BlogArticle } from './types/blog';
+import { BlogArticle, generateSlug } from './types/blog';
 import { getBlogArticles } from './services/firebase';
 
 export default function App() {
@@ -63,7 +63,13 @@ export default function App() {
       } else {
         const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
         if (slugToCheck) {
-          const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
+          const decodedSlug = decodeURIComponent(slugToCheck).toLowerCase();
+          const found = items.find(a => 
+            a.slug === slugToCheck || 
+            a.id === slugToCheck ||
+            (a.slug && a.slug.toLowerCase() === decodedSlug) ||
+            generateSlug(a.title) === decodedSlug
+          );
           if (found) {
             setCurrentArticle(found);
             setIsBlogPageActive(false);
@@ -89,7 +95,13 @@ export default function App() {
 
       const slugToCheck = parts.length === 2 && parts[0] === 'artigo' ? parts[1] : parts[0];
       if (slugToCheck) {
-        const found = items.find(a => a.slug === slugToCheck || a.id === slugToCheck);
+        const decodedSlug = decodeURIComponent(slugToCheck).toLowerCase();
+        const found = items.find(a => 
+          a.slug === slugToCheck || 
+          a.id === slugToCheck ||
+          (a.slug && a.slug.toLowerCase() === decodedSlug) ||
+          generateSlug(a.title) === decodedSlug
+        );
         if (found) {
           setCurrentArticle(found);
           setIsBlogPageActive(false);
@@ -107,7 +119,7 @@ export default function App() {
       const items = await getBlogArticles();
       setAllArticles(items);
       if (currentArticle) {
-        const updatedCurrent = items.find(a => a.id === currentArticle.id);
+        const updatedCurrent = items.find(a => a.id === currentArticle.id || a.slug === currentArticle.slug);
         if (updatedCurrent) {
           setCurrentArticle(updatedCurrent);
         }
@@ -123,10 +135,13 @@ export default function App() {
   }, [currentArticle]);
 
   const handleSelectArticle = (article: BlogArticle) => {
-    setCurrentArticle(article);
+    if (!article) return;
+    const slug = article.slug || generateSlug(article.title) || article.id;
+    const fullArticle = { ...article, slug };
+    setCurrentArticle(fullArticle);
     setIsBlogPageActive(false);
-    const newPath = `/artigo/${article.slug}`;
-    window.history.pushState({ slug: article.slug }, '', newPath);
+    const newPath = `/artigo/${slug}`;
+    window.history.pushState({ slug }, '', newPath);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -181,6 +196,7 @@ export default function App() {
           article={currentArticle}
           allArticles={allArticles}
           onNavigateHome={handleNavigateHome}
+          onNavigateBlog={handleNavigateBlog}
           onSelectArticle={handleSelectArticle}
           onOpenEmergencyModal={handleOpenModal}
           onOpenAdminAuth={handleOpenBlogAdminAuth}
