@@ -21,6 +21,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
     { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
     { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
+    { label: 'NOSSA METODOLOGIA', href: '#como-funciona' },
     { label: 'BLOG', href: '/blog' },
     { label: 'CONTATO', href: '#contato' },
   ];
@@ -39,6 +40,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
       { label: 'SOBRE RAMAIANE', id: 'apresentacao' },
       { label: 'NÚCLEO CRIMINAL', id: 'nucleo-criminal' },
       { label: 'NÚCLEO CÍVEL', id: 'nucleo-civel' },
+      { label: 'NOSSA METODOLOGIA', id: 'como-funciona' },
       { label: 'CONTATO', id: 'contato' },
     ];
 
@@ -135,7 +137,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-[11px] font-medium tracking-[0.12em] text-slate-300 uppercase">
+        <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5 text-[11px] font-medium tracking-[0.12em] text-slate-300 uppercase">
           {navItems.map((item) => (
             <a
               key={item.label}

@@ -67,7 +67,7 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
             NÚCLEO CÍVEL
           </h2>
 
-          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wide text-justify">
+          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wide text-center">
             SOLUÇÕES JURÍDICAS ESTRATÉGICAS PARA RELAÇÕES PRIVADAS, PATRIMÔNIO E NEGÓCIOS.
           </p>
         </div>
@@ -94,14 +94,14 @@ export const CivilCoreFold: React.FC<CivilCoreFoldProps> = () => {
 
                   {/* Title */}
                   <div className="space-y-2.5">
-                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] leading-snug tracking-wide uppercase group-hover:text-[#FFFFFF] transition-colors text-justify">
+                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] leading-snug tracking-wide uppercase group-hover:text-[#FFFFFF] transition-colors">
                       {item.title}
                     </h3>
                     <div className="w-10 h-[1.5px] bg-[#B8BBC0]/40"></div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify">
+                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
                     {item.desc}
                   </p>
 

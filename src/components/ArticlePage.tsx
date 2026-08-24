@@ -199,7 +199,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           <div className="p-6 sm:p-8 rounded-2xl bg-[#121318] border border-[#B8BBC0]/30 space-y-4 shadow-xl">
             <div className="flex items-center space-x-2.5 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#E2E4E8]">
               <ShieldCheck className="w-5 h-5 text-[#B8BBC0]" />
-              <span>PONTOS IMPORTANTES & ORIENTAÇÕES PRINCIPAIS</span>
+              <span>PONTOS IMPORTANTES</span>
             </div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               {article.keyPoints.map((point, index) => (
@@ -236,10 +236,10 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
               SOBRE A AUTORA
             </div>
             <h3 className="font-serif-title text-xl text-[#F7F7F5]">
-              Dra. Deyse Ramaiane
+              {article.author?.name ? (article.author.name.includes('Dra.') ? article.author.name : `Dra. ${article.author.name}`) : 'Dra. Deyse Ramaiane'}
             </h3>
             <p className="text-xs sm:text-sm text-[#B8BBC0] leading-relaxed font-light">
-              Advocacia criminal estratégica e de alta complexidade. Atuação especializada em investigações, audiências de custódia, defesa do paciente, direito penal médico e operações policiais em âmbito nacional.
+              Advogada de atuação estratégica, com experiência na condução de casos de alta complexidade. À frente de uma estrutura que integra Núcleo Ofensivo e Núcleo Criminal, desenvolve estratégias jurídicas personalizadas para defesa, proteção de direitos e enfrentamento de situações de relevante impacto jurídico.
             </p>
           </div>
         </div>
