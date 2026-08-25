@@ -3,6 +3,7 @@ import { MessageCircle } from 'lucide-react';
 import { DobraHeaderNav } from './components/DobraHeaderNav';
 import { HeroFold } from './components/HeroFold';
 import { SecondFold } from './components/SecondFold';
+import { MedicalCoreFold } from './components/MedicalCoreFold';
 import { FifthFold } from './components/FifthFold';
 import { FourthFold } from './components/FourthFold';
 import { CivilCoreFold } from './components/CivilCoreFold';
@@ -294,6 +295,12 @@ export default function App() {
 
         {/* 1. Apresentação Profissional */}
         <SecondFold />
+
+        {/* 1.5. Núcleo Médico */}
+        <MedicalCoreFold 
+          onOpenEmergencyModal={handleOpenModal} 
+          onSelectNucleo={handleOpenNucleoModal} 
+        />
 
         {/* 2. Núcleo Criminal (Setores / Especialidades) */}
         <FifthFold 

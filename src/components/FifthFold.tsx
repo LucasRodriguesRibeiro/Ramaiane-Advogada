@@ -32,20 +32,6 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
 
   const nucleos = [
     {
-      id: "medicos",
-      category: "SAÚDE E MEDICINA",
-      icon: Stethoscope,
-      title: "Médicos, Clínicas e Instituições de Saúde",
-      desc: "Defesa criminal preventiva e atuação em investigações, sindicâncias, procedimentos administrativos e processos relacionados à atividade médica e à gestão de clínicas."
-    },
-    {
-      id: "pacientes",
-      category: "DEFESA DO PACIENTE",
-      icon: User,
-      title: "Pacientes e Vítimas de Erro Médico",
-      desc: "Atuação na defesa de pacientes vítimas de possíveis crimes ou condutas ilícitas decorrentes de atendimento médico, procedimentos, negligência, imprudência ou imperícia."
-    },
-    {
       id: "empresarios",
       category: "EMPRESAS E EXECUTIVOS",
       icon: Building2,
@@ -175,36 +161,45 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           </p>
         </div>
 
-        {/* 17 Cards Grid */}
+        {/* 15 Cards Grid (Displays 6 by default, all 15 when showMore is true) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {nucleos.map((item, index) => {
             const Icon = item.icon;
-            const isDesktopCollapsible = index >= 15;
+            const isCollapsible = index >= 6;
+            if (isCollapsible && !showMore) {
+              return null;
+            }
+
+            const cardNumber = String(index + 1).padStart(2, '0');
+
             return (
               <div
                 key={item.id}
                 onClick={() => handleCardClick(item.id)}
-                className={`bg-[#18191B] border border-[#74777C]/20 rounded-md p-6 sm:p-8 flex flex-col justify-between hover:border-[#B8BBC0]/50 transition-all duration-300 group shadow-md cursor-pointer ${
-                  isDesktopCollapsible && !showMore ? 'lg:hidden' : ''
-                }`}
+                className="bg-[#18191B] border border-[#74777C]/20 rounded-md p-6 sm:p-8 flex flex-col justify-between hover:border-[#B8BBC0]/50 transition-all duration-300 group shadow-md cursor-pointer relative"
               >
                 <div className="space-y-4">
-                  {/* Category with Icon */}
-                  <div className="flex items-center space-x-2.5 text-[11px] font-bold tracking-wider text-[#B8BBC0] uppercase">
-                    <Icon className="w-4 h-4 text-[#E2E4E8] group-hover:text-white shrink-0 transition-colors" />
-                    <span className="group-hover:text-[#F7F7F5] transition-colors">{item.category}</span>
+                  {/* Card Number & Header Row */}
+                  <div className="flex items-center justify-between border-b border-[#74777C]/15 pb-3">
+                    <div className="flex items-center space-x-2.5 text-[11px] font-bold tracking-wider text-[#B8BBC0] uppercase">
+                      <Icon className="w-4 h-4 text-[#E2E4E8] group-hover:text-white shrink-0 transition-colors" />
+                      <span className="text-[#F7F7F5] font-semibold text-xs tracking-wider">{cardNumber}</span>
+                    </div>
                   </div>
 
-                  {/* Title */}
-                  <div className="space-y-2.5">
-                    <h3 className="font-serif-title text-lg sm:text-xl text-[#F7F7F5] leading-snug group-hover:text-[#FFFFFF] transition-colors">
-                      {item.title}
+                  {/* Title & Audience */}
+                  <div className="space-y-1.5">
+                    <h3 className="font-serif-title text-lg sm:text-xl text-[#F7F7F5] leading-snug group-hover:text-[#FFFFFF] transition-colors uppercase tracking-wide">
+                      {item.category}
                     </h3>
-                    <div className="w-10 h-[1.5px] bg-[#B8BBC0]/40"></div>
+                    <p className="text-xs text-[#B8BBC0] font-medium italic">
+                      {item.title}
+                    </p>
+                    <div className="w-10 h-[1.5px] bg-[#B8BBC0]/40 pt-1"></div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify">
+                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify pt-1">
                     {item.desc}
                   </p>
                 </div>
@@ -221,14 +216,14 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           })}
         </div>
 
-        {/* Desktop Ver Mais / Ver Menos Button */}
-        <div className="hidden lg:flex justify-center pt-2">
+        {/* Ver Mais / Ver Menos Button */}
+        <div className="flex justify-center pt-2">
           <button
             type="button"
             onClick={() => setShowMore(!showMore)}
             className="inline-flex items-center space-x-2.5 px-8 py-3.5 bg-[#18191B] hover:bg-[#222428] text-[#F7F7F5] border border-[#74777C]/30 hover:border-[#B8BBC0]/60 rounded-md text-xs font-semibold uppercase tracking-widest transition-all duration-300 shadow-md group cursor-pointer"
           >
-            <span>{showMore ? 'Ver Menos' : 'Ver Mais'}</span>
+            <span>{showMore ? 'VER MENOS' : 'VER MAIS'}</span>
             {showMore ? (
               <ChevronUp className="w-4 h-4 text-[#B8BBC0] group-hover:text-[#F7F7F5] group-hover:-translate-y-0.5 transition-transform duration-300" />
             ) : (

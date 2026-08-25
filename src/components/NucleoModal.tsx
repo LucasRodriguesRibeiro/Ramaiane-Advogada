@@ -49,47 +49,57 @@ export interface NucleoConfig {
   mainTitle: string;
   nucleusTitle: string;
   description: string;
-  nameLabel: string;
-  namePlaceholder: string;
+  nameLabel?: string;
+  namePlaceholder?: string;
   hasOriginCountryField?: boolean;
   secondaryLabel?: string;
   secondaryPlaceholder?: string;
   originCountryLabel?: string;
   originCountryPlaceholder?: string;
-  profiles: ProfileOption[];
-  motivos: string[];
-  locationLabel: string;
-  locationPlaceholder: string;
-  emailPlaceholder: string;
-  whatsappPlaceholder: string;
-  situationPlaceholder: string;
+  profiles?: ProfileOption[];
+  motivos?: string[];
+  locationLabel?: string;
+  locationPlaceholder?: string;
+  emailPlaceholder?: string;
+  whatsappPlaceholder?: string;
+  situationPlaceholder?: string;
+  buttonText?: string;
+  isModalitiesLayout?: boolean;
 }
 
 export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
-  'medicos': {
-    id: 'medicos',
+  'saude-medicina': {
+    id: 'saude-medicina',
     num: '01',
     icon: Stethoscope,
     subtitle: 'ATENDIMENTO',
-    mainTitle: 'CRIMINAL ESTRATÉGICO',
-    nucleusTitle: 'MÉDICOS, CLÍNICAS E INSTITUIÇÕES DE SAÚDE',
-    description: 'Defesa criminal preventiva e atuação em investigações, sindicâncias, procedimentos administrativos e processos relacionados à atividade médica e à gestão de clínicas.',
+    mainTitle: 'SAÚDE E MEDICINA',
+    nucleusTitle: 'MÉDICOS, CLÍNICAS E PROFISSIONAIS DA SAÚDE',
+    description: 'Defesa e orientação jurídica relacionadas ao exercício profissional e às situações jurídicas que envolvem a atividade médica.',
     nameLabel: 'SEU NOME / CRM (OPCIONAL)',
     namePlaceholder: 'Ex.: Dra. Juliana Mendes',
     secondaryLabel: 'CLÍNICA / HOSPITAL / CONSULTÓRIO',
     secondaryPlaceholder: 'Ex.: Clínica Integrada de Saúde',
     profiles: [
-      { label: 'Médico(a) / Cirurgião', icon: Stethoscope },
-      { label: 'Diretor(a) Clínico / Gestor', icon: Building2 },
-      { label: 'Clínica / Hospital', icon: Hospital },
-      { label: 'Outro da Saúde', icon: MoreHorizontal },
+      { label: 'Médico(a)', icon: Stethoscope },
+      { label: 'Cirurgião(ã)', icon: Stethoscope },
+      { label: 'Dentista', icon: UserCheck },
+      { label: 'Biomédico(a)', icon: User },
+      { label: 'Enfermeiro(a)', icon: UserCheck },
+      { label: 'Psicólogo(a)', icon: User },
+      { label: 'Fisioterapeuta', icon: User },
+      { label: 'Outro', icon: MoreHorizontal },
     ],
     motivos: [
-      'Defesa criminal preventiva e consultoria',
-      'Investigação policial ou procedimento do MP',
-      'Sindicância ou processo ético no CRM / CFM',
-      'Procedimentos administrativos e vigilância',
-      'Processos e apuração de conduta médica',
+      'Orientação preventiva',
+      'Reclamação ou conflito com paciente',
+      'Notificação',
+      'Sindicância ou procedimento',
+      'Investigação',
+      'Processo',
+      'Dano ou complicação',
+      'Ameaça de processo',
+      'Questão ética / Conselho',
       'Outro motivo',
     ],
     locationLabel: 'CIDADE / ESTADO',
@@ -97,31 +107,34 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
     emailPlaceholder: 'Ex.: juliana@clinica.med.br',
     whatsappPlaceholder: '(92) 90000-0000',
     situationPlaceholder: 'Descreva brevemente a situação para que possamos entender melhor o seu caso.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
   },
-  'pacientes': {
-    id: 'pacientes',
+  'defesa-paciente': {
+    id: 'defesa-paciente',
     num: '02',
-    icon: Scale,
+    icon: User,
     subtitle: 'ATENDIMENTO',
-    mainTitle: 'CRIMINAL ESTRATÉGICO',
-    nucleusTitle: 'PACIENTES E VÍTIMAS DE ERRO MÉDICO',
-    description: 'Atuação na defesa de pacientes vítimas de possíveis crimes ou condutas ilícitas decorrentes de atendimento médico, procedimentos, negligência, imprudência ou imperícia, com análise estratégica do caso e responsabilização na esfera criminal quando cabível.',
+    mainTitle: 'DEFESA DO PACIENTE',
+    nucleusTitle: 'PACIENTES E FAMILIARES',
+    description: 'Atuação jurídica em questões decorrentes de atendimento médico, procedimentos e conflitos na relação médico-paciente.',
     nameLabel: 'SEU NOME / REPRESENTANTE',
     namePlaceholder: 'Ex.: Maria Clara Souza',
     secondaryLabel: 'PROFISSIONAL / CLÍNICA / HOSPITAL ENVOLVIDO',
-    secondaryPlaceholder: 'Ex.: Hospital Geral / Clínica de Estética',
+    secondaryPlaceholder: 'Ex.: Hospital Geral / Dr. João Silva',
     profiles: [
-      { label: 'Paciente / Vítima', icon: User },
-      { label: 'Familiar de Vítima', icon: Users },
+      { label: 'Paciente', icon: User },
+      { label: 'Familiar', icon: Users },
       { label: 'Representante Legal', icon: ShieldAlert },
       { label: 'Outro', icon: MoreHorizontal },
     ],
     motivos: [
-      'Suspeita de erro médico ou procedimento inadequado',
-      'Negligência, imprudência ou imperícia no atendimento',
-      'Lesão corporal grave decorrente de cirurgia/procedimento',
-      'Óbito ou dano severo em ambiente médico/hospitalar',
-      'Análise para responsabilização criminal e inquérito',
+      'Possível erro médico',
+      'Complicação após procedimento',
+      'Negligência, imprudência ou imperícia',
+      'Dano decorrente de atendimento',
+      'Óbito ou dano grave',
+      'Necessidade de análise jurídica',
+      'Busca de indenização',
       'Outro motivo',
     ],
     locationLabel: 'CIDADE / ESTADO',
@@ -129,6 +142,162 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
     emailPlaceholder: 'Ex.: maria@email.com',
     whatsappPlaceholder: '(92) 90000-0000',
     situationPlaceholder: 'Descreva brevemente a ocorrência e o atendimento recebido para que possamos analisar.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
+  },
+  'clinicas-gestao': {
+    id: 'clinicas-gestao',
+    num: '03',
+    icon: Building2,
+    subtitle: 'ATENDIMENTO',
+    mainTitle: 'CLÍNICAS E GESTÃO',
+    nucleusTitle: 'CLÍNICAS, CONSULTÓRIOS E ESTABELECIMENTOS DE SAÚDE',
+    description: 'Orientação jurídica relacionada à rotina, gestão e situações que possam gerar repercussões para o estabelecimento.',
+    nameLabel: 'NOME DO RESPONSÁVEL',
+    namePlaceholder: 'Ex.: Carlos Oliveira',
+    secondaryLabel: 'NOME DA CLÍNICA / CNPJ (OPCIONAL)',
+    secondaryPlaceholder: 'Ex.: Clínica Vida Plena / 12.345.678/0001-90',
+    profiles: [
+      { label: 'Proprietário(a)', icon: Building2 },
+      { label: 'Diretor(a)', icon: Briefcase },
+      { label: 'Gestor(a)', icon: UserCheck },
+      { label: 'Profissional da Saúde', icon: Stethoscope },
+    ],
+    motivos: [
+      'Orientação preventiva',
+      'Situação envolvendo paciente',
+      'Reclamação ou notificação',
+      'Gestão de crise',
+      'Questão envolvendo funcionário/prestador',
+      'Investigação ou procedimento',
+      'Regularização de documentação',
+      'Outro motivo',
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: carlos@clinica.com.br',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente a situação para que possamos entender melhor o seu caso.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
+  },
+  'acompanhamento-juridico': {
+    id: 'acompanhamento-juridico',
+    num: '04',
+    icon: Briefcase,
+    subtitle: 'ATENDIMENTO',
+    mainTitle: 'ACOMPANHAMENTO JURÍDICO',
+    nucleusTitle: 'ORIENTAÇÃO JURÍDICA CONTINUADA',
+    description: 'A atuação jurídica pode ser estruturada de acordo com o perfil, a rotina e as necessidades de cada profissional ou estabelecimento.',
+    isModalitiesLayout: true,
+    buttonText: 'SOLICITAR ORIENTAÇÃO',
+  },
+  'gestao-crises': {
+    id: 'gestao-crises',
+    num: '05',
+    icon: ShieldAlert,
+    subtitle: 'ATENDIMENTO',
+    mainTitle: 'GESTÃO DE CRISES',
+    nucleusTitle: 'CONFLITOS, RECLAMAÇÕES E NOTIFICAÇÕES',
+    description: 'Orientação e atuação jurídica diante de situações sensíveis envolvendo pacientes, familiares, profissionais ou estabelecimentos.',
+    nameLabel: 'SEU NOME',
+    namePlaceholder: 'Ex.: Dra. Juliana Mendes',
+    profiles: [
+      { label: 'Médico(a)', icon: Stethoscope },
+      { label: 'Clínica', icon: Building2 },
+      { label: 'Profissional da Saúde', icon: UserCheck },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    motivos: [
+      'Reclamação de paciente',
+      'Ameaça de processo',
+      'Notificação',
+      'Exposição nas redes sociais',
+      'Conflito com paciente/familiar',
+      'Situação envolvendo imprensa',
+      'Situação urgente',
+      'Outro motivo',
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: juliana@email.com',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva a situação e os desdobramentos atuais.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
+  },
+  'medicos': {
+    id: 'medicos',
+    num: '01',
+    icon: Stethoscope,
+    subtitle: 'ATENDIMENTO',
+    mainTitle: 'SAÚDE E MEDICINA',
+    nucleusTitle: 'MÉDICOS, CLÍNICAS E PROFISSIONAIS DA SAÚDE',
+    description: 'Defesa e orientação jurídica relacionadas ao exercício profissional e às situações jurídicas que envolvem a atividade médica.',
+    nameLabel: 'SEU NOME / CRM (OPCIONAL)',
+    namePlaceholder: 'Ex.: Dra. Juliana Mendes',
+    secondaryLabel: 'CLÍNICA / HOSPITAL / CONSULTÓRIO',
+    secondaryPlaceholder: 'Ex.: Clínica Integrada de Saúde',
+    profiles: [
+      { label: 'Médico(a)', icon: Stethoscope },
+      { label: 'Cirurgião(ã)', icon: Stethoscope },
+      { label: 'Dentista', icon: UserCheck },
+      { label: 'Biomédico(a)', icon: User },
+      { label: 'Enfermeiro(a)', icon: UserCheck },
+      { label: 'Psicólogo(a)', icon: User },
+      { label: 'Fisioterapeuta', icon: User },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    motivos: [
+      'Orientação preventiva',
+      'Reclamação ou conflito com paciente',
+      'Notificação',
+      'Sindicância ou procedimento',
+      'Investigação',
+      'Processo',
+      'Dano ou complicação',
+      'Ameaça de processo',
+      'Questão ética / Conselho',
+      'Outro motivo',
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: juliana@clinica.med.br',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente a situação para que possamos entender melhor o seu caso.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
+  },
+  'pacientes': {
+    id: 'pacientes',
+    num: '02',
+    icon: User,
+    subtitle: 'ATENDIMENTO',
+    mainTitle: 'DEFESA DO PACIENTE',
+    nucleusTitle: 'PACIENTES E FAMILIARES',
+    description: 'Atuação jurídica em questões decorrentes de atendimento médico, procedimentos e conflitos na relação médico-paciente.',
+    nameLabel: 'SEU NOME / REPRESENTANTE',
+    namePlaceholder: 'Ex.: Maria Clara Souza',
+    secondaryLabel: 'PROFISSIONAL / CLÍNICA / HOSPITAL ENVOLVIDO',
+    secondaryPlaceholder: 'Ex.: Hospital Geral / Dr. João Silva',
+    profiles: [
+      { label: 'Paciente', icon: User },
+      { label: 'Familiar', icon: Users },
+      { label: 'Representante Legal', icon: ShieldAlert },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    motivos: [
+      'Possível erro médico',
+      'Complicação após procedimento',
+      'Negligência, imprudência ou imperícia',
+      'Dano decorrente de atendimento',
+      'Óbito ou dano grave',
+      'Necessidade de análise jurídica',
+      'Busca de indenização',
+      'Outro motivo',
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: maria@email.com',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente a ocorrência e o atendimento recebido para que possamos analisar.',
+    buttonText: 'ENVIAR SOLICITAÇÃO',
   },
   'empresarios': {
     id: 'empresarios',
@@ -794,27 +963,152 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
           </div>
         </div>
 
-        {/* Modal Form */}
-        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 max-h-[calc(85vh-160px)] overflow-y-auto custom-scrollbar">
-          
-          {/* Row 1: Name */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              {currentConfig.nameLabel}
-            </label>
-            <input
-              type="text"
-              required
-              value={personName}
-              onChange={(e) => setPersonName(e.target.value)}
-              placeholder={currentConfig.namePlaceholder}
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
-            />
-          </div>
+        {/* Modal Content / Form */}
+        {currentConfig.isModalitiesLayout ? (
+          <div className="p-6 sm:p-8 space-y-6 max-h-[calc(85vh-160px)] overflow-y-auto custom-scrollbar">
+            <div className="space-y-4">
+              <h4 className="text-[11px] font-bold tracking-[0.15em] text-[#B8BBC0] uppercase text-center">
+                MODALIDADES DE ACOMPANHAMENTO
+              </h4>
 
-          {/* Row 2: Secondary Field + Origin Country if applicable */}
-          {currentConfig.hasOriginCountryField ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Card 1: PROFISSIONAL */}
+                <div className="bg-[#07080A] border border-[#2D3039] rounded-lg p-5 flex flex-col items-center text-center space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#16171C] border border-[#B8BBC0]/30 flex items-center justify-center text-[#F7F7F5]">
+                    <User className="w-5 h-5" />
+                  </div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
+                    PROFISSIONAL
+                  </h5>
+                  <p className="text-[11px] text-[#B8BBC0] leading-relaxed font-light">
+                    Acompanhamento direcionado às necessidades jurídicas individuais do profissional.
+                  </p>
+                </div>
+
+                {/* Card 2: CLÍNICA */}
+                <div className="bg-[#07080A] border border-[#2D3039] rounded-lg p-5 flex flex-col items-center text-center space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#16171C] border border-[#B8BBC0]/30 flex items-center justify-center text-[#F7F7F5]">
+                    <Building2 className="w-5 h-5" />
+                  </div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
+                    CLÍNICA
+                  </h5>
+                  <p className="text-[11px] text-[#B8BBC0] leading-relaxed font-light">
+                    Acompanhamento voltado às demandas jurídicas relacionadas à rotina do estabelecimento.
+                  </p>
+                </div>
+
+                {/* Card 3: ESTRATÉGICO */}
+                <div className="bg-[#07080A] border border-[#2D3039] rounded-lg p-5 flex flex-col items-center text-center space-y-3">
+                  <div className="w-10 h-10 rounded-full bg-[#16171C] border border-[#B8BBC0]/30 flex items-center justify-center text-[#F7F7F5]">
+                    <Landmark className="w-5 h-5" />
+                  </div>
+                  <h5 className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
+                    ESTRATÉGICO
+                  </h5>
+                  <p className="text-[11px] text-[#B8BBC0] leading-relaxed font-light">
+                    Atuação continuada estruturada de acordo com necessidades jurídicas mais abrangentes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Notice text box */}
+            <div className="bg-[#07080A] border border-[#2D3039] rounded-md p-4 text-center">
+              <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                A modalidade, o escopo e as condições da atuação são definidos individualmente, de acordo com a demanda apresentada.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  const message = `*SOLICITAÇÃO DE ORIENTAÇÃO*\n*Núcleo:* Acompanhamento Jurídico Continuado\n\nOlá, gostaria de solicitar orientação jurídica referente ao Acompanhamento Jurídico Continuado.`;
+                  const url = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
+                  window.open(url, '_blank', 'noopener,noreferrer');
+                }}
+                className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
+              >
+                <span>{currentConfig.buttonText || 'SOLICITAR ORIENTAÇÃO'}</span>
+                <span className="text-base font-bold leading-none">→</span>
+              </button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="pt-3 border-t border-[#252830] grid grid-cols-3 gap-2 text-center text-[10px] sm:text-[11px] text-[#B8BBC0]">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Atendimento sigiloso</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Análise individualizada</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Target className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Atuação estratégica</span>
+              </div>
+            </div>
+
+            {/* Security Note */}
+            <div className="flex items-center justify-center space-x-2 text-[10px] text-[#74777C] pt-1">
+              <Lock className="w-3 h-3 text-[#B8BBC0]/70 shrink-0" />
+              <span className="text-center">
+                Seus dados são protegidos e utilizados apenas para contato relacionado ao seu atendimento.
+              </span>
+            </div>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 max-h-[calc(85vh-160px)] overflow-y-auto custom-scrollbar">
+            
+            {/* Row 1: Name */}
+            {currentConfig.nameLabel && (
+              <div className="space-y-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                  {currentConfig.nameLabel}
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={personName}
+                  onChange={(e) => setPersonName(e.target.value)}
+                  placeholder={currentConfig.namePlaceholder}
+                  className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                />
+              </div>
+            )}
+
+            {/* Row 2: Secondary Field + Origin Country if applicable */}
+            {currentConfig.hasOriginCountryField ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div className="space-y-1.5">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                    {currentConfig.secondaryLabel}
+                  </label>
+                  <input
+                    type="text"
+                    value={secondaryField}
+                    onChange={(e) => setSecondaryField(e.target.value)}
+                    placeholder={currentConfig.secondaryPlaceholder}
+                    className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                    {currentConfig.originCountryLabel}
+                  </label>
+                  <input
+                    type="text"
+                    value={originCountry}
+                    onChange={(e) => setOriginCountry(e.target.value)}
+                    placeholder={currentConfig.originCountryPlaceholder}
+                    className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  />
+                </div>
+              </div>
+            ) : currentConfig.secondaryLabel ? (
               <div className="space-y-1.5">
                 <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
                   {currentConfig.secondaryLabel}
@@ -827,194 +1121,175 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
                   className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
+            ) : null}
+
+            {/* Row 3: Profile Selectors */}
+            {currentConfig.profiles && currentConfig.profiles.length > 0 && (
+              <div className="space-y-2">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                  SEU PERFIL
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {currentConfig.profiles.map((prof) => {
+                    const ProfIcon = prof.icon;
+                    const isSelected = selectedProfile === prof.label;
+                    return (
+                      <button
+                        key={prof.label}
+                        type="button"
+                        onClick={() => setSelectedProfile(isSelected ? '' : prof.label)}
+                        className={`p-2.5 rounded-md border flex flex-col items-center justify-center text-center space-y-1.5 transition-all cursor-pointer ${
+                          isSelected
+                            ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] shadow-sm'
+                            : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]/60 hover:text-[#F7F7F5]'
+                        }`}
+                      >
+                        <ProfIcon className={`w-4 h-4 ${isSelected ? 'text-[#FFFFFF]' : 'text-[#8F9299]'}`} />
+                        <span className="text-[10px] font-medium leading-tight line-clamp-2">
+                          {prof.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Row 4: Motivo do Atendimento */}
+            {currentConfig.motivos && currentConfig.motivos.length > 0 && (
+              <div className="space-y-2">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                  MOTIVO DO ATENDIMENTO
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-[#07080A] border border-[#2D3039] rounded-md p-3">
+                  {currentConfig.motivos.map((motivo) => {
+                    const isChecked = selectedMotivos.includes(motivo);
+                    return (
+                      <label
+                        key={motivo}
+                        onClick={() => toggleMotivo(motivo)}
+                        className={`flex items-start space-x-2 p-1.5 rounded cursor-pointer transition-colors text-left select-none ${
+                          isChecked ? 'bg-white/10' : 'hover:bg-[#15161A]'
+                        }`}
+                      >
+                        <div className={`w-4 h-4 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${
+                          isChecked 
+                            ? 'border-[#B8BBC0] bg-[#E5E7EB] text-[#0B0B0C]' 
+                            : 'border-[#454852] bg-[#0E0F12]'
+                        }`}>
+                          {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                        </div>
+                        <span className={`text-[11px] leading-snug ${isChecked ? 'text-[#F7F7F5] font-medium' : 'text-[#B8BBC0]'}`}>
+                          {motivo}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Row 5: Location & Email in 2 Cols */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              {currentConfig.locationLabel && (
+                <div className="space-y-1.5">
+                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                    {currentConfig.locationLabel}
+                  </label>
+                  <input
+                    type="text"
+                    value={cityState}
+                    onChange={(e) => setCityState(e.target.value)}
+                    placeholder={currentConfig.locationPlaceholder}
+                    className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                  />
+                </div>
+              )}
+
               <div className="space-y-1.5">
                 <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-                  {currentConfig.originCountryLabel}
+                  E-MAIL
                 </label>
                 <input
-                  type="text"
-                  value={originCountry}
-                  onChange={(e) => setOriginCountry(e.target.value)}
-                  placeholder={currentConfig.originCountryPlaceholder}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={currentConfig.emailPlaceholder || 'Ex.: seuemail@email.com'}
                   className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
                 />
               </div>
             </div>
-          ) : currentConfig.secondaryLabel ? (
+
+            {/* Row 6: Phone / WhatsApp */}
             <div className="space-y-1.5">
               <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-                {currentConfig.secondaryLabel}
+                NÚMERO PARA CONTATO (WHATSAPP)
               </label>
-              <input
-                type="text"
-                value={secondaryField}
-                onChange={(e) => setSecondaryField(e.target.value)}
-                placeholder={currentConfig.secondaryPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
-              />
-            </div>
-          ) : null}
-
-          {/* Row 3: Profile Selectors (Interactive Cards as in Example) */}
-          <div className="space-y-2">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              SEU PERFIL
-            </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {currentConfig.profiles.map((prof) => {
-                const ProfIcon = prof.icon;
-                const isSelected = selectedProfile === prof.label;
-                return (
-                  <button
-                    key={prof.label}
-                    type="button"
-                    onClick={() => setSelectedProfile(isSelected ? '' : prof.label)}
-                    className={`p-2.5 rounded-md border flex flex-col items-center justify-center text-center space-y-1.5 transition-all cursor-pointer ${
-                      isSelected
-                        ? 'border-[#B8BBC0] bg-[#E5E7EB]/20 text-[#FFFFFF] shadow-sm'
-                        : 'border-[#2D3039] bg-[#07080A] text-[#B8BBC0] hover:border-[#74777C]/60 hover:text-[#F7F7F5]'
-                    }`}
-                  >
-                    <ProfIcon className={`w-4 h-4 ${isSelected ? 'text-[#FFFFFF]' : 'text-[#8F9299]'}`} />
-                    <span className="text-[10px] font-medium leading-tight line-clamp-2">
-                      {prof.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Row 4: Motivo do Atendimento (Checkboxes grid as in Example) */}
-          <div className="space-y-2">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              MOTIVO DO ATENDIMENTO
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-[#07080A] border border-[#2D3039] rounded-md p-3">
-              {currentConfig.motivos.map((motivo) => {
-                const isChecked = selectedMotivos.includes(motivo);
-                return (
-                  <label
-                    key={motivo}
-                    onClick={() => toggleMotivo(motivo)}
-                    className={`flex items-start space-x-2 p-1.5 rounded cursor-pointer transition-colors text-left select-none ${
-                      isChecked ? 'bg-white/10' : 'hover:bg-[#15161A]'
-                    }`}
-                  >
-                    <div className={`w-4 h-4 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${
-                      isChecked 
-                        ? 'border-[#B8BBC0] bg-[#E5E7EB] text-[#0B0B0C]' 
-                        : 'border-[#454852] bg-[#0E0F12]'
-                    }`}>
-                      {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
-                    </div>
-                    <span className={`text-[11px] leading-snug ${isChecked ? 'text-[#F7F7F5] font-medium' : 'text-[#B8BBC0]'}`}>
-                      {motivo}
-                    </span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Row 5: Location & Email in 2 Cols */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-                {currentConfig.locationLabel}
-              </label>
-              <input
-                type="text"
-                value={cityState}
-                onChange={(e) => setCityState(e.target.value)}
-                placeholder={currentConfig.locationPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-                E-MAIL
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={currentConfig.emailPlaceholder}
-                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Row 6: Phone / WhatsApp */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              NÚMERO PARA CONTATO (WHATSAPP)
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
-                <MessageCircle className="w-4 h-4" />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder={currentConfig.whatsappPlaceholder || '(92) 90000-0000'}
+                  className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+                />
               </div>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={currentConfig.whatsappPlaceholder}
-                className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
+            </div>
+
+            {/* Row 7: Situation Textarea */}
+            <div className="space-y-1.5">
+              <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
+                BREVE DESCRIÇÃO DA SITUAÇÃO
+              </label>
+              <textarea
+                rows={3}
+                value={situation}
+                onChange={(e) => setSituation(e.target.value)}
+                placeholder={currentConfig.situationPlaceholder || 'Descreva brevemente a situação...'}
+                className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
               />
             </div>
-          </div>
 
-          {/* Row 7: Situation Textarea */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              BREVE DESCRIÇÃO DA SITUAÇÃO
-            </label>
-            <textarea
-              rows={3}
-              value={situation}
-              onChange={(e) => setSituation(e.target.value)}
-              placeholder={currentConfig.situationPlaceholder}
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
-            />
-          </div>
-
-          {/* Silver CTA Button */}
-          <div className="pt-2">
-            <button
-              type="submit"
-              className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
-            >
-              <span>SOLICITAR ATENDIMENTO</span>
-              <span className="text-base font-bold leading-none">→</span>
-            </button>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="pt-3 border-t border-[#252830] grid grid-cols-3 gap-2 text-center text-[10px] sm:text-[11px] text-[#B8BBC0]">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-[#B8BBC0]" />
-              <span>Atendimento sigiloso</span>
+            {/* Silver CTA Button */}
+            <div className="pt-2">
+              <button
+                type="submit"
+                className="w-full py-4 px-6 rounded-md text-center text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0B0B0C] bg-[#E5E7EB] hover:bg-white transition-all duration-200 cursor-pointer active:scale-[0.99] flex items-center justify-center space-x-2 shadow-lg"
+              >
+                <span>{currentConfig.buttonText || 'SOLICITAR ATENDIMENTO'}</span>
+                <span className="text-base font-bold leading-none">→</span>
+              </button>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
-              <span>Análise individualizada</span>
-            </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
-              <Target className="w-3.5 h-3.5 text-[#B8BBC0]" />
-              <span>Atuação estratégica</span>
-            </div>
-          </div>
 
-          {/* Security Note */}
-          <div className="flex items-center justify-center space-x-2 text-[10px] text-[#74777C] pt-1">
-            <Lock className="w-3 h-3 text-[#B8BBC0]/70 shrink-0" />
-            <span className="text-center">
-              Seus dados são protegidos e utilizados apenas para contato relacionado ao seu atendimento.
-            </span>
-          </div>
+            {/* Trust Badges */}
+            <div className="pt-3 border-t border-[#252830] grid grid-cols-3 gap-2 text-center text-[10px] sm:text-[11px] text-[#B8BBC0]">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Shield className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Atendimento sigiloso</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Scale className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Análise individualizada</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5">
+                <Target className="w-3.5 h-3.5 text-[#B8BBC0]" />
+                <span>Atuação estratégica</span>
+              </div>
+            </div>
 
-        </form>
+            {/* Security Note */}
+            <div className="flex items-center justify-center space-x-2 text-[10px] text-[#74777C] pt-1">
+              <Lock className="w-3 h-3 text-[#B8BBC0]/70 shrink-0" />
+              <span className="text-center">
+                Seus dados são protegidos e utilizados apenas para contato relacionado ao seu atendimento.
+              </span>
+            </div>
+
+          </form>
+        )}
       </div>
     </div>
   );
