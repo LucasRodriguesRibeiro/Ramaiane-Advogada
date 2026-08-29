@@ -33,7 +33,7 @@ export const SecondFold: React.FC = () => {
           {/* Paragraphs */}
           <div className="space-y-4 text-[#18191B] text-base sm:text-lg leading-relaxed font-light text-justify">
             <p>
-              Há mais de uma década, atuo na advocacia com técnica, estratégia e análise individualizada de cada caso.
+              Há mais de uma década, atuo na advocacia criminal com técnica, estratégia e análise individualizada de cada caso.
             </p>
             <p>
               Minha atuação é pautada pela proteção de pessoas, profissionais e empresas, com soluções jurídicas construídas de acordo com as particularidades e os desafios de cada situação.

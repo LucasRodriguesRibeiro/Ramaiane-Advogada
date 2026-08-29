@@ -18,12 +18,10 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
 
   const navItems = [
     { label: 'INÍCIO', href: '#inicio' },
-    { label: 'SOBRE RAMAIANE', href: '#apresentacao' },
-    { label: 'NÚCLEO MÉDICO', href: '#nucleo-medico' },
-    { label: 'NÚCLEO CRIMINAL', href: '#nucleo-criminal' },
-    { label: 'NÚCLEO CÍVEL', href: '#nucleo-civel' },
-    { label: 'NOSSA METODOLOGIA', href: '#como-funciona' },
-    { label: 'BLOG', href: '/blog' },
+    { label: 'SOBRE', href: '#sobre' },
+    { label: 'NÚCLEOS PENAIS', href: '#nucleos-penais' },
+    { label: 'METODOLOGIA', href: '#metodologia' },
+    { label: 'CONTEÚDO', href: '/blog' },
     { label: 'CONTATO', href: '#contato' },
   ];
 
@@ -32,17 +30,15 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     if (typeof window === 'undefined') return;
 
     if (window.location.pathname.includes('/blog') || window.location.pathname.includes('/artigo')) {
-      setActiveTab('BLOG');
+      setActiveTab('CONTEÚDO');
       return;
     }
 
     const sectionMapping = [
       { label: 'INÍCIO', id: 'inicio' },
-      { label: 'SOBRE RAMAIANE', id: 'apresentacao' },
-      { label: 'NÚCLEO MÉDICO', id: 'nucleo-medico' },
-      { label: 'NÚCLEO CRIMINAL', id: 'nucleo-criminal' },
-      { label: 'NÚCLEO CÍVEL', id: 'nucleo-civel' },
-      { label: 'NOSSA METODOLOGIA', id: 'como-funciona' },
+      { label: 'SOBRE', id: 'sobre' },
+      { label: 'NÚCLEOS PENAIS', id: 'nucleos-penais' },
+      { label: 'METODOLOGIA', id: 'metodologia' },
       { label: 'CONTATO', id: 'contato' },
     ];
 
@@ -71,8 +67,8 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     e.preventDefault();
     setActiveTab(item.label);
 
-    // Navegação para o Blog
-    if (item.label === 'BLOG') {
+    // Navegação para o Conteúdo / Blog
+    if (item.label === 'CONTEÚDO' || item.href === '/blog') {
       if (onNavigateBlog) {
         onNavigateBlog();
       } else {

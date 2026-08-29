@@ -28,25 +28,13 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
 
   return (
     <footer id="contato" className="bg-[#0B0B0C] text-[#B8BBC0] border-t border-[#18191B] font-sans-clean scroll-mt-20">
-      {/* Upper Call Banner */}
-      <div className="bg-[#18191B] border-b border-[#74777C]/20 py-8 px-6 sm:px-10 lg:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 text-center md:text-left">
-          <div className="space-y-1">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#B8BBC0]">
-              ATENDIMENTO EM ÂMBITO NACIONAL
-            </div>
-            <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] uppercase">
-              ATUAÇÃO JURÍDICA EXIGE RESPOSTA ESTRATÉGICA DESDE O PRIMEIRO MOMENTO.
-            </h3>
-          </div>
-
-          <button
-            onClick={onOpenEmergencyModal}
-            className="silver-button px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest flex items-center space-x-2 shrink-0 cursor-pointer"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>AGENDAR ATENDIMENTO</span>
-          </button>
+      {/* Upper Call Banner - Centralized Phrase Only */}
+      <div className="bg-[#18191B] border-b border-[#74777C]/20 py-10 sm:py-14 px-6 sm:px-10 lg:px-12 text-center">
+        <div className="max-w-4xl mx-auto space-y-3">
+          <h3 className="font-serif-title text-xl sm:text-2xl lg:text-3xl text-[#F7F7F5] uppercase tracking-wider leading-relaxed">
+            “Atuação jurídica exige resposta estratégica desde o primeiro momento.”
+          </h3>
+          <div className="w-16 h-[1.5px] bg-[#B8BBC0]/40 mx-auto pt-1"></div>
         </div>
       </div>
 
@@ -73,7 +61,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           </a>
           <div className="text-sm text-[#D1D4D9] space-y-1">
             <p className="font-semibold text-[#F7F7F5] uppercase tracking-wider">DEYSE RAMAIANE</p>
-            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ADVOCACIA ESTRATÉGICA</p>
+            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ADVOCACIA CRIMINAL ESTRATÉGICA</p>
           </div>
         </div>
 
@@ -98,13 +86,13 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               </a>
             </li>
             <li>
-              <a href="#apresentacao" className="hover:text-[#F7F7F5] transition-colors">Sobre Ramaiane</a>
+              <a href="#sobre" className="hover:text-[#F7F7F5] transition-colors">Sobre</a>
             </li>
             <li>
-              <a href="#nucleo-criminal" className="hover:text-[#F7F7F5] transition-colors">Núcleo Criminal</a>
+              <a href="#nucleos-penais" className="hover:text-[#F7F7F5] transition-colors">Núcleos Penais</a>
             </li>
             <li>
-              <a href="#nucleo-civel" className="hover:text-[#F7F7F5] transition-colors">Núcleo Cível</a>
+              <a href="#metodologia" className="hover:text-[#F7F7F5] transition-colors">Metodologia</a>
             </li>
             <li>
               <a 
@@ -117,11 +105,8 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
                 }}
                 className="hover:text-[#F7F7F5] transition-colors"
               >
-                Blog
+                Conteúdo
               </a>
-            </li>
-            <li>
-              <a href="#como-funciona" className="hover:text-[#F7F7F5] transition-colors">Nossa Metodologia</a>
             </li>
             <li>
               <a href="#contato" className="hover:text-[#F7F7F5] transition-colors">Contato</a>

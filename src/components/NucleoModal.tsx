@@ -65,9 +65,145 @@ export interface NucleoConfig {
   situationPlaceholder?: string;
   buttonText?: string;
   isModalitiesLayout?: boolean;
+  areasAtendimento?: string[];
 }
 
 export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
+  'penal-tradicional': {
+    id: 'penal-tradicional',
+    num: '01',
+    icon: Shield,
+    subtitle: 'NÚCLEO 01',
+    mainTitle: 'NÚCLEO PENAL TRADICIONAL',
+    nucleusTitle: 'DEFESA TÉCNICA E PROCESSUAL CRIMINAL',
+    description: 'Atuação e defesa criminal de alta complexidade em inquéritos policiais, prisões em flagrante ou preventivas, defesa em processos penais, Tribunal do Júri e recursos perante Tribunais Estaduais e Superiores (STJ e STF).',
+    nameLabel: 'NOME COMPLETO',
+    namePlaceholder: 'Ex.: Carlos Eduardo Santos',
+    secondaryLabel: 'SITUAÇÃO ATUAL OU NÚMERO DO PROCESSO / DELEGACIA (OPCIONAL)',
+    secondaryPlaceholder: 'Ex.: Inquérito na 1ª Delegacia / Processo nº 0000000-00.2024',
+    profiles: [
+      { label: 'Investigado(a)', icon: Shield },
+      { label: 'Réu / Acusado(a)', icon: Scale },
+      { label: 'Familiar de Preso(a)', icon: User },
+      { label: 'Agente de Segurança', icon: ShieldAlert },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    areasAtendimento: [
+      'Inquéritos Policiais, Investigação Defensiva e Operações Policiais',
+      'Habeas Corpus, Liberdade Provisória e Revogação de Prisão Preventiva',
+      'Defesa Processual em Ações Penais e Crimes de Maior Complexidade',
+      'Tribunal do Júri e Sustentação Oral em Sessões de Julgamento',
+      'Recursos aos Tribunais de Justiça, STJ e STF',
+      'Execução Penal, Progressão de Regime e Livramento Condicional',
+      'Defesa em Crimes de Trânsito, Crimes Contra a Honra, Policiais e Agentes de Segurança'
+    ],
+    motivos: [
+      'Prisão preventiva, temporária ou em flagrante',
+      'Notificação ou intimação para depor em delegacia',
+      'Busca e apreensão / Operação policial',
+      'Defesa em ação penal criminal em andamento',
+      'Habeas Corpus ou Recurso nos Tribunais (STJ/STF)',
+      'Execução penal / Progressão de regime',
+      'Outro motivo'
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: carlos@email.com',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente o caso ou a situação de urgência.',
+    buttonText: 'SOLICITAR ATENDIMENTO DE URGÊNCIA',
+  },
+  'penal-empresarial': {
+    id: 'penal-empresarial',
+    num: '02',
+    icon: Building2,
+    subtitle: 'NÚCLEO 02',
+    mainTitle: 'NÚCLEO PENAL EMPRESARIAL',
+    nucleusTitle: 'DEFESA CORPORATIVA E DIREITO PENAL ECONÔMICO',
+    description: 'Defesa técnica especializada e assessoria preventiva para empresários, executivos, sócios, administradores e empresas em investigações e ações penais corporativas.',
+    nameLabel: 'SEU NOME / CARGO OU EMPRESA',
+    namePlaceholder: 'Ex.: Roberto Mendes / Diretor Executivo',
+    secondaryLabel: 'NOME DA EMPRESA OU RAZÃO SOCIAL (OPCIONAL)',
+    secondaryPlaceholder: 'Ex.: Grupo Comercial Santos Ltda.',
+    profiles: [
+      { label: 'Empresário(a) / Sócio(a)', icon: Building2 },
+      { label: 'Executivo(a) / Diretor(a)', icon: Briefcase },
+      { label: 'Gestor(a) Público(a)', icon: Landmark },
+      { label: 'Instituição / Fintech', icon: Coins },
+      { label: 'Produtor(a) Rural', icon: Leaf },
+      { label: 'Criador(a) de Conteúdo', icon: PlaySquare },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    areasAtendimento: [
+      'Crimes Econômicos, Financeiros, Tributários e Sonegação Fiscal',
+      'Lavagem de Dinheiro, Blindagem de Ativos e Operações Financeiras',
+      'Crimes Digitais, Fraudes Corporativas e Cybercrimes',
+      'Compliance Criminal, Gestão de Riscos e Investigações Internas',
+      'Crimes Contra a Administração Pública, Licitações e Contratos',
+      'Defesa de Produtores Rurais em Delitos Ambientais e Agronegócio',
+      'Instituições Financeiras, Fintechs, Investidores e Mercado de Capitais'
+    ],
+    motivos: [
+      'Investigação ou operação policial envolvendo a empresa/sócios',
+      'Defesa em crimes tributários, fiscais ou sonegação',
+      'Apuração de fraudes corporativas, crimes digitais ou vazamento',
+      'Intimação do Ministério Público ou Polícia Federal',
+      'Consultoria preventiva e Compliance Criminal',
+      'Defesa em processos de licitação e crimes administrativos',
+      'Outro motivo'
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: roberto@empresa.com.br',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente a demanda ou a situação da empresa.',
+    buttonText: 'SOLICITAR ORIENTAÇÃO EMPRESARIAL',
+  },
+  'penal-medico': {
+    id: 'penal-medico',
+    num: '03',
+    icon: Stethoscope,
+    subtitle: 'NÚCLEO 03',
+    mainTitle: 'NÚCLEO PENAL MÉDICO E DA SAÚDE',
+    nucleusTitle: 'DEFESA EM DIREITO PENAL MÉDICO E DA SAÚDE',
+    description: 'Advocacia criminal especializada na defesa preventiva e contenciosa de médicos, cirurgiões, dentistas, profissionais de saúde, clínicas e hospitais.',
+    nameLabel: 'SEU NOME / ESPECIALIDADE OU CRM (OPCIONAL)',
+    namePlaceholder: 'Ex.: Dra. Juliana Mendes (Cirurgiã)',
+    secondaryLabel: 'CLÍNICA / HOSPITAL / INSTITUIÇÃO DE SAÚDE',
+    secondaryPlaceholder: 'Ex.: Centro Médico Integrado',
+    profiles: [
+      { label: 'Médico(a) / Cirurgião(ã)', icon: Stethoscope },
+      { label: 'Cirurgião-Dentista', icon: UserCheck },
+      { label: 'Diretor(a) Técnico(a)', icon: Hospital },
+      { label: 'Profissional da Saúde', icon: User },
+      { label: 'Paciente / Familiar', icon: Users },
+      { label: 'Outro', icon: MoreHorizontal },
+    ],
+    areasAtendimento: [
+      'Defesa Criminal por Alegação de Erro Médico (Homicídio/Lesão Culposa)',
+      'Sindicâncias e Processos Ético-Profissionais nos Conselhos (CRM / CFM / CRO)',
+      'Responsabilidade Penal e Ética em Procedimentos Cirúrgicos e Estéticos',
+      'Gestão de Crises Penais Hospitalares e Intercorrências Médicas',
+      'Defesa em Crimes Contra a Saúde Pública e Omissão de Socorro',
+      'Orientação Preventiva e Gestão de Risco Penal na Atividade Médica',
+      'Defesa de Pacientes e Familiares em Violações de Direitos na Saúde'
+    ],
+    motivos: [
+      'Alegação de erro médico ou intercorrência grave',
+      'Sindicância ou processo ético no CRM / Conselho Profissional',
+      'Inquérito policial ou notificação por homicídio/lesão culposa',
+      'Notificação hospitalar ou notificação extrajudicial de paciente',
+      'Consultoria jurídica preventiva para o exercício da medicina',
+      'Gestão de crise após evento adverso em procedimento',
+      'Outro motivo'
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: juliana@medicina.com.br',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente o evento ou o procedimento em questão.',
+    buttonText: 'SOLICITAR CONSULTA MÉDICO-PENAL',
+  },
   'saude-medicina': {
     id: 'saude-medicina',
     num: '01',
@@ -856,7 +992,22 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
 
   if (!isOpen || !nucleoId) return null;
 
-  const currentConfig = NUCLEOS_CONFIG[nucleoId] || NUCLEOS_CONFIG['instituicoes-financeiras'];
+  const configKey = (() => {
+    if (!nucleoId) return 'penal-tradicional';
+    if (NUCLEOS_CONFIG[nucleoId]) return nucleoId;
+    if (['investigacoes-operacoes', 'defesa-tribunais', 'execucao-penal', 'policiais-militares', 'crimes-transito', 'crimes-honra', 'estrangeiros'].includes(nucleoId)) {
+      return 'penal-tradicional';
+    }
+    if (['empresarios', 'crimes-economicos', 'crimes-digitais', 'gestores-publicos', 'instituicoes-financeiras', 'crimes-eleitorais', 'produtores-rurais', 'influenciadores'].includes(nucleoId)) {
+      return 'penal-empresarial';
+    }
+    if (['saude-medicina', 'defesa-paciente', 'clinicas-gestao', 'medicos', 'pacientes'].includes(nucleoId)) {
+      return 'penal-medico';
+    }
+    return 'penal-tradicional';
+  })();
+
+  const currentConfig = NUCLEOS_CONFIG[configKey] || NUCLEOS_CONFIG['penal-tradicional'];
   const HeaderIcon = currentConfig.icon;
 
   const toggleMotivo = (motivo: string) => {
@@ -1062,6 +1213,24 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 max-h-[calc(85vh-160px)] overflow-y-auto custom-scrollbar">
+            
+            {/* Áreas de Atendimento do Núcleo */}
+            {currentConfig.areasAtendimento && currentConfig.areasAtendimento.length > 0 && (
+              <div className="space-y-3 bg-[#07080A] border border-[#2D3039] rounded-xl p-4 sm:p-5">
+                <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-[#F7F7F5] border-b border-[#252830] pb-2.5">
+                  <Shield className="w-4 h-4 text-[#B8BBC0]" />
+                  <span>Áreas de Atendimento do Núcleo</span>
+                </div>
+                <div className="grid grid-cols-1 gap-2 pt-1">
+                  {currentConfig.areasAtendimento.map((area, idx) => (
+                    <div key={idx} className="flex items-start space-x-2.5 text-xs text-[#D1D4D9]">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#B8BBC0] mt-1.5 shrink-0" />
+                      <span className="leading-relaxed font-light">{area}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             
             {/* Row 1: Name */}
             {currentConfig.nameLabel && (

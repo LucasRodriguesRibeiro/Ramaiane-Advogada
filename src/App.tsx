@@ -293,41 +293,26 @@ export default function App() {
         {/* Capa Principal / Hero */}
         <HeroFold onOpenEmergencyModal={handleOpenModal} />
 
-        {/* 1. Apresentação Profissional */}
+        {/* 1. Apresentação Profissional (Sobre) */}
         <SecondFold />
 
-        {/* 1.5. Núcleo Médico */}
-        <MedicalCoreFold 
-          onOpenEmergencyModal={handleOpenModal} 
-          onSelectNucleo={handleOpenNucleoModal} 
-        />
-
-        {/* 2. Núcleo Criminal (Setores / Especialidades) */}
+        {/* 2. Núcleos Penais (Penal Tradicional, Penal Empresarial, Penal Médico e da Saúde) */}
         <FifthFold 
           onOpenEmergencyModal={handleOpenModal} 
           onSelectNucleo={handleOpenNucleoModal} 
         />
 
-        {/* 3. Destaque - Tráfico de Drogas */}
-        <FourthFold 
-          onOpenEmergencyModal={handleOpenModal} 
-          onOpenDrugsModal={handleOpenDrugsModal}
-        />
-
-        {/* 4. Núcleo Cível */}
-        <CivilCoreFold onOpenEmergencyModal={handleOpenModal} />
-
-        {/* 5. Como Funciona o Atendimento */}
+        {/* 3. Como Funciona o Atendimento (Metodologia) */}
         <HowItWorksFold onOpenEmergencyModal={handleOpenModal} />
 
-        {/* 8. Chamada Final */}
+        {/* 4. Chamada Final */}
         <FinalCallFold 
           onOpenEmergencyModal={handleOpenModal}
           onOpenScheduleModal={handleOpenScheduleModal}
           onOpenUrgentModal={handleOpenUrgentModal}
         />
 
-        {/* 9. Depoimentos */}
+        {/* 5. Depoimentos */}
         <TestimonialsFold onOpenEmergencyModal={handleOpenModal} />
       </main>
 

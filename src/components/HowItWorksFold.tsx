@@ -35,8 +35,8 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
   ];
 
   return (
-    <section id="como-funciona" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] scroll-mt-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
+    <section id="metodologia" className="relative w-full bg-[#0B0B0C] text-[#F7F7F5] py-12 sm:py-16 font-sans-clean border-t border-[#18191B] scroll-mt-16 overflow-hidden">
+      <div id="como-funciona" className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-8">
         
         {/* Section Header - Centered & Clean */}
         <div className="space-y-4 text-center max-w-3xl mx-auto">
