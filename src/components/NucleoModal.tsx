@@ -74,7 +74,7 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
     num: '01',
     icon: Shield,
     subtitle: 'NÚCLEO 01',
-    mainTitle: 'NÚCLEO PENAL TRADICIONAL',
+    mainTitle: 'NÚCLEO PENAL E DEFESA CRIMINAL',
     nucleusTitle: 'DEFESA TÉCNICA E PROCESSUAL CRIMINAL',
     description: 'Atuação e defesa criminal de alta complexidade em inquéritos policiais, prisões em flagrante ou preventivas, defesa em processos penais, Tribunal do Júri e recursos perante Tribunais Estaduais e Superiores (STJ e STF).',
     nameLabel: 'NOME COMPLETO',
@@ -95,7 +95,7 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
       'Tribunal do Júri e Sustentação Oral em Sessões de Julgamento',
       'Recursos aos Tribunais de Justiça, STJ e STF',
       'Execução Penal, Progressão de Regime e Livramento Condicional',
-      'Defesa em Crimes de Trânsito, Crimes Contra a Honra, Policiais e Agentes de Segurança'
+      'Defesa em Crimes de Trânsito, Crimes Contra a Honra, Defesa de Policiais e Agentes de Segurança'
     ],
     motivos: [
       'Prisão preventiva, temporária ou em flagrante',
@@ -118,7 +118,7 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
     num: '02',
     icon: Building2,
     subtitle: 'NÚCLEO 02',
-    mainTitle: 'NÚCLEO PENAL EMPRESARIAL',
+    mainTitle: 'NÚCLEO PENAL EMPRESARIAL E ECONÔMICO',
     nucleusTitle: 'DEFESA CORPORATIVA E DIREITO PENAL ECONÔMICO',
     description: 'Defesa técnica especializada e assessoria preventiva para empresários, executivos, sócios, administradores e empresas em investigações e ações penais corporativas.',
     nameLabel: 'SEU NOME / CARGO OU EMPRESA',

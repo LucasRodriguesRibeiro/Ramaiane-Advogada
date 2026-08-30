@@ -40,7 +40,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-tradicional",
       badge: "NÚCLEO 01",
       icon: Shield,
-      title: "DIREITO PENAL TRADICIONAL",
+      title: "DIREITO PENAL E DEFESA CRIMINAL",
       subtitle: "Defesa de pessoas físicas",
       desc: "Atuação firme e estratégica na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
       caixas: [
@@ -70,7 +70,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
         },
         {
           id: "policiais-militares",
-          title: "Policiais e Agentes de Segurança",
+          title: "Defesa de Policiais e Agentes de Segurança",
           sub: "Defesa em procedimentos criminais e disciplinares",
           icon: Shield
         },
@@ -92,7 +92,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-empresarial",
       badge: "NÚCLEO 02",
       icon: Building2,
-      title: "DIREITO PENAL EMPRESARIAL",
+      title: "DIREITO PENAL EMPRESARIAL E ECONÔMICO",
       subtitle: "Empresas, empresários e negócios",
       desc: "Proteção penal estratégica para empresas, executivos e profissionais expostos a riscos criminais corporativos.",
       caixas: [

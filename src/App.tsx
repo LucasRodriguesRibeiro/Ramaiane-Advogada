@@ -296,7 +296,7 @@ export default function App() {
         {/* 1. Apresentação Profissional (Sobre) */}
         <SecondFold />
 
-        {/* 2. Núcleos Penais (Penal Tradicional, Penal Empresarial, Penal Médico e da Saúde) */}
+        {/* 2. Núcleos Penais (Penal e Defesa Criminal, Penal Empresarial e Econômico, Penal Médico e da Saúde) */}
         <FifthFold 
           onOpenEmergencyModal={handleOpenModal} 
           onSelectNucleo={handleOpenNucleoModal} 
