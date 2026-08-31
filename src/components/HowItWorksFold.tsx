@@ -40,6 +40,15 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
         
         {/* Section Header - Centered & Clean */}
         <div className="space-y-4 text-center max-w-3xl mx-auto">
+          {/* Central Logo - Above Title */}
+          <div className="flex items-center justify-center mx-auto pb-1">
+            <img 
+              src={logoImg} 
+              alt="Deyse Ramaiane Advocacia" 
+              className="w-7 h-7 object-contain opacity-75 filter brightness-110" 
+            />
+          </div>
+
           <div className="inline-flex items-center text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold justify-center">
             <span>NOSSA METODOLOGIA</span>
           </div>
@@ -47,15 +56,6 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
           <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-[0.15em] uppercase">
             COMO CONDUZIMOS O SEU CASO
           </h2>
-
-          {/* Central Logo */}
-          <div className="flex items-center justify-center mx-auto pt-2">
-            <img 
-              src={logoImg} 
-              alt="Deyse Ramaiane Advocacia" 
-              className="w-7 h-7 object-contain opacity-75 filter brightness-110" 
-            />
-          </div>
         </div>
 
         {/* 4 Steps Centralized Cards Grid */}

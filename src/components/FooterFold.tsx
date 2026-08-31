@@ -29,12 +29,11 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
   return (
     <footer id="contato" className="bg-[#0B0B0C] text-[#B8BBC0] border-t border-[#18191B] font-sans-clean scroll-mt-20">
       {/* Upper Call Banner - Centralized Phrase Only */}
-      <div className="bg-[#18191B] border-b border-[#74777C]/20 py-10 sm:py-14 px-6 sm:px-10 lg:px-12 text-center">
-        <div className="max-w-4xl mx-auto space-y-3">
-          <h3 className="font-serif-title text-xl sm:text-2xl lg:text-3xl text-[#F7F7F5] uppercase tracking-wider leading-relaxed">
+      <div className="bg-[#0B0B0C] border-b border-[#74777C]/20 py-8 sm:py-10 px-4 sm:px-6 text-center overflow-hidden">
+        <div className="max-w-7xl mx-auto flex items-center justify-center">
+          <h3 className="font-serif-title text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-[#F7F7F5] uppercase tracking-wider leading-none whitespace-nowrap">
             “Atuação jurídica exige resposta estratégica desde o primeiro momento.”
           </h3>
-          <div className="w-16 h-[1.5px] bg-[#B8BBC0]/40 mx-auto pt-1"></div>
         </div>
       </div>
 
@@ -61,7 +60,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           </a>
           <div className="text-sm text-[#D1D4D9] space-y-1">
             <p className="font-semibold text-[#F7F7F5] uppercase tracking-wider">DEYSE RAMAIANE</p>
-            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">ADVOCACIA CRIMINAL ESTRATÉGICA</p>
+            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">Advogada Criminalista</p>
           </div>
         </div>
 
@@ -149,7 +148,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-[#9DA0A6] gap-2">
             <div className="flex items-center space-x-2">
               <span>
-                © {new Date().getFullYear()} Deyse Ramaiane Advocacia Estratégica. Todos os direitos reservados.
+                © {new Date().getFullYear()} Deyse Ramaiane Advocacia Criminal. Todos os direitos reservados.
               </span>
               {onOpenAdminAuth && (
                 <button

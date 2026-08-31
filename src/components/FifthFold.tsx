@@ -23,8 +23,12 @@ import {
   Scale,
   Target,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  MessageCircle
 } from 'lucide-react';
+import penal1Img from '../assets/images/penal1.jpg';
+import penal2Img from '../assets/images/penal2.jpg';
+import penal3Img from '../assets/images/penal3.jpg';
 
 interface FifthFoldProps {
   onOpenEmergencyModal?: () => void;
@@ -34,15 +38,19 @@ interface FifthFoldProps {
 export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSelectNucleo }) => {
   // Estado para controlar a expansao de cada núcleo individualmente
   const [expandedNucleos, setExpandedNucleos] = useState<Record<string, boolean>>({});
+  // Estado para controlar a expansao de cada área (caixa) individualmente
+  const [expandedCaixas, setExpandedCaixas] = useState<Record<string, boolean>>({});
 
   const nucleosData = [
     {
       id: "penal-tradicional",
       badge: "NÚCLEO 01",
       icon: Shield,
+      image: penal1Img,
+      fallbackImage: "/penal1.jpg",
       title: "DIREITO PENAL E DEFESA CRIMINAL",
       subtitle: "Defesa de pessoas físicas",
-      desc: "Atuação firme e estratégica na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
+      desc: "Atuação na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
       caixas: [
         {
           id: "investigacoes-operacoes",
@@ -92,6 +100,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-empresarial",
       badge: "NÚCLEO 02",
       icon: Building2,
+      image: penal2Img,
+      fallbackImage: "/penal2.jpg",
       title: "DIREITO PENAL EMPRESARIAL E ECONÔMICO",
       subtitle: "Empresas, empresários e negócios",
       desc: "Proteção penal estratégica para empresas, executivos e profissionais expostos a riscos criminais corporativos.",
@@ -150,6 +160,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-medico",
       badge: "NÚCLEO 03",
       icon: Stethoscope,
+      image: penal3Img,
+      fallbackImage: "/penal3.jpg",
       title: "DIREITO PENAL MÉDICO E DA SAÚDE",
       subtitle: "Profissionais e instituições de saúde",
       desc: "Defesa especializada para médicos, profissionais da saúde, clínicas, hospitais e estabelecimentos assistenciais.",
@@ -210,15 +222,15 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
         {/* Section Header */}
         <div className="space-y-3 text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold justify-center">
-            <span>NÚCLEOS DE ATUAÇÃO</span>
+            <span>✦ ATUAÇÃO ESTRATÉGICA. DEFESA EFICAZ. ✦</span>
           </div>
 
           <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F7F7F5] tracking-[0.12em] uppercase">
             NÚCLEOS PENAIS
           </h2>
 
-          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto uppercase tracking-wider">
-            Estrutura especializada dividida em três núcleos de alta precisão técnica. Clique em "Ver Áreas de Atendimento" para conferir as opções.
+          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto tracking-wider">
+            Soluções jurídicas estratégicas e personalizadas para proteger o que mais importa: liberdade, patrimônio e reputação.
           </p>
         </div>
 
@@ -231,36 +243,53 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
             return (
               <div
                 key={nucleo.id}
-                className="bg-[#121316] border border-[#74777C]/25 rounded-xl p-6 sm:p-7 flex flex-col justify-between space-y-6 shadow-2xl relative transition-all duration-300"
+                className="bg-[#121316] border border-[#74777C]/25 hover:border-[#74777C]/50 rounded-xl p-5 sm:p-6 flex flex-col justify-between space-y-5 shadow-2xl relative transition-all duration-300"
               >
-                {/* Column Header */}
+                {/* Column Card Header with Image */}
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-[#B8BBC0] uppercase bg-[#0B0B0C] px-3 py-1 rounded-sm border border-[#74777C]/30">
-                      {nucleo.badge}
-                    </span>
-                    <div className="w-10 h-10 rounded-full bg-[#1A1C22] border border-[#74777C]/30 flex items-center justify-center text-[#F7F7F5]">
+                  {/* Top Image Box */}
+                  <div className="relative w-full h-44 sm:h-48 rounded-lg overflow-hidden border border-[#74777C]/20 shadow-md group">
+                    <img
+                      src={nucleo.image}
+                      alt={nucleo.title}
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.dataset.triedFallback) {
+                          target.dataset.triedFallback = 'true';
+                          target.src = nucleo.fallbackImage;
+                        }
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 contrast-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#121316] via-transparent to-transparent opacity-60"></div>
+                  </div>
+
+                  {/* Centered Icon Badge */}
+                  <div className="flex justify-center -mt-9 z-10 relative">
+                    <div className="w-12 h-12 rounded-full bg-[#121316] border border-[#74777C]/40 flex items-center justify-center text-[#F7F7F5] shadow-lg">
                       <HeaderIcon className="w-5 h-5 text-[#E2E4E8] stroke-[1.5]" />
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] uppercase tracking-wide leading-tight">
+                  {/* Centered Title & Description */}
+                  <div className="space-y-3 text-center">
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-[#B8BBC0] uppercase block">
+                      {nucleo.badge}
+                    </span>
+
+                    <h3 className="font-serif-title text-xl sm:text-2xl text-[#F7F7F5] uppercase tracking-wide leading-snug px-2">
                       {nucleo.title}
                     </h3>
-                    <p className="text-xs font-semibold text-[#B8BBC0] italic tracking-wide">
-                      {nucleo.subtitle}
+
+                    <p className="text-xs text-[#B8BBC0] leading-relaxed font-light px-1 text-center">
+                      {nucleo.desc}
                     </p>
                   </div>
-
-                  <p className="text-xs text-[#B8BBC0] leading-relaxed font-light text-justify">
-                    {nucleo.desc}
-                  </p>
                 </div>
 
                 {/* Sub-area Caixas List (Visible when expanded) */}
                 {isExpanded && (
-                  <div className="space-y-2.5 border-t border-[#74777C]/20 pt-4 animate-fadeIn">
+                  <div className="space-y-3 border-t border-[#74777C]/20 pt-4 animate-fadeIn">
                     {nucleo.caixas.map((caixa) => {
                       const CaixaIcon = caixa.icon;
                       return (
@@ -269,21 +298,22 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                           onClick={() => handleCaixaClick(caixa.id)}
                           className="bg-[#0B0B0C] border border-[#74777C]/20 hover:border-[#B8BBC0] rounded-lg p-3.5 flex items-center justify-between space-x-3 transition-all duration-200 group cursor-pointer shadow-sm hover:shadow-md hover:bg-[#16181F]"
                         >
-                          <div className="flex items-start space-x-3 min-w-0">
+                          <div className="flex items-start space-x-3 min-w-0 flex-1">
                             <div className="w-7 h-7 rounded bg-[#1A1C22] border border-[#74777C]/30 flex items-center justify-center text-[#B8BBC0] group-hover:text-white group-hover:border-[#B8BBC0] shrink-0 mt-0.5 transition-colors">
                               <CaixaIcon className="w-3.5 h-3.5 stroke-[1.8]" />
                             </div>
-                            <div className="space-y-0.5 min-w-0">
-                              <h4 className="text-xs font-medium text-[#F7F7F5] group-hover:text-white transition-colors leading-tight truncate">
+                            <div className="space-y-1 min-w-0 text-left">
+                              <h4 className="text-xs font-semibold text-[#F7F7F5] group-hover:text-white transition-colors leading-snug">
                                 {caixa.title}
                               </h4>
-                              <p className="text-[10px] text-[#74777C] group-hover:text-[#B8BBC0] transition-colors leading-tight truncate">
+                              <p className="text-[11px] text-[#A1A4A9] leading-relaxed font-light">
                                 {caixa.sub}
                               </p>
                             </div>
                           </div>
 
-                          <div className="w-6 h-6 rounded-full bg-[#1A1C22] group-hover:bg-[#E5E7EB] text-[#B8BBC0] group-hover:text-[#0B0B0C] flex items-center justify-center shrink-0 transition-all">
+                          {/* Right Arrow Button - Vertically Centered */}
+                          <div className="w-7 h-7 rounded-full bg-[#1A1C22] group-hover:bg-[#E5E7EB] text-[#B8BBC0] group-hover:text-[#0B0B0C] flex items-center justify-center shrink-0 transition-all self-center ml-2">
                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>
@@ -292,14 +322,14 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                   </div>
                 )}
 
-                {/* Main Action Button: VER ÁREAS DE ATENDIMENTO / RECOLHER */}
+                {/* Main Action Button: VER ÁREAS DE ATUAÇÃO / RECOLHER */}
                 <div className="pt-2">
                   <button
                     type="button"
                     onClick={() => toggleNucleo(nucleo.id)}
                     className="w-full py-3.5 px-4 bg-[#0B0B0C] hover:bg-[#1A1C22] border border-[#74777C]/30 hover:border-[#B8BBC0] rounded-lg text-xs font-bold uppercase tracking-widest text-[#F7F7F5] flex items-center justify-center space-x-2.5 transition-all duration-300 shadow-md cursor-pointer group"
                   >
-                    <span>{isExpanded ? 'RECOLHER ÁREAS' : 'VER ÁREAS DE ATENDIMENTO'}</span>
+                    <span>{isExpanded ? 'RECOLHER ÁREAS' : 'VER ÁREAS DE ATUAÇÃO'}</span>
                     {isExpanded ? (
                       <ChevronUp className="w-4 h-4 text-[#B8BBC0] group-hover:text-white transition-transform" />
                     ) : (
@@ -320,7 +350,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
             <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
               ESTRATÉGIA PERSONALIZADA
             </span>
-            <span className="text-[10px] text-[#74777C]">Cada caso é único.</span>
+            <span className="text-[10px] text-[#74777C]">Cada caso, uma estratégia.</span>
           </div>
 
           <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
@@ -336,7 +366,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
             <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
               ATUAÇÃO TÉCNICA
             </span>
-            <span className="text-[10px] text-[#74777C]">Fundamentação sólida e postura firme.</span>
+            <span className="text-[10px] text-[#74777C]">Rigor em cada decisão.</span>
           </div>
 
           <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
@@ -344,7 +374,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
             <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
               FOCO EM RESULTADOS
             </span>
-            <span className="text-[10px] text-[#74777C]">Defesa eficiente para proteger seus direitos.</span>
+            <span className="text-[10px] text-[#74777C]">Atuação estratégica em busca da melhor solução jurídica.</span>
           </div>
         </div>
 
