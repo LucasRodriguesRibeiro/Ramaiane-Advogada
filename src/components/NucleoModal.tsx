@@ -995,13 +995,13 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
   const configKey = (() => {
     if (!nucleoId) return 'penal-tradicional';
     if (NUCLEOS_CONFIG[nucleoId]) return nucleoId;
-    if (['investigacoes-operacoes', 'defesa-tribunais', 'execucao-penal', 'policiais-militares', 'crimes-transito', 'crimes-honra', 'estrangeiros'].includes(nucleoId)) {
+    if (['investigacoes-operacoes', 'defesa-tribunais', 'execucao-penal', 'trafico-drogas', 'policiais-militares', 'crimes-transito', 'crimes-honra', 'estrangeiros'].includes(nucleoId)) {
       return 'penal-tradicional';
     }
-    if (['empresarios', 'crimes-economicos', 'crimes-digitais', 'gestores-publicos', 'instituicoes-financeiras', 'crimes-eleitorais', 'produtores-rurais', 'influenciadores'].includes(nucleoId)) {
+    if (['empresarios', 'crimes-economicos', 'fraudes-empresariais', 'crimes-digitais', 'gestores-publicos', 'instituicoes-financeiras', 'crimes-eleitorais', 'produtores-rurais', 'influenciadores'].includes(nucleoId)) {
       return 'penal-empresarial';
     }
-    if (['saude-medicina', 'defesa-paciente', 'clinicas-gestao', 'medicos', 'pacientes'].includes(nucleoId)) {
+    if (['saude-medicina', 'defesa-paciente', 'clinicas-gestao', 'medicos', 'pacientes', 'responsabilizacao-penal', 'acompanhamento-juridico'].includes(nucleoId)) {
       return 'penal-medico';
     }
     return 'penal-tradicional';

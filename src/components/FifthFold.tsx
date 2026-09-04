@@ -24,7 +24,8 @@ import {
   Target,
   ChevronDown,
   ChevronUp,
-  MessageCircle
+  MessageCircle,
+  FileText
 } from 'lucide-react';
 import penal1Img from '../assets/images/penal1.jpg';
 import penal2Img from '../assets/images/penal2.jpg';
@@ -46,53 +47,35 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-tradicional",
       badge: "NÚCLEO 01",
       icon: Shield,
-      image: penal1Img,
-      fallbackImage: "/penal1.jpg",
+      image: "/penal1.jpg?v=20260903",
+      fallbackImage: penal1Img,
       title: "DIREITO PENAL E DEFESA CRIMINAL",
       subtitle: "Defesa de pessoas físicas",
-      desc: "Atuação na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
+      desc: "Atuação estratégica na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
       caixas: [
+        {
+          id: "trafico-drogas",
+          title: "Tráfico de Drogas e Organizações Criminosas",
+          sub: "Tráfico, associação, armas, lavagem de dinheiro e crimes conexos",
+          icon: Scale
+        },
         {
           id: "investigacoes-operacoes",
           title: "Investigações, Inquéritos e Operações Policiais",
-          sub: "Busca e apreensão, prisões em flagrante e inquéritos",
+          sub: "Busca e apreensão, prisões em flagrante, interceptações e medidas cautelares",
           icon: Search
         },
         {
           id: "defesa-tribunais",
-          title: "Atuação em Tribunais e Recursos (STJ / STF)",
-          sub: "Habeas Corpus, sustentação oral e revisões criminais",
-          icon: Gavel
+          title: "Tribunais Superiores e Recursos Criminais",
+          sub: "Habeas corpus, recursos, sustentações orais e revisões criminais (STJ / STF)",
+          icon: Landmark
         },
         {
           id: "execucao-penal",
           title: "Execução Penal e Sistema Prisional",
-          sub: "Progressão de regime, livramento e direitos do preso",
+          sub: "Progressão de regime, livramento condicional e defesa dos direitos da pessoa presa",
           icon: Lock
-        },
-        {
-          id: "crimes-honra",
-          title: "Crimes Contra a Honra e a Liberdade",
-          sub: "Calúnia, difamação, injúria e ameaças",
-          icon: ShieldAlert
-        },
-        {
-          id: "policiais-militares",
-          title: "Defesa de Policiais e Agentes de Segurança",
-          sub: "Defesa em procedimentos criminais e disciplinares",
-          icon: Shield
-        },
-        {
-          id: "crimes-transito",
-          title: "Direito Penal de Trânsito",
-          sub: "Homicídio culposo, embriaguez e infrações penais",
-          icon: Car
-        },
-        {
-          id: "estrangeiros",
-          title: "Demandas Transnacionais e Extradição",
-          sub: "Cooperação jurídica e assistência no exterior",
-          icon: Globe
         }
       ]
     },
@@ -100,8 +83,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-empresarial",
       badge: "NÚCLEO 02",
       icon: Building2,
-      image: penal2Img,
-      fallbackImage: "/penal2.jpg",
+      image: "/penal2.jpg",
+      fallbackImage: penal2Img,
       title: "DIREITO PENAL EMPRESARIAL E ECONÔMICO",
       subtitle: "Empresas, empresários e negócios",
       desc: "Proteção penal estratégica para empresas, executivos e profissionais expostos a riscos criminais corporativos.",
@@ -114,20 +97,26 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
         },
         {
           id: "crimes-economicos",
-          title: "Crimes Econômicos, Financeiros e Sonegação",
-          sub: "Lavagem de dinheiro, sonegação e fraudes",
+          title: "Crimes Econômicos, Financeiros e Tributários",
+          sub: "Lavagem de dinheiro, fraudes e crimes tributários",
           icon: DollarSign
+        },
+        {
+          id: "fraudes-empresariais",
+          title: "Fraudes Empresariais e Crimes Patrimoniais",
+          sub: "Estelionato, apropriação indébita, falsidade e fraudes corporativas",
+          icon: FileText
         },
         {
           id: "crimes-digitais",
           title: "Crimes Digitais e Cibernéticos",
-          sub: "Fraudes virtuais, vazamentos e cybercrimes",
+          sub: "Fraudes virtuais, vazamentos de dados e crimes cibernéticos",
           icon: Monitor
         },
         {
           id: "gestores-publicos",
-          title: "Gestores Públicos e Licitações",
-          sub: "Crimes contra a Administração Pública e contratos",
+          title: "Crimes Contra a Administração Pública",
+          sub: "Corrupção, licitações, contratos e defesa de agentes públicos e particulares",
           icon: Landmark
         },
         {
@@ -139,20 +128,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
         {
           id: "produtores-rurais",
           title: "Agronegócio e Setor Rural",
-          sub: "Produtores rurais e delitos ambientais",
+          sub: "Crimes ambientais, tributários, patrimoniais e empresariais",
           icon: Leaf
-        },
-        {
-          id: "influenciadores",
-          title: "Influenciadores e Criadores de Conteúdo",
-          sub: "Publicidade digital, exposição e crimes de mídia",
-          icon: PlaySquare
-        },
-        {
-          id: "crimes-eleitorais",
-          title: "Direito Eleitoral Penal",
-          sub: "Crimes em campanhas e condutas ilícitas",
-          icon: Vote
         }
       ]
     },
@@ -160,40 +137,34 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       id: "penal-medico",
       badge: "NÚCLEO 03",
       icon: Stethoscope,
-      image: penal3Img,
-      fallbackImage: "/penal3.jpg",
+      image: "/penal3.jpg",
+      fallbackImage: penal3Img,
       title: "DIREITO PENAL MÉDICO E DA SAÚDE",
       subtitle: "Profissionais e instituições de saúde",
       desc: "Defesa especializada para médicos, profissionais da saúde, clínicas, hospitais e estabelecimentos assistenciais.",
       caixas: [
         {
-          id: "saude-medicina",
-          title: "Direito Penal Médico (Médicos & Cirurgiões)",
-          sub: "Defesa em apurações de erro médico e lesão culposa",
-          icon: Stethoscope
-        },
-        {
           id: "medicos",
           title: "Profissionais da Saúde e Conselhos",
-          sub: "Dentistas, biomédicos, enfermeiros, CRM / CFM / CRO",
+          sub: "Médicos, dentistas, biomédicos, enfermeiros e demais profissionais da saúde.",
           icon: UserCheck
         },
         {
           id: "clinicas-gestao",
           title: "Clínicas, Hospitais e Laboratórios",
-          sub: "Responsabilidade penal e gestão de crises",
+          sub: "Responsabilidade penal, investigações e gestão de crises.",
           icon: Hospital
         },
         {
-          id: "defesa-paciente",
-          title: "Defesa do Paciente e Familiares",
-          sub: "Acompanhamento em ocorrências e danos graves",
-          icon: User
+          id: "responsabilizacao-penal",
+          title: "Responsabilização Penal e Processos Criminais",
+          sub: "Inquéritos, denúncias, acusações e defesa em processos criminais.",
+          icon: Shield
         },
         {
           id: "acompanhamento-juridico",
           title: "Consultoria e Prevenção Penal na Saúde",
-          sub: "Gestão preventiva de riscos na atividade médica",
+          sub: "Gestão preventiva de riscos criminais na atividade médica e assistencial.",
           icon: Shield
         }
       ]
