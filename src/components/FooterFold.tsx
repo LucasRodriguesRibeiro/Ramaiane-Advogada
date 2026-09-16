@@ -14,13 +14,15 @@ interface FooterFoldProps {
   onOpenAdminAuth?: () => void;
   onNavigateBlog?: () => void;
   onNavigateHome?: () => void;
+  onNavigateBio?: () => void;
 }
 
 export const FooterFold: React.FC<FooterFoldProps> = ({ 
   onOpenEmergencyModal,
   onOpenAdminAuth,
   onNavigateBlog,
-  onNavigateHome
+  onNavigateHome,
+  onNavigateBio
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -105,6 +107,20 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
                 className="hover:text-[#F7F7F5] transition-colors"
               >
                 Conteúdo
+              </a>
+            </li>
+            <li>
+              <a 
+                href="/instagrambio" 
+                onClick={(e) => {
+                  if (onNavigateBio) {
+                    e.preventDefault();
+                    onNavigateBio();
+                  }
+                }}
+                className="hover:text-[#F7F7F5] transition-colors text-[#D4AF37]"
+              >
+                Link na Bio (Instagram)
               </a>
             </li>
             <li>

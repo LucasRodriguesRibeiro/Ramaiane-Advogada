@@ -10,6 +10,7 @@ import { CivilCoreFold } from './components/CivilCoreFold';
 import { HowItWorksFold } from './components/HowItWorksFold';
 import { BlogPage } from './components/BlogPage';
 import { ArticlePage } from './components/ArticlePage';
+import { InstagramBioPage } from './components/InstagramBioPage';
 import { FinalCallFold } from './components/FinalCallFold';
 import { TestimonialsFold } from './components/TestimonialsFold';
 import { FooterFold } from './components/FooterFold';
@@ -34,6 +35,7 @@ export default function App() {
   const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
   const [currentArticle, setCurrentArticle] = useState<BlogArticle | null>(null);
   const [isBlogPageActive, setIsBlogPageActive] = useState<boolean>(false);
+  const [isBioPageActive, setIsBioPageActive] = useState<boolean>(false);
 
   // Ref para ter o valor mais recente sem forçar o useEffect a rodar em loop
   const currentArticleRef = useRef<BlogArticle | null>(null);
@@ -67,6 +69,7 @@ export default function App() {
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
     if (!cleanPath) {
       setIsBlogPageActive(false);
+      setIsBioPageActive(false);
       setCurrentArticle(null);
       document.title = 'Deyse Ramaiane | Advocacia Estratégica';
       return;
@@ -74,9 +77,19 @@ export default function App() {
 
     const parts = cleanPath.split('/').map(p => decodeURIComponent(p).toLowerCase());
 
+    // Rota /instagrambio ou /bio
+    if (parts.length === 1 && (parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
+      setIsBioPageActive(true);
+      setIsBlogPageActive(false);
+      setCurrentArticle(null);
+      document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
+      return;
+    }
+
     // Rota exatamente /blog
     if (parts.length === 1 && parts[0] === 'blog') {
       setIsBlogPageActive(true);
+      setIsBioPageActive(false);
       setCurrentArticle(null);
       document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
       return;
@@ -85,7 +98,7 @@ export default function App() {
     // Busca candidato a slug de artigo (/artigo/slug ou /blog/slug ou /slug)
     const slugCandidate = parts.length > 1 ? parts[parts.length - 1] : parts[0];
 
-    if (slugCandidate && slugCandidate !== 'blog') {
+    if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'instagrambio') {
       const found = items.find(a => 
         (a.slug && a.slug.toLowerCase() === slugCandidate) ||
         a.id.toLowerCase() === slugCandidate ||
@@ -95,6 +108,7 @@ export default function App() {
       if (found) {
         setCurrentArticle(found);
         setIsBlogPageActive(false);
+        setIsBioPageActive(false);
         document.title = `${found.title} | Dra. Deyse Ramaiane`;
         return;
       }
@@ -103,12 +117,14 @@ export default function App() {
     // Se o caminho contém a palavra 'blog'
     if (parts.includes('blog')) {
       setIsBlogPageActive(true);
+      setIsBioPageActive(false);
       setCurrentArticle(null);
       document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
       return;
     }
 
     setIsBlogPageActive(false);
+    setIsBioPageActive(false);
     setCurrentArticle(null);
     document.title = 'Deyse Ramaiane | Advocacia Estratégica';
   };
@@ -156,6 +172,7 @@ export default function App() {
     const fullArticle = { ...article, slug };
     setCurrentArticle(fullArticle);
     setIsBlogPageActive(false);
+    setIsBioPageActive(false);
     const newPath = `/artigo/${slug}`;
     window.history.pushState({ slug }, '', newPath);
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -163,15 +180,26 @@ export default function App() {
 
   const handleNavigateBlog = () => {
     setCurrentArticle(null);
+    setIsBioPageActive(false);
     setIsBlogPageActive(true);
     window.history.pushState({ page: 'blog' }, '', '/blog');
     document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
+  const handleNavigateBio = () => {
+    setCurrentArticle(null);
+    setIsBlogPageActive(false);
+    setIsBioPageActive(true);
+    window.history.pushState({ page: 'bio' }, '', '/instagrambio');
+    document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   const handleNavigateHome = () => {
     setCurrentArticle(null);
     setIsBlogPageActive(false);
+    setIsBioPageActive(false);
     window.history.pushState({}, '', '/');
     document.title = 'Deyse Ramaiane | Advocacia Estratégica';
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -277,7 +305,46 @@ export default function App() {
     );
   }
 
-  // 3. Rota: Página Principal / Landing Page (Sem o Blog no meio)
+  // 3. Rota: Link na Bio (/instagrambio)
+  if (isBioPageActive) {
+    return (
+      <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#D4AF37] selection:text-[#0B0B0C]">
+        <InstagramBioPage
+          contact={emergencyContact}
+          onNavigateHome={handleNavigateHome}
+          onOpenEmergencyModal={handleOpenModal}
+          onOpenScheduleModal={handleOpenScheduleModal}
+          onOpenUrgentModal={handleOpenUrgentModal}
+          onOpenNucleoModal={handleOpenNucleoModal}
+        />
+
+        {/* Modais Globais */}
+        <EmergencyModal
+          isOpen={isEmergencyModalOpen}
+          onClose={() => setIsEmergencyModalOpen(false)}
+          contact={emergencyContact}
+        />
+        <NucleoModal
+          nucleoId={selectedNucleoId}
+          isOpen={selectedNucleoId !== null}
+          onClose={handleCloseNucleoModal}
+          contact={emergencyContact}
+        />
+        <ScheduleAppointmentModal
+          isOpen={isScheduleModalOpen}
+          onClose={handleCloseScheduleModal}
+          contact={emergencyContact}
+        />
+        <Urgent24hModal
+          isOpen={isUrgentModalOpen}
+          onClose={handleCloseUrgentModal}
+          contact={emergencyContact}
+        />
+      </div>
+    );
+  }
+
+  // 4. Rota: Página Principal / Landing Page (Sem o Blog no meio)
   return (
     <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
       
@@ -322,6 +389,7 @@ export default function App() {
         onOpenAdminAuth={handleOpenBlogAdminAuth}
         onNavigateBlog={handleNavigateBlog}
         onNavigateHome={handleNavigateHome}
+        onNavigateBio={handleNavigateBio}
       />
 
       {/* Floating WhatsApp Balloon (Mobile & Desktop - Aparece após a 1ª dobra) */}
