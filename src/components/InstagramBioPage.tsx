@@ -28,6 +28,11 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
   contact,
   onNavigateHome,
 }) => {
+  React.useEffect(() => {
+    document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   const waPlantaoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Preciso de atendimento imediato em Defesa Criminal (Plantão 24h).')}`;
   const waEmpresarialUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Gostaria de atendimento sobre Penal Empresarial e Econômico (Defesa, compliance e gestão de risco).')}`;
   const waMedicoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Gostaria de atendimento sobre Penal Médico e Estético (Profissionais e clínicas).')}`;

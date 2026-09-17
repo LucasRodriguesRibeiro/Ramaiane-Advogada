@@ -23,7 +23,58 @@ import { EmergencyContact } from './types';
 import { BlogArticle, generateSlug } from './types/blog';
 import { getBlogArticles } from './services/firebase';
 
+// Resolve a rota inicial de forma síncrona antes do primeiro render para evitar que a página inicial
+// apareça rapidamente ("flicker" ou flash) ao acessar URLs específicas como /instagrambio ou /blog
+function getInitialRouteState() {
+  if (typeof window === 'undefined') {
+    return { isBio: false, isBlog: false, slugCandidate: null as string | null };
+  }
+
+  // Verifica se houve redirecionamento salvo via 404.html (ex: GitHub Pages ou fallback estático)
+  const savedRedirect = sessionStorage.getItem('spa_redirect_path');
+  let pathname = window.location.pathname;
+  if (savedRedirect) {
+    sessionStorage.removeItem('spa_redirect_path');
+    window.history.replaceState(null, '', savedRedirect);
+    pathname = window.location.pathname;
+  }
+
+  const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+  if (!cleanPath) {
+    return { isBio: false, isBlog: false, slugCandidate: null as string | null };
+  }
+
+  const parts = cleanPath.split('/').map(p => decodeURIComponent(p).toLowerCase());
+
+  // Rota /instagrambio, /bio ou /instagram-bio
+  if (parts.length === 1 && (parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
+    document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
+    return { isBio: true, isBlog: false, slugCandidate: null as string | null };
+  }
+
+  // Rota exatamente /blog
+  if (parts.length === 1 && parts[0] === 'blog') {
+    document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+    return { isBio: false, isBlog: true, slugCandidate: null as string | null };
+  }
+
+  // Candidato a artigo
+  const slugCandidate = parts.length > 1 ? parts[parts.length - 1] : parts[0];
+  if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'instagrambio') {
+    return { isBio: false, isBlog: false, slugCandidate };
+  }
+
+  if (parts.includes('blog')) {
+    document.title = 'Blog & Artigos Jurídicos | Dra. Deyse Ramaiane';
+    return { isBio: false, isBlog: true, slugCandidate: null as string | null };
+  }
+
+  return { isBio: false, isBlog: false, slugCandidate: null as string | null };
+}
+
 export default function App() {
+  const initialRoute = useRef(getInitialRouteState()).current;
+
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false);
   const [isDrugsModalOpen, setIsDrugsModalOpen] = useState(false);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
@@ -31,11 +82,11 @@ export default function App() {
   const [selectedNucleoId, setSelectedNucleoId] = useState<string | null>(null);
   const [showWhatsAppBalloon, setShowWhatsAppBalloon] = useState(false);
 
-  // Estados de Artigos e Navegação por URL / Página
+  // Estados de Artigos e Navegação por URL / Página inicializados com a rota instantânea
   const [allArticles, setAllArticles] = useState<BlogArticle[]>([]);
   const [currentArticle, setCurrentArticle] = useState<BlogArticle | null>(null);
-  const [isBlogPageActive, setIsBlogPageActive] = useState<boolean>(false);
-  const [isBioPageActive, setIsBioPageActive] = useState<boolean>(false);
+  const [isBlogPageActive, setIsBlogPageActive] = useState<boolean>(initialRoute.isBio ? false : initialRoute.isBlog);
+  const [isBioPageActive, setIsBioPageActive] = useState<boolean>(initialRoute.isBio);
 
   // Ref para ter o valor mais recente sem forçar o useEffect a rodar em loop
   const currentArticleRef = useRef<BlogArticle | null>(null);
@@ -131,18 +182,24 @@ export default function App() {
 
   // Sincroniza lista de artigos e rota atual
   useEffect(() => {
+    // 1. Aplica rota imediatamente de forma síncrona na montagem (sem esperar o Firebase!)
+    applyRouting(window.location.pathname, allArticles);
+
+    // 2. Carrega lista de artigos do Firebase em segundo plano
     const initArticlesAndRouting = async () => {
-      const items = await getBlogArticles();
-      setAllArticles(items);
-      applyRouting(window.location.pathname, items);
+      try {
+        const items = await getBlogArticles();
+        setAllArticles(items);
+        applyRouting(window.location.pathname, items);
+      } catch (err) {
+        console.error('Erro ao buscar artigos do blog:', err);
+      }
     };
 
     initArticlesAndRouting();
 
     const handlePopState = async () => {
-      const items = await getBlogArticles();
-      setAllArticles(items);
-      applyRouting(window.location.pathname, items);
+      applyRouting(window.location.pathname, allArticles);
       window.scrollTo({ top: 0, behavior: 'instant' });
     };
 
