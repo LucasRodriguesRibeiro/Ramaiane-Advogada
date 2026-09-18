@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { EmergencyContact } from '../types';
+import dobra2Img from '../assets/images/dobra2.jpeg';
 
 interface InstagramBioPageProps {
   contact: EmergencyContact;
@@ -43,18 +44,35 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
       {/* Centered Mobile-First Column */}
       <div className="w-full max-w-[430px] flex flex-col space-y-6">
         
-        {/* Header: Name and Profession */}
-        <header className="pt-2 text-left">
-          <h1 className="font-serif-title text-[44px] sm:text-[50px] font-normal leading-tight text-[#F7F7F5] tracking-tight">
-            Ramaiane
-          </h1>
-          <p className="font-serif-title text-[20px] sm:text-[23px] font-light text-[#D1D5DB] tracking-wide mt-0.5">
-            Advogada Criminalista
-          </p>
+        {/* Header: Photo + Name + Profession */}
+        <header className="flex flex-col items-center text-center pt-2 space-y-4">
+          {/* Circular Photo Avatar */}
+          <div className="relative">
+            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[2.5px] bg-gradient-to-b from-[#E2C792] via-[#C5A880] to-[#7E6032] shadow-[0_0_28px_rgba(197,168,128,0.25)]">
+              <div className="w-full h-full rounded-full overflow-hidden bg-[#111112]">
+                <img
+                  src={dobra2Img}
+                  alt="Dra. Deyse Ramaiane - Advocacia Estratégica"
+                  className="w-full h-full object-cover object-[center_16%]"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Name & Title */}
+          <div className="space-y-0.5">
+            <h1 className="font-serif-title text-[40px] sm:text-[46px] font-normal leading-tight text-[#F7F7F5] tracking-tight">
+              Ramaiane
+            </h1>
+            <p className="font-serif-title text-[18px] sm:text-[21px] font-light text-[#D1D5DB] tracking-wide">
+              Advogada Criminalista
+            </p>
+          </div>
         </header>
 
         {/* Section Divider: ATENDIMENTO POR WHATSAPP */}
-        <div className="flex items-center gap-3 pt-2">
+        <div className="flex items-center gap-3 pt-1">
+          <div className="h-[1px] flex-1 bg-[#27272A]"></div>
           <span className="text-[10px] sm:text-[11px] tracking-[0.22em] text-[#71717A] uppercase font-medium whitespace-nowrap">
             ATENDIMENTO POR WHATSAPP
           </span>
