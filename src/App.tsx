@@ -46,8 +46,8 @@ function getInitialRouteState() {
 
   const parts = cleanPath.split('/').map(p => decodeURIComponent(p).toLowerCase());
 
-  // Rota /instagrambio, /bio ou /instagram-bio
-  if (parts.length === 1 && (parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
+  // Rota /atendimento, /ramaianeadv, /instagrambio, /bio ou /instagram-bio
+  if (parts.length === 1 && (parts[0] === 'atendimento' || parts[0] === 'ramaianeadv' || parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
     document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
     return { isBio: true, isBlog: false, slugCandidate: null as string | null };
   }
@@ -60,7 +60,7 @@ function getInitialRouteState() {
 
   // Candidato a artigo
   const slugCandidate = parts.length > 1 ? parts[parts.length - 1] : parts[0];
-  if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'instagrambio') {
+  if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'atendimento' && slugCandidate !== 'ramaianeadv' && slugCandidate !== 'instagrambio') {
     return { isBio: false, isBlog: false, slugCandidate };
   }
 
@@ -101,7 +101,7 @@ export default function App() {
 
   const emergencyContact: EmergencyContact = {
     lawyerName: "Ramaiane Advogada",
-    oabNumber: "Advocacia Estratégica",
+    oabNumber: "OAB/AM 13.701",
     phone: "(92) 99348-0017",
     whatsappNumber: "5592993480017",
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
@@ -128,8 +128,8 @@ export default function App() {
 
     const parts = cleanPath.split('/').map(p => decodeURIComponent(p).toLowerCase());
 
-    // Rota /instagrambio ou /bio
-    if (parts.length === 1 && (parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
+    // Rota /atendimento, /ramaianeadv, /instagrambio ou /bio
+    if (parts.length === 1 && (parts[0] === 'atendimento' || parts[0] === 'ramaianeadv' || parts[0] === 'instagrambio' || parts[0] === 'bio' || parts[0] === 'instagram-bio')) {
       setIsBioPageActive(true);
       setIsBlogPageActive(false);
       setCurrentArticle(null);
@@ -149,7 +149,7 @@ export default function App() {
     // Busca candidato a slug de artigo (/artigo/slug ou /blog/slug ou /slug)
     const slugCandidate = parts.length > 1 ? parts[parts.length - 1] : parts[0];
 
-    if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'instagrambio') {
+    if (slugCandidate && slugCandidate !== 'blog' && slugCandidate !== 'atendimento' && slugCandidate !== 'ramaianeadv' && slugCandidate !== 'instagrambio') {
       const found = items.find(a => 
         (a.slug && a.slug.toLowerCase() === slugCandidate) ||
         a.id.toLowerCase() === slugCandidate ||

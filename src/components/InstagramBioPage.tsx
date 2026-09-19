@@ -34,9 +34,9 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const waPlantaoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Preciso de atendimento imediato em Defesa Criminal (Plantão 24h).')}`;
-  const waEmpresarialUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Gostaria de atendimento sobre Penal Empresarial e Econômico (Defesa, compliance e gestão de risco).')}`;
-  const waMedicoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane. Gostaria de atendimento sobre Penal Médico e Estético (Profissionais e clínicas).')}`;
+  const waPlantaoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Preciso de orientação jurídica com urgência sobre um caso criminal. Podemos conversar?')}`;
+  const waEmpresarialUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Sou empresário(a) e gostaria de atendimento sobre compliance e gestão de risco para minha empresa.')}`;
+  const waMedicoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Sou profissional da saúde ou represento uma clínica e gostaria de atendimento sobre assessoria, defesa e gestão de risco.')}`;
 
   return (
     <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col items-center justify-start font-sans-clean px-4 sm:px-6 py-8 sm:py-12 selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
@@ -145,8 +145,11 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
                 <h2 className="font-serif-title text-[20px] sm:text-[22px] font-medium text-[#F7F7F5] leading-snug group-hover:text-white transition-colors">
                   Penal médico e estético
                 </h2>
-                <p className="text-[12px] sm:text-[13px] text-[#8E9196] font-light mt-1">
-                  Profissionais e clínicas
+                <p className="text-[12px] sm:text-[13px] text-[#A1A1AA] font-normal mt-1">
+                  Médicos e clínicas
+                </p>
+                <p className="text-[11px] sm:text-[12px] text-[#8E9196] font-light mt-0.5">
+                  Assessoria, defesa e gestão de risco
                 </p>
               </div>
 

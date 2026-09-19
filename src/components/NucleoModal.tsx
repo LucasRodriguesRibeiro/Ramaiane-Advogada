@@ -204,6 +204,50 @@ export const NUCLEOS_CONFIG: Record<string, NucleoConfig> = {
     situationPlaceholder: 'Descreva brevemente o evento ou o procedimento em questão.',
     buttonText: 'SOLICITAR CONSULTA MÉDICO-PENAL',
   },
+  'penal-estetico': {
+    id: 'penal-estetico',
+    num: '04',
+    icon: Sparkles,
+    subtitle: 'NÚCLEO 04',
+    mainTitle: 'NÚCLEO PENAL ESTÉTICO',
+    nucleusTitle: 'DEFESA EM DIREITO PENAL ESTÉTICO',
+    description: 'Defesa especializada para profissionais e clínicas de estética em processos e investigações penais decorrentes de procedimentos e intercorrências.',
+    nameLabel: 'SEU NOME / ESPECIALIDADE OU REGISTRO PROFISSIONAL',
+    namePlaceholder: 'Ex.: Dra. Camila Ribeiro (Biomédica Esteta)',
+    secondaryLabel: 'CLÍNICA / ESPAÇO DE ESTÉTICA (OPCIONAL)',
+    secondaryPlaceholder: 'Ex.: Clínica Estética Avançada',
+    profiles: [
+      { label: 'Biomédico(a) Esteta', icon: Sparkles },
+      { label: 'Cirurgião-Dentista / Harmonizador', icon: UserCheck },
+      { label: 'Médico(a) Dermatologista / Cirurgião', icon: Stethoscope },
+      { label: 'Enfermeiro(a) Esteta / Farmacêutico(a)', icon: UserCheck },
+      { label: 'Clínica / Espaço de Estética', icon: Building2 },
+      { label: 'Outro Profissional', icon: MoreHorizontal },
+    ],
+    areasAtendimento: [
+      'Defesa em Acusações de Lesão Corporal Decorrente de Procedimentos Estéticos',
+      'Defesa Contra Acusações de Exercício Ilegal da Profissão / Medicina',
+      'Intercorrências em Harmonização Facial, Preenchedores e Injetáveis',
+      'Sindicâncias Ético-Disciplinares nos Conselhos de Classe (CRBM, CRO, COREN, CRF)',
+      'Assessoria Preventiva, Elaboração e Auditoria de Termos de Consentimento (TCLE)',
+      'Gestão Imediata de Crises com Pacientes e Notificações Extrajudiciais'
+    ],
+    motivos: [
+      'Intercorrência com paciente após procedimento estético',
+      'Notificação ou denúncia por lesão corporal',
+      'Acusação de exercício ilegal da profissão / ato médico',
+      'Intimação policial para esclarecimentos em delegacia',
+      'Processo ético ou fiscalização em conselho de classe',
+      'Assessoria preventiva e revisão de termos/protocolos',
+      'Outro motivo'
+    ],
+    locationLabel: 'CIDADE / ESTADO',
+    locationPlaceholder: 'Ex.: Manaus - AM',
+    emailPlaceholder: 'Ex.: contato@clinica.com.br',
+    whatsappPlaceholder: '(92) 90000-0000',
+    situationPlaceholder: 'Descreva brevemente o procedimento realizado, a intercorrência ou a notificação recebida.',
+    buttonText: 'SOLICITAR ORIENTAÇÃO EM DIREITO ESTÉTICO',
+  },
   'saude-medicina': {
     id: 'saude-medicina',
     num: '01',
@@ -995,14 +1039,17 @@ export const NucleoModal: React.FC<NucleoModalProps> = ({
   const configKey = (() => {
     if (!nucleoId) return 'penal-tradicional';
     if (NUCLEOS_CONFIG[nucleoId]) return nucleoId;
-    if (['investigacoes-operacoes', 'defesa-tribunais', 'execucao-penal', 'trafico-drogas', 'policiais-militares', 'crimes-transito', 'crimes-honra', 'estrangeiros'].includes(nucleoId)) {
+    if (['investigacoes-operacoes', 'operacoes-policiais', 'outras-demandas', 'defesa-tribunais', 'execucao-penal', 'trafico-drogas', 'policiais-militares', 'crimes-transito', 'crimes-honra', 'estrangeiros'].includes(nucleoId)) {
       return 'penal-tradicional';
     }
     if (['empresarios', 'crimes-economicos', 'fraudes-empresariais', 'crimes-digitais', 'gestores-publicos', 'instituicoes-financeiras', 'crimes-eleitorais', 'produtores-rurais', 'influenciadores'].includes(nucleoId)) {
       return 'penal-empresarial';
     }
-    if (['saude-medicina', 'defesa-paciente', 'clinicas-gestao', 'medicos', 'pacientes', 'responsabilizacao-penal', 'acompanhamento-juridico'].includes(nucleoId)) {
+    if (['saude-medicina', 'defesa-paciente', 'clinicas-gestao', 'medicos', 'pacientes', 'responsabilizacao-penal', 'acompanhamento-juridico', 'gestao-crises'].includes(nucleoId)) {
       return 'penal-medico';
+    }
+    if (['penal-estetico', 'estetica-profissionais', 'estetica-clinicas', 'estetica-procedimentos', 'estetica-exercicio-ilegal'].includes(nucleoId)) {
+      return 'penal-estetico';
     }
     return 'penal-tradicional';
   })();

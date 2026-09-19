@@ -19,7 +19,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
   const navItems = [
     { label: 'INÍCIO', href: '#inicio' },
     { label: 'SOBRE', href: '#sobre' },
-    { label: 'NÚCLEOS PENAIS', href: '#nucleos-penais' },
+    { label: 'ÁREAS DE ATUAÇÃO', href: '#nucleos-penais' },
     { label: 'METODOLOGIA', href: '#metodologia' },
     { label: 'CONTEÚDO', href: '/blog' },
     { label: 'CONTATO', href: '#contato' },
@@ -37,7 +37,7 @@ export const DobraHeaderNav: React.FC<DobraHeaderNavProps> = ({
     const sectionMapping = [
       { label: 'INÍCIO', id: 'inicio' },
       { label: 'SOBRE', id: 'sobre' },
-      { label: 'NÚCLEOS PENAIS', id: 'nucleos-penais' },
+      { label: 'ÁREAS DE ATUAÇÃO', id: 'nucleos-penais' },
       { label: 'METODOLOGIA', id: 'metodologia' },
       { label: 'CONTATO', id: 'contato' },
     ];

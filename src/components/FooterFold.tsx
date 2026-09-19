@@ -90,7 +90,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               <a href="#sobre" className="hover:text-[#F7F7F5] transition-colors">Sobre</a>
             </li>
             <li>
-              <a href="#nucleos-penais" className="hover:text-[#F7F7F5] transition-colors">Núcleos Penais</a>
+              <a href="#nucleos-penais" className="hover:text-[#F7F7F5] transition-colors">Áreas de Atuação</a>
             </li>
             <li>
               <a href="#metodologia" className="hover:text-[#F7F7F5] transition-colors">Metodologia</a>
