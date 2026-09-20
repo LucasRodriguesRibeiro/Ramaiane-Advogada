@@ -146,7 +146,7 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
                   Penal médico e estético
                 </h2>
                 <p className="text-[12px] sm:text-[13px] text-[#A1A1AA] font-normal mt-1">
-                  Médicos e clínicas
+                  Profissionais e clínicas
                 </p>
                 <p className="text-[11px] sm:text-[12px] text-[#8E9196] font-light mt-0.5">
                   Assessoria, defesa e gestão de risco
