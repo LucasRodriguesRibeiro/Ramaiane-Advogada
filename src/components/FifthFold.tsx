@@ -231,18 +231,10 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       <div id="nucleo-criminal" className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Section Header */}
-        <div className="space-y-3 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center text-xs tracking-[0.25em] text-[#B8BBC0] uppercase font-semibold justify-center">
-            <span>✦ ATUAÇÃO ESTRATÉGICA. DEFESA EFICAZ. ✦</span>
-          </div>
-
+        <div className="text-center max-w-3xl mx-auto">
           <h2 className="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-normal text-[#F7F7F5] tracking-[0.12em] uppercase">
             ÁREAS DE ATUAÇÃO
           </h2>
-
-          <p className="text-[#B8BBC0] text-xs sm:text-sm font-light leading-relaxed max-w-2xl mx-auto tracking-wider">
-            A atuação se concentra no Direito Penal, com defesa e assessoria jurídica para pessoas físicas, empresários, empresas, profissionais da saúde e clínicas.
-          </p>
         </div>
 
         {/* 4 Columns Responsive Grid */}

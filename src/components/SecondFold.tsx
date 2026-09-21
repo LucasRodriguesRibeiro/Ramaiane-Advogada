@@ -49,28 +49,15 @@ export const SecondFold: React.FC = () => {
             </p>
           </div>
 
-          {/* Quote & Signature Block with Discreet Credentials */}
-          <div className="pt-6 border-t border-[#74777C]/30 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              {/* Signature */}
-              <div className="flex flex-col items-start relative">
-                <img
-                  src={assinaturaImg}
-                  alt="Assinatura Ramaiane"
-                  className="w-auto object-contain select-none filter invert brightness-200 contrast-120"
-                  style={{ height: 'clamp(70px, 9vw, 95px)' }}
-                />
-              </div>
-
-              {/* Discreet Credentials / Info */}
-              <div className="text-xs text-[#8E9196] font-light leading-relaxed border-l-2 sm:border-l border-[#C5A880]/40 pl-3.5 py-1">
-                <span className="text-[#C5A880] font-medium tracking-wide block">
-                  OAB/AM 13.701 • Juazeiro/BA
-                </span>
-                <span className="text-[#A1A4A9]">
-                  Atendimento remoto em todo o Brasil.
-                </span>
-              </div>
+          {/* Signature Block */}
+          <div className="pt-6 border-t border-[#74777C]/30">
+            <div className="flex flex-col items-start relative">
+              <img
+                src={assinaturaImg}
+                alt="Assinatura Ramaiane"
+                className="w-auto object-contain select-none filter invert brightness-200 contrast-120"
+                style={{ height: 'clamp(70px, 9vw, 95px)' }}
+              />
             </div>
           </div>
 
