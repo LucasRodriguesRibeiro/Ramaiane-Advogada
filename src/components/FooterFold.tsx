@@ -151,7 +151,7 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
 
             <div className="flex items-start space-x-3">
               <MapPin className="w-5 h-5 text-[#9DA0A6] shrink-0 mt-0.5" />
-              <span className="text-[#D1D4D9] text-xs sm:text-sm leading-snug">Atendimento em Âmbito Nacional (Presencial e Digital)</span>
+              <span className="text-[#D1D4D9] text-xs sm:text-sm leading-snug">Atendimento remoto em todo Brasil.</span>
             </div>
           </div>
         </div>

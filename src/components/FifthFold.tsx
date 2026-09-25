@@ -54,8 +54,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
   const [expandedNucleos, setExpandedNucleos] = useState<Record<string, boolean>>({
     'penal-tradicional': true,
     'penal-empresarial': true,
-    'penal-medico': true,
-    'penal-estetico': true
+    'penal-medico': true
   });
 
   const nucleosData: NucleoItem[] = [
@@ -65,7 +64,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       icon: Shield,
       image: "/penal1.jpg?v=20260903",
       fallbackImage: penal1Img,
-      title: "DIREITO PENAL E DEFESA CRIMINAL",
+      title: "DEFESA CRIMINAL",
       subtitle: "Defesa de pessoas físicas",
       desc: "Atuação estratégica na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
       caixas: [
@@ -107,7 +106,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       icon: Building2,
       image: "/penal2.jpg",
       fallbackImage: penal2Img,
-      title: "DIREITO PENAL EMPRESARIAL E ECONÔMICO",
+      title: "PENAL EMPRESARIAL E ECONÔMICO",
       subtitle: "Empresas, executivos e negócios",
       desc: "Proteção penal estratégica para empresas, executivos e profissionais expostos a riscos criminais corporativos.",
       caixas: [
@@ -144,8 +143,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       image: "/penal3.jpg",
       fallbackImage: penal3Img,
       title: "DIREITO PENAL MÉDICO E DA SAÚDE",
-      subtitle: "Médicos, clínicas e hospitais",
-      desc: "Defesa especializada para médicos e estabelecimentos de saúde e hospitalares.",
+      subtitle: "Médicos, clínicas, hospitais e estética",
+      desc: "Defesa especializada para médicos, clínicas, hospitais e profissionais de saúde e estética.",
       caixas: [
         {
           id: "medicos",
@@ -170,19 +169,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           title: "Consultoria e prevenção penal",
           sub: "Gestão preventiva de riscos na atividade médica",
           icon: Stethoscope
-        }
-      ]
-    },
-    {
-      id: "penal-estetico",
-      badge: "NÚCLEO 04",
-      icon: Sparkles,
-      image: "/penal4.jpg",
-      fallbackImage: penal4Img,
-      title: "DIREITO PENAL ESTÉTICO",
-      subtitle: "Profissionais e clínicas de estética",
-      desc: "Defesa especializada para profissionais e clínicas de estética em processos e investigações penais.",
-      caixas: [
+        },
         {
           id: "estetica-profissionais",
           title: "Profissionais de estética",
@@ -237,8 +224,8 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           </h2>
         </div>
 
-        {/* 4 Columns Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
+        {/* 3 Columns Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
           {nucleosData.map((nucleo) => {
             const HeaderIcon = nucleo.icon;
             const isExpanded = !!expandedNucleos[nucleo.id];
@@ -270,7 +257,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                   {/* Centered Icon Badge */}
                   <div className="flex justify-center -mt-9 z-10 relative">
                     <div className="w-12 h-12 rounded-full bg-[#121316] border border-[#74777C]/40 flex items-center justify-center text-[#F7F7F5] shadow-lg">
-                      <HeaderIcon className="w-5 h-5 text-[#E2C792] stroke-[1.5]" />
+                      <HeaderIcon className="w-5 h-5 text-white stroke-[1.5]" />
                     </div>
                   </div>
 
@@ -303,7 +290,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                           title="Clique para abrir a janela de atendimento"
                         >
                           <div className="flex items-start space-x-3 min-w-0 flex-1">
-                            <div className="w-7 h-7 rounded-lg bg-[#1A1C22] border border-[#74777C]/30 flex items-center justify-center text-[#B8BBC0] group-hover:text-[#E2C792] group-hover:border-[#E2C792]/50 shrink-0 mt-0.5 transition-colors">
+                            <div className="w-7 h-7 rounded-lg bg-[#1A1C22] border border-[#74777C]/30 flex items-center justify-center text-[#B8BBC0] group-hover:text-white group-hover:border-white/50 shrink-0 mt-0.5 transition-colors">
                               <CaixaIcon className="w-3.5 h-3.5 stroke-[1.8]" />
                             </div>
                             <div className="space-y-0.5 min-w-0 text-left">
@@ -317,7 +304,7 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                           </div>
 
                           {/* Seta à direita que abre a janela de atendimento */}
-                          <div className="w-7 h-7 rounded-full bg-[#1A1C22] group-hover:bg-[#E2C792] text-[#8E9196] group-hover:text-[#0B0B0C] flex items-center justify-center shrink-0 transition-all self-center ml-1">
+                          <div className="w-7 h-7 rounded-full bg-[#1A1C22] group-hover:bg-white text-[#8E9196] group-hover:text-[#0B0B0C] flex items-center justify-center shrink-0 transition-all self-center ml-1">
                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </div>
@@ -347,40 +334,6 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           })}
         </div>
 
-        {/* Bottom Feature Badges Bar */}
-        <div className="pt-6 border-t border-[#74777C]/20 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
-            <Shield className="w-5 h-5 text-[#E2C792]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
-              ESTRATÉGIA PERSONALIZADA
-            </span>
-            <span className="text-[10px] text-[#74777C]">Cada caso, uma estratégia.</span>
-          </div>
-
-          <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
-            <Lock className="w-5 h-5 text-[#E2C792]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
-              SIGILO ABSOLUTO
-            </span>
-            <span className="text-[10px] text-[#74777C]">Confidencialidade em todas as etapas.</span>
-          </div>
-
-          <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
-            <Scale className="w-5 h-5 text-[#E2C792]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
-              ATUAÇÃO TÉCNICA
-            </span>
-            <span className="text-[10px] text-[#74777C]">Rigor em cada decisão.</span>
-          </div>
-
-          <div className="bg-[#121316] border border-[#74777C]/20 rounded-lg p-4 flex flex-col items-center space-y-1.5">
-            <Sparkles className="w-5 h-5 text-[#E2C792]" />
-            <span className="text-xs font-bold uppercase tracking-wider text-[#F7F7F5]">
-              FOCO EM RESULTADOS
-            </span>
-            <span className="text-[10px] text-[#74777C]">Atuação estratégica em busca da melhor solução jurídica.</span>
-          </div>
-        </div>
 
       </div>
     </section>

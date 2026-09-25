@@ -407,7 +407,7 @@ export default function App() {
       
       {/* Header Navigation Bar */}
       <DobraHeaderNav 
-        onOpenEmergencyModal={handleOpenModal} 
+        onOpenEmergencyModal={handleOpenUrgentModal} 
         onNavigateBlog={handleNavigateBlog}
         onNavigateHome={handleNavigateHome}
       />

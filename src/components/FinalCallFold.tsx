@@ -72,10 +72,10 @@ export const FinalCallFold: React.FC<FinalCallFoldProps> = ({
 
           <button
             onClick={handleUrgent}
-            className="silver-outline-button w-full sm:w-auto px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer"
+            className="border border-[#DC2626] bg-[#DC2626]/20 hover:bg-[#DC2626] text-white w-full sm:w-auto px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-pointer transition-all shadow-md shadow-red-950/30 group"
           >
-            <PhoneCall className="w-4 h-4" />
-            <span>ATENDIMENTO DE URGÊNCIA 24H</span>
+            <span className="w-2 h-2 rounded-full bg-[#DC2626] group-hover:bg-white animate-pulse"></span>
+            <span>PLANTÃO CRIMINAL 24H</span>
           </button>
         </div>
 

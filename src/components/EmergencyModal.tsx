@@ -19,30 +19,44 @@ interface EmergencyModalProps {
   contact: EmergencyContact;
 }
 
+const AREAS_ATUACAO = [
+  'Defesa criminal',
+  'PENAL EMPRESARIAL E ECONÔMICO',
+  'DIREITO PENAL MÉDICO E DA SAÚDE',
+];
+
 export const EmergencyModal: React.FC<EmergencyModalProps> = ({ 
   isOpen, 
   onClose, 
   contact 
 }) => {
   const [personName, setPersonName] = useState('');
-  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [practiceArea, setPracticeArea] = useState('');
-  const [contactReason, setContactReason] = useState('');
-  const [situation, setSituation] = useState('');
 
   useEffect(() => {
     if (isOpen) {
       setPersonName('');
-      setEmail('');
       setPhone('');
       setPracticeArea('');
-      setContactReason('');
-      setSituation('');
     }
   }, [isOpen]);
 
   if (!isOpen) return null;
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+
+    if (value.length > 6) {
+      value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+    } else if (value.length > 2) {
+      value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+    } else if (value.length > 0) {
+      value = `(${value}`;
+    }
+    setPhone(value);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,27 +70,16 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
       lines.push(`*Nome:* ${personName.trim()}`);
     }
 
-    if (email.trim()) {
-      lines.push(`*E-mail:* ${email.trim()}`);
-    }
-
     if (phone.trim()) {
       lines.push(`*WhatsApp:* ${phone.trim()}`);
     }
 
     if (practiceArea.trim()) {
-      lines.push(`*Área de Interesse:* ${practiceArea.trim()}`);
+      lines.push(`*Área de Atuação:* ${practiceArea.trim()}`);
     }
 
-    if (contactReason.trim()) {
-      lines.push(`*Motivo do Contato:* ${contactReason.trim()}`);
-    }
-
-    if (situation.trim()) {
-      lines.push(``);
-      lines.push(`*Descrição da Situação:*`);
-      lines.push(situation.trim());
-    }
+    lines.push(``);
+    lines.push(`Olá, Dra. Ramaiane. Gostaria de solicitar atendimento jurídico.`);
 
     const message = lines.join('\n');
     const url = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -141,7 +144,7 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
           </div>
 
           {/* Field: Seu Nome */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 text-left">
             <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
               SEU NOME
             </label>
@@ -155,24 +158,10 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
             />
           </div>
 
-          {/* Field: E-mail */}
-          <div className="space-y-1.5">
+          {/* Field: Número */}
+          <div className="space-y-1.5 text-left">
             <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              E-MAIL
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Ex.: joao@email.com"
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
-            />
-          </div>
-
-          {/* Field: WhatsApp */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              NÚMERO PARA CONTATO (WHATSAPP)
+              NÚMERO
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#B8BBC0]">
@@ -180,8 +169,9 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
               </div>
               <input
                 type="tel"
+                required
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={handlePhoneChange}
                 placeholder="(92) 90000-0000"
                 className="w-full pl-9 pr-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none transition-colors"
               />
@@ -189,12 +179,13 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
           </div>
 
           {/* Field: Área de Atuação */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 text-left">
             <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              ÁREA DE ATUAÇÃO DE INTERESSE
+              ÁREA DE ATUAÇÃO
             </label>
             <div className="relative">
               <select
+                required
                 value={practiceArea}
                 onChange={(e) => setPracticeArea(e.target.value)}
                 className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
@@ -202,123 +193,22 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
                 }`}
               >
                 <option value="" disabled className="text-[#5A5D66] bg-[#0E0F12]">
-                  Selecione a área
+                  Selecione a área de atuação
                 </option>
-                <option value="Médicos, Clínicas e Instituições de Saúde" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Médicos, Clínicas e Instituições de Saúde
-                </option>
-                <option value="Pacientes e Vítimas de Erro Médico" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Pacientes e Vítimas de Erro Médico
-                </option>
-                <option value="Direito Penal Econômico e Empresarial" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Direito Penal Econômico e Empresarial
-                </option>
-                <option value="Defesa em Crimes da Lei de Drogas" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Defesa em Crimes da Lei de Drogas
-                </option>
-                <option value="Produtores Rurais e Atividade Ambiental" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Produtores Rurais e Atividade Ambiental
-                </option>
-                <option value="Crimes Digitais e Fraudes Virtuais" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Crimes Digitais e Fraudes Virtuais
-                </option>
-                <option value="Influenciadores e Criadores de Conteúdo" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Influenciadores e Criadores de Conteúdo
-                </option>
-                <option value="Gestores e Agentes Públicos" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Gestores e Agentes Públicos
-                </option>
-                <option value="Profissionais Liberais" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Profissionais Liberais
-                </option>
-                <option value="Instituições Financeiras, Fintechs e Investidores" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Instituições Financeiras, Fintechs e Investidores
-                </option>
-                <option value="Estrangeiros e Empresas Internacionais" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Estrangeiros e Empresas Internacionais
-                </option>
-                <option value="Policiais Militares e Forças de Segurança" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Policiais Militares e Forças de Segurança
-                </option>
-                <option value="Plantão Criminal 24h / Prisão em Flagrante" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Plantão Criminal 24h / Prisão em Flagrante
-                </option>
-                <option value="Audiência de Custódia e Habeas Corpus" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Audiência de Custódia e Habeas Corpus
-                </option>
-                <option value="Defesa em Inquéritos e Operações Policiais" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Defesa em Inquéritos e Operações Policiais
-                </option>
-                <option value="Advocacia Cível Estratégica" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Advocacia Cível Estratégica
-                </option>
-                <option value="Outra Área de Atuação" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Outra Área de Atuação
-                </option>
+                {AREAS_ATUACAO.map((area) => (
+                  <option key={area} value={area} className="text-[#F7F7F5] bg-[#0E0F12]">
+                    {area}
+                  </option>
+                ))}
               </select>
               <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#B8BBC0]">
                 <ChevronDown className="w-4 h-4" />
               </div>
             </div>
-          </div>
-
-          {/* Field: Motivo do Contato */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              MOTIVO DO CONTATO
-            </label>
-            <div className="relative">
-              <select
-                value={contactReason}
-                onChange={(e) => setContactReason(e.target.value)}
-                className={`w-full px-3.5 py-2.5 pr-9 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs focus:outline-none transition-colors appearance-none cursor-pointer ${
-                  contactReason === '' ? 'text-[#5A5D66]' : 'text-[#F7F7F5]'
-                }`}
-              >
-                <option value="" disabled className="text-[#5A5D66] bg-[#0E0F12]">
-                  Selecione o motivo
-                </option>
-                <option value="Agendamento de Consulta Jurídica" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Agendamento de Consulta Jurídica
-                </option>
-                <option value="Urgência Criminal / Familiar Preso" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Urgência Criminal / Familiar Preso
-                </option>
-                <option value="Defesa em Processo Criminal em Andamento" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Defesa em Processo Criminal em Andamento
-                </option>
-                <option value="Acompanhamento em Delegacia / Depoimento" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Acompanhamento em Delegacia / Depoimento
-                </option>
-                <option value="Consultoria Preventiva / Parecer" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Consultoria Preventiva / Parecer
-                </option>
-                <option value="Outro Motivo" className="text-[#F7F7F5] bg-[#0E0F12]">
-                  Outro Motivo
-                </option>
-              </select>
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-[#B8BBC0]">
-                <ChevronDown className="w-4 h-4" />
-              </div>
-            </div>
-          </div>
-
-          {/* Field: Breve Descrição */}
-          <div className="space-y-1.5">
-            <label className="block text-[11px] font-semibold uppercase tracking-wider text-[#B8BBC0]">
-              BREVE DESCRIÇÃO DA SITUAÇÃO (OPCIONAL)
-            </label>
-            <textarea
-              rows={3}
-              value={situation}
-              onChange={(e) => setSituation(e.target.value)}
-              placeholder="Descreva brevemente a sua situação"
-              className="w-full px-3.5 py-2.5 bg-[#07080A] border border-[#2D3039] focus:border-[#B8BBC0] rounded-md text-xs text-[#F7F7F5] placeholder-[#5A5D66] focus:outline-none resize-none transition-colors"
-            />
           </div>
 
           {/* Security Note */}
-          <div className="flex items-center space-x-2 text-[10.5px] text-[#B8BBC0] pt-1">
+          <div className="flex items-center space-x-2 text-[10.5px] text-[#B8BBC0] pt-1 text-left">
             <Lock className="w-3.5 h-3.5 text-[#B8BBC0] shrink-0" />
             <span className="leading-snug">
               Seus dados estão protegidos e serão utilizados apenas para contato relacionado ao seu atendimento.
@@ -367,4 +257,3 @@ export const EmergencyModal: React.FC<EmergencyModalProps> = ({
     </div>
   );
 };
-
