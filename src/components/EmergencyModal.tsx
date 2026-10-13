@@ -23,6 +23,7 @@ const AREAS_ATUACAO = [
   'Defesa criminal',
   'PENAL EMPRESARIAL E ECONÔMICO',
   'DIREITO PENAL MÉDICO E DA SAÚDE',
+  'Outras demandas criminais',
 ];
 
 export const EmergencyModal: React.FC<EmergencyModalProps> = ({ 

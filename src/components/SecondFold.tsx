@@ -51,12 +51,12 @@ export const SecondFold: React.FC = () => {
 
           {/* Signature Block */}
           <div className="pt-6 border-t border-[#74777C]/30">
-            <div className="flex flex-col items-start relative">
+            <div className="flex flex-col items-center justify-center relative">
               <img
                 src={assinaturaImg}
                 alt="Assinatura Ramaiane"
-                className="w-auto object-contain select-none filter invert brightness-200 contrast-120"
-                style={{ height: 'clamp(70px, 9vw, 95px)' }}
+                className="w-auto object-contain select-none filter invert brightness-200 contrast-120 mx-auto"
+                style={{ height: 'clamp(95px, 11vw, 130px)' }}
               />
             </div>
           </div>

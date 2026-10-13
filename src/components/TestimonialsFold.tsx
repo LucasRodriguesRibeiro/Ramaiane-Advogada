@@ -92,11 +92,11 @@ export const TestimonialsFold: React.FC<TestimonialsFoldProps> = () => {
         {/* Section Header - Centered with Logo */}
         <div className="space-y-4 text-center max-w-3xl mx-auto">
           {/* Central Logo - Above Title */}
-          <div className="flex items-center justify-center mx-auto pb-1">
+          <div className="flex items-center justify-center mx-auto pb-2">
             <img 
               src={logoImg} 
               alt="Deyse Ramaiane Advocacia" 
-              className="w-7 h-7 object-contain opacity-75 filter brightness-110" 
+              className="w-12 h-12 sm:w-14 sm:h-14 object-contain opacity-90 filter brightness-110 drop-shadow-md" 
             />
           </div>
 

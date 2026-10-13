@@ -50,11 +50,11 @@ interface NucleoItem {
 }
 
 export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSelectNucleo }) => {
-  // Estado para controlar a expansao de cada núcleo individualmente
+  // Estado para controlar a expansao de cada núcleo individualmente (iniciam recolhidas)
   const [expandedNucleos, setExpandedNucleos] = useState<Record<string, boolean>>({
-    'penal-tradicional': true,
-    'penal-empresarial': true,
-    'penal-medico': true
+    'penal-tradicional': false,
+    'penal-empresarial': false,
+    'penal-medico': false
   });
 
   const nucleosData: NucleoItem[] = [

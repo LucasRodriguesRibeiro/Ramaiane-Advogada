@@ -110,20 +110,6 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               </a>
             </li>
             <li>
-              <a 
-                href="/instagrambio" 
-                onClick={(e) => {
-                  if (onNavigateBio) {
-                    e.preventDefault();
-                    onNavigateBio();
-                  }
-                }}
-                className="hover:text-[#F7F7F5] transition-colors text-[#D4AF37]"
-              >
-                Link na Bio (Instagram)
-              </a>
-            </li>
-            <li>
               <a href="#contato" className="hover:text-[#F7F7F5] transition-colors">Contato</a>
             </li>
           </ul>

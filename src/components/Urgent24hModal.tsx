@@ -15,6 +15,7 @@ const SITUACOES = [
   'Organização criminosa',
   'Mandado de prisão',
   'Audiência de custódia',
+  'Outras demandas criminais',
 ];
 
 export const Urgent24hModal: React.FC<Urgent24hModalProps> = ({
@@ -126,6 +127,8 @@ export const Urgent24hModal: React.FC<Urgent24hModalProps> = ({
                       type="button"
                       onClick={() => setSelectedSituacao(isSelected ? '' : sit)}
                       className={`py-2.5 sm:py-3 px-2 sm:px-3 rounded-lg text-xs sm:text-[13px] font-normal text-center transition-all cursor-pointer border ${
+                        sit === 'Outras demandas criminais' ? 'col-span-2' : ''
+                      } ${
                         isSelected
                           ? 'bg-[#2A1215] border-[#DC2626] text-white font-medium ring-1 ring-[#DC2626]/50 shadow-sm'
                           : 'bg-[#18191E] border-[#2A2B32] text-[#E4E4E7] hover:bg-[#202128] hover:border-[#3D3F49]'
