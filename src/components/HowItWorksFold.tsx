@@ -59,34 +59,34 @@ export const HowItWorksFold: React.FC<HowItWorksFoldProps> = () => {
         </div>
 
         {/* 4 Steps Centralized Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
           {steps.map((step) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.num}
-                className="bg-[#121316] border border-[#74777C]/20 p-7 sm:p-8 rounded-xl shadow-md hover:border-[#B8BBC0]/50 transition-all duration-300 flex flex-col items-center text-center space-y-4 group"
+                className="w-full max-w-[280px] aspect-square rounded-full bg-[#121316] border border-[#74777C]/25 hover:border-[#B8BBC0]/60 p-6 sm:p-7 shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center text-center space-y-2 group"
               >
                 {/* Circle Number Badge */}
-                <div className="w-11 h-11 rounded-full border border-[#74777C]/40 flex items-center justify-center font-mono text-xs font-semibold text-[#B8BBC0] group-hover:border-[#B8BBC0] group-hover:text-white transition-colors">
+                <div className="w-8 h-8 rounded-full border border-[#74777C]/40 flex items-center justify-center font-mono text-[11px] font-semibold text-[#B8BBC0] group-hover:border-[#B8BBC0] group-hover:text-white transition-colors">
                   {step.num}
                 </div>
 
                 {/* Icon */}
-                <div className="text-[#E2E4E8] group-hover:text-white transition-colors pt-1">
-                  <Icon className="w-6 h-6 stroke-[1.5]" />
+                <div className="text-[#E2E4E8] group-hover:text-white transition-colors">
+                  <Icon className="w-5 h-5 stroke-[1.5]" />
                 </div>
 
                 {/* Title */}
-                <h3 className="font-semibold text-xs sm:text-[13px] tracking-wider uppercase text-[#F7F7F5] leading-snug">
+                <h3 className="font-semibold text-[11px] sm:text-xs tracking-wider uppercase text-[#F7F7F5] leading-tight px-2 min-h-[28px] flex items-center justify-center">
                   {step.title}
                 </h3>
 
                 {/* Small Divider */}
-                <div className="w-8 h-[1.5px] bg-[#B8BBC0]/40"></div>
+                <div className="w-6 h-[1px] bg-[#B8BBC0]/40"></div>
 
                 {/* Description */}
-                <p className="text-xs text-[#B8BBC0] leading-relaxed font-light">
+                <p className="text-[10.5px] sm:text-[11px] text-[#B8BBC0] leading-snug font-light px-3 max-w-[220px]">
                   {step.desc}
                 </p>
               </div>

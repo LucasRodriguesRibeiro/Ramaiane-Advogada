@@ -3,12 +3,10 @@ import {
   Shield, 
   Building2, 
   Stethoscope, 
-  Sparkles,
   ArrowRight,
   Search,
   Gavel,
   Lock,
-  ShieldAlert,
   Scale,
   Landmark,
   DollarSign,
@@ -175,24 +173,6 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
           title: "Profissionais de estética",
           sub: "Dentistas, biomédicos, enfermeiros e demais profissionais habilitados",
           icon: UserCheck
-        },
-        {
-          id: "estetica-clinicas",
-          title: "Clínicas e espaços de estética",
-          sub: "Responsabilidade penal, investigações e gestão de crises",
-          icon: Building2
-        },
-        {
-          id: "estetica-procedimentos",
-          title: "Procedimentos injetáveis e harmonização facial",
-          sub: "Riscos penais específicos desses procedimentos",
-          icon: Sparkles
-        },
-        {
-          id: "estetica-exercicio-ilegal",
-          title: "Exercício ilegal e lesão corporal",
-          sub: "Defesa em acusações de exercício ilegal da profissão ou lesão corporal",
-          icon: ShieldAlert
         }
       ]
     }

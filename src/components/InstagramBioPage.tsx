@@ -1,7 +1,9 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Share2, MoreVertical, Check, Sparkles } from 'lucide-react';
 import { EmergencyContact } from '../types';
 import dobra2Img from '../assets/images/dobra2.jpeg';
+import novanovadobra1Img from '../assets/images/novanovadobra1.png';
+import dobra1Img from '../assets/images/dobra1.jpg';
 
 interface InstagramBioPageProps {
   contact: EmergencyContact;
@@ -25,159 +27,290 @@ const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" 
   </svg>
 );
 
+// Crisp official Instagram icon
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    className={className} 
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </svg>
+);
+
+// Crisp official TikTok icon
+const TikTokIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    className={className} 
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.88-4.48V8.34a8.16 8.16 0 0 0 4.84 1.57v-3.22h-.95z"/>
+  </svg>
+);
+
 export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
   contact,
   onNavigateHome,
 }) => {
+  const [copied, setCopied] = useState(false);
+
   React.useEffect(() => {
-    document.title = 'Link na Bio | Dra. Deyse Ramaiane - Advocacia Estratégica';
+    document.title = 'RAMAIANE | Advocacia Criminal Especializada';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const waPlantaoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Preciso de orientação jurídica com urgência sobre um caso criminal. Podemos conversar?')}`;
-  const waEmpresarialUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Sou empresário(a) e gostaria de atendimento sobre compliance e gestão de risco para minha empresa.')}`;
-  const waMedicoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Sou profissional da saúde ou represento uma clínica e gostaria de atendimento sobre assessoria, defesa e gestão de risco.')}`;
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'RAMAIANE | Advocacia Criminal Especializada',
+          url,
+        });
+      } catch {
+        // Fallback to copy
+        copyToClipboard(url);
+      }
+    } else {
+      copyToClipboard(url);
+    }
+  };
+
+  const copyToClipboard = (url: string) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  const navigateToArticle = (slug: string) => {
+    window.history.pushState({}, '', `/artigo/${slug}`);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
+
+  const navigateToHomeSection = (hash: string) => {
+    onNavigateHome();
+    setTimeout(() => {
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
+  const waFaleComigoUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent('Olá, Dra. Ramaiane! Gostaria de falar com você.')}`;
 
   return (
-    <div className="min-h-screen bg-[#0B0B0C] text-[#F7F7F5] flex flex-col items-center justify-start font-sans-clean px-4 sm:px-6 py-8 sm:py-12 selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
+    <div className="min-h-screen bg-gradient-to-b from-[#242426] via-[#1A1A1C] to-[#121214] text-[#F7F7F5] flex flex-col items-center justify-start font-sans px-4 sm:px-6 py-5 sm:py-7 selection:bg-[#B8BBC0] selection:text-[#0B0B0C]">
       
       {/* Centered Mobile-First Column */}
-      <div className="w-full max-w-[430px] flex flex-col space-y-6">
+      <div className="w-full max-w-[430px] flex flex-col">
         
-        {/* Header: Photo + Name + Profession */}
-        <header className="flex flex-col items-center text-center pt-2 space-y-4">
+        {/* Top Floating Action Bar */}
+        <div className="w-full flex items-center justify-between mb-2">
+          {/* Top Left Icon */}
+          <button
+            type="button"
+            onClick={onNavigateHome}
+            aria-label="Início"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
+          >
+            <Sparkles className="w-4 h-4 text-white/90" />
+          </button>
+
+          {/* Top Right Share Button */}
+          <button
+            type="button"
+            onClick={handleShare}
+            aria-label="Compartilhar"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer relative backdrop-blur-sm"
+          >
+            {copied ? (
+              <Check className="w-4 h-4 text-emerald-400" />
+            ) : (
+              <Share2 className="w-4 h-4 text-white/90" />
+            )}
+            {copied && (
+              <span className="absolute -bottom-7 right-0 text-[10px] bg-black/90 text-white px-2 py-0.5 rounded shadow whitespace-nowrap animate-fadeIn">
+                Link copiado!
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Profile Header */}
+        <header className="flex flex-col items-center text-center mt-1 mb-5">
           {/* Circular Photo Avatar */}
-          <div className="relative">
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-[2.5px] bg-gradient-to-b from-[#E2C792] via-[#C5A880] to-[#7E6032] shadow-[0_0_28px_rgba(197,168,128,0.25)]">
-              <div className="w-full h-full rounded-full overflow-hidden bg-[#111112]">
-                <img
-                  src={dobra2Img}
-                  alt="Dra. Deyse Ramaiane - Advocacia Estratégica"
-                  className="w-full h-full object-cover object-[center_16%]"
-                />
-              </div>
-            </div>
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border border-white/10 shadow-2xl bg-[#111112]">
+            <img
+              src={novanovadobra1Img}
+              alt="Ramaiane"
+              className="w-full h-full object-cover object-[center_15%]"
+            />
           </div>
 
           {/* Name & Title */}
-          <div className="space-y-0.5">
-            <h1 className="font-serif-title text-[40px] sm:text-[46px] font-normal leading-tight text-[#F7F7F5] tracking-tight">
-              Ramaiane
-            </h1>
-            <p className="font-serif-title text-[18px] sm:text-[21px] font-light text-[#D1D5DB] tracking-wide">
-              Advogada Criminalista
-            </p>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-wider text-white uppercase text-center mt-3.5">
+            RAMAIANE
+          </h1>
+          <p className="text-xs sm:text-sm font-medium text-[#D1D5DB] text-center mt-1">
+            Advocacia Criminal Especializada.
+          </p>
+
+          {/* Social Icons Row */}
+          <div className="flex items-center justify-center gap-6 mt-4 text-white">
+            <a
+              href={waFaleComigoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="text-white hover:text-emerald-400 hover:scale-110 transition-all duration-200"
+            >
+              <WhatsAppIcon className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.instagram.com/ramaianeadv/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-white hover:text-pink-400 hover:scale-110 transition-all duration-200"
+            >
+              <InstagramIcon className="w-6 h-6" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@ramaianeadv"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="text-white hover:text-cyan-400 hover:scale-110 transition-all duration-200"
+            >
+              <TikTokIcon className="w-6 h-6" />
+            </a>
           </div>
         </header>
 
-        {/* Section Divider: ATENDIMENTO POR WHATSAPP */}
-        <div className="flex items-center gap-3 pt-1">
-          <div className="h-[1px] flex-1 bg-[#27272A]"></div>
-          <span className="text-[10px] sm:text-[11px] tracking-[0.22em] text-[#71717A] uppercase font-medium whitespace-nowrap">
-            ATENDIMENTO POR WHATSAPP
-          </span>
-          <div className="h-[1px] flex-1 bg-[#27272A]"></div>
-        </div>
-
-        {/* Cards Stack */}
-        <div className="space-y-3.5">
+        {/* Primary Stack of Pill Buttons */}
+        <div className="space-y-3">
           
-          {/* Card 1: PLANTÃO 24H - Defesa criminal (Light / Off-white Card) */}
+          {/* Button 1: FALE COMIGO */}
           <a
-            href={waPlantaoUrl}
+            href={waFaleComigoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full block bg-[#EDE9E1] hover:bg-[#E5E0D6] rounded-2xl p-5 sm:p-6 transition-all duration-200 group shadow-md active:scale-[0.99] cursor-pointer"
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
-            <div className="flex items-center justify-between gap-4">
-              <div className="text-left min-w-0 flex-1">
-                <div className="inline-block border border-[#0B0B0C]/40 rounded-[3px] px-2 py-0.5 text-[9px] sm:text-[10px] tracking-[0.16em] font-medium text-[#0B0B0C] uppercase mb-2">
-                  PLANTÃO 24H
-                </div>
-                <h2 className="font-serif-title text-[23px] sm:text-[25px] font-semibold text-[#0B0B0C] leading-snug">
-                  Defesa criminal
-                </h2>
-                <p className="text-[12px] sm:text-[13px] text-[#52525B] font-light mt-0.5">
-                  Atendimento imediato
-                </p>
-              </div>
+            {/* Left WhatsApp Circle */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A2A2E] flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform duration-200">
+              <WhatsAppIcon className="w-5 h-5 text-white" />
+            </div>
 
-              {/* WhatsApp Button (Black Circle, White Icon) */}
-              <div className="w-12 h-12 rounded-full bg-[#0B0B0C] text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-sm">
-                <WhatsAppIcon className="w-6 h-6 text-white" />
-              </div>
+            {/* Center Label */}
+            <span className="font-bold text-xs sm:text-[14px] text-white tracking-wider uppercase text-center flex-1 px-2">
+              FALE COMIGO
+            </span>
+
+            {/* Right Three Dots */}
+            <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
+              <MoreVertical className="w-4 h-4" />
             </div>
           </a>
 
-          {/* Card 2: Penal empresarial e econômico (Dark Card) */}
-          <a
-            href={waEmpresarialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full block bg-[#111112] hover:bg-[#151517] border border-[#27272A] hover:border-[#3F3F46] rounded-2xl p-5 sm:p-6 transition-all duration-200 group active:scale-[0.99] cursor-pointer"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div className="text-left min-w-0 flex-1">
-                <h2 className="font-serif-title text-[20px] sm:text-[22px] font-medium text-[#F7F7F5] leading-snug group-hover:text-white transition-colors">
-                  Penal empresarial e econômico
-                </h2>
-                <p className="text-[12px] sm:text-[13px] text-[#8E9196] font-light mt-1">
-                  Defesa, compliance e gestão de risco
-                </p>
-              </div>
-
-              {/* WhatsApp Button (Circle with border, White Icon) */}
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-transparent border border-[#3A3A3E] text-white flex items-center justify-center shrink-0 group-hover:border-white/60 group-hover:scale-105 transition-all duration-200">
-                <WhatsAppIcon className="w-5 h-5 text-white" />
-              </div>
-            </div>
-          </a>
-
-          {/* Card 3: Penal médico e estético (Dark Card) */}
-          <a
-            href={waMedicoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full block bg-[#111112] hover:bg-[#151517] border border-[#27272A] hover:border-[#3F3F46] rounded-2xl p-5 sm:p-6 transition-all duration-200 group active:scale-[0.99] cursor-pointer"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div className="text-left min-w-0 flex-1">
-                <h2 className="font-serif-title text-[20px] sm:text-[22px] font-medium text-[#F7F7F5] leading-snug group-hover:text-white transition-colors">
-                  Penal médico e estético
-                </h2>
-                <p className="text-[12px] sm:text-[13px] text-[#A1A1AA] font-normal mt-1">
-                  Profissionais e clínicas
-                </p>
-                <p className="text-[11px] sm:text-[12px] text-[#8E9196] font-light mt-0.5">
-                  Assessoria, defesa e gestão de risco
-                </p>
-              </div>
-
-              {/* WhatsApp Button (Circle with border, White Icon) */}
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-transparent border border-[#3A3A3E] text-white flex items-center justify-center shrink-0 group-hover:border-white/60 group-hover:scale-105 transition-all duration-200">
-                <WhatsAppIcon className="w-5 h-5 text-white" />
-              </div>
-            </div>
-          </a>
-
-          {/* Card 4: Conhecer o escritório (Navigation link) */}
+          {/* Button 2: QUEM SOU EU */}
           <button
-            onClick={onNavigateHome}
-            className="w-full text-left p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-[#111112] border border-transparent hover:border-[#27272A] flex items-center justify-between group transition-all duration-200 cursor-pointer pt-4"
+            type="button"
+            onClick={() => navigateToHomeSection('sobre')}
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
-            <div className="min-w-0 flex-1">
-              <h3 className="font-serif-title text-[18px] sm:text-[20px] font-medium text-[#F7F7F5] group-hover:text-white transition-colors">
-                Conhecer o escritório
-              </h3>
-              <p className="text-[12px] sm:text-[13px] text-[#8E9196] font-light mt-0.5">
-                Trajetória e frentes de atuação
-              </p>
+            {/* Left Photo Circle */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-white/20 shrink-0 group-hover:scale-105 transition-transform duration-200 bg-[#111112]">
+              <img
+                src={dobra2Img}
+                alt="Quem sou eu"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
-            <ArrowRight className="w-4 h-4 text-[#8E9196] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 ml-2" />
+
+            {/* Center Label */}
+            <span className="font-bold text-xs sm:text-[14px] text-white tracking-wider uppercase text-center flex-1 px-2">
+              QUEM SOU EU
+            </span>
+
+            {/* Right Three Dots */}
+            <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </button>
+
+          {/* Button 3: MINHA ATUAÇÃO */}
+          <button
+            type="button"
+            onClick={() => navigateToHomeSection('nucleos-penais')}
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            {/* Left Photo Circle */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-white/20 shrink-0 group-hover:scale-105 transition-transform duration-200 bg-[#111112]">
+              <img
+                src={dobra1Img}
+                alt="Minha atuação"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+
+            {/* Center Label */}
+            <span className="font-bold text-xs sm:text-[14px] text-white tracking-wider uppercase text-center flex-1 px-2">
+              MINHA ATUAÇÃO
+            </span>
+
+            {/* Right Three Dots */}
+            <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
+              <MoreVertical className="w-4 h-4" />
+            </div>
           </button>
 
         </div>
 
+        {/* Guides Section Header */}
+        <div className="mt-7 mb-3 text-center">
+          <h2 className="text-xs sm:text-[13px] font-bold tracking-wider text-white uppercase">
+            GUIAS: EMPRESÁRIOS E PROFISSIONAIS DA SAÚDE
+          </h2>
+        </div>
+
+        {/* Guides Stack of Pill Buttons */}
+        <div className="space-y-3">
+          
+          {/* Guide 1: Prevenção para empresários */}
+          <button
+            type="button"
+            onClick={() => navigateToArticle('direito-penal-empresarial-crimes-tributarios-e-compliance')}
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
+              Prevenção para empresários: leia agora.
+            </span>
+            <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </button>
+
+          {/* Guide 2: Prevenção penal para profissionais da saúde */}
+          <button
+            type="button"
+            onClick={() => navigateToArticle('direito-penal-medico-defesa-em-suposto-erro-medico')}
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
+              Prevenção penal para profissionais da saúde: leia agora
+            </span>
+            <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </button>
+
+        </div>
 
       </div>
 
