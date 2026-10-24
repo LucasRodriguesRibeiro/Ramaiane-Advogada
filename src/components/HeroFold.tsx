@@ -16,14 +16,14 @@ export const HeroFold: React.FC<HeroFoldProps> = ({ onOpenEmergencyModal }) => {
         {/* Mobile Photo */}
         <img
           src={dobra1MobileImg}
-          alt="Deyse Ramaiane - Advocacia Criminal"
+          alt="Deyse Ramaiane Santos de Souza, advogada criminalista"
           className="block lg:hidden w-full h-full object-cover object-[82%_5%] scale-[1.30] sm:scale-[1.18] translate-x-4 -translate-y-6 sm:translate-x-2 sm:-translate-y-4 contrast-105 brightness-105 opacity-95 transition-all duration-300"
         />
 
         {/* Desktop Photo */}
         <img
           src={dobra1Img}
-          alt="Deyse Ramaiane - Advocacia Criminal"
+          alt="Deyse Ramaiane Santos de Souza, advogada criminalista"
           className="hidden lg:block w-full h-full object-cover object-[70%_50%] scale-[1.05] contrast-105 brightness-105 opacity-100 transition-all duration-300"
         />
         

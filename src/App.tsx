@@ -101,7 +101,7 @@ export default function App() {
 
   const emergencyContact: EmergencyContact = {
     lawyerName: "Ramaiane Advogada",
-    oabNumber: "OAB/AM 13.701",
+    oabNumber: "OAB/AM 12.601",
     phone: "(92) 99348-0017",
     whatsappNumber: "5592993480017",
     whatsappMessage: "Olá, Dra. Ramaiane. Gostaria de obter informações sobre atendimento jurídico na área criminal e agendar uma consulta.",
@@ -122,7 +122,7 @@ export default function App() {
       setIsBlogPageActive(false);
       setIsBioPageActive(false);
       setCurrentArticle(null);
-      document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+      document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
       return;
     }
 
@@ -177,7 +177,7 @@ export default function App() {
     setIsBlogPageActive(false);
     setIsBioPageActive(false);
     setCurrentArticle(null);
-    document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+    document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
   };
 
   // Sincroniza lista de artigos e rota atual
@@ -258,7 +258,7 @@ export default function App() {
     setIsBlogPageActive(false);
     setIsBioPageActive(false);
     window.history.pushState({}, '', '/');
-    document.title = 'Deyse Ramaiane | Advocacia Estratégica';
+    document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 

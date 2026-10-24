@@ -61,7 +61,8 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
             />
           </a>
           <div className="text-sm text-[#D1D4D9] space-y-1">
-            <p className="font-semibold text-[#F7F7F5] uppercase tracking-wider">DEYSE RAMAIANE</p>
+            <p className="font-semibold text-[#F7F7F5] uppercase tracking-wider">Deyse Ramaiane Santos de Souza</p>
+            <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">OAB/AM 12.601</p>
             <p className="text-xs text-[#9DA0A6] uppercase tracking-widest">Advogada Criminalista</p>
           </div>
         </div>
@@ -137,7 +138,10 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
 
             <div className="flex items-start space-x-3">
               <MapPin className="w-5 h-5 text-[#9DA0A6] shrink-0 mt-0.5" />
-              <span className="text-[#D1D4D9] text-xs sm:text-sm leading-snug">Atendimento remoto em todo Brasil.</span>
+              <div className="text-[#D1D4D9] text-xs sm:text-sm leading-relaxed text-left">
+                <p>Atendimento presencial: Juazeiro/BA e Petrolina/PE.</p>
+                <p>Atendimento remoto: em todo o Brasil.</p>
+              </div>
             </div>
           </div>
         </div>

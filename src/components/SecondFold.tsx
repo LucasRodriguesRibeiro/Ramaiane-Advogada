@@ -29,14 +29,14 @@ export const SecondFold: React.FC = () => {
               SOBRE MIM
             </span>
             <h2 className="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-normal text-[#F7F7F5] tracking-wide">
-              Prazer, Ramaiane.
+              Deyse Ramaiane Santos de Souza
             </h2>
           </div>
 
           {/* Paragraphs */}
           <div className="space-y-4 text-[#D1D4D9] text-base sm:text-[17px] leading-relaxed font-light text-justify">
             <p>
-              Advogada criminalista, com dez anos de atuação dedicada ao Direito Penal, voltada à defesa de pessoas físicas em situações que envolvem investigações, acusações e processos criminais, bem como à defesa de empresários, clínicas e profissionais da saúde sob a ótica penal.
+              Advogada criminalista, inscrita na OAB/AM sob o nº 12.601, com dez anos de atuação dedicada ao Direito Penal e atendimento remoto em todo o Brasil. Atua na defesa de pessoas físicas em situações que envolvem investigações, acusações e processos criminais, bem como na defesa de empresários, clínicas e profissionais da saúde sob a ótica penal.
             </p>
             <p>
               Na atuação empresarial, trabalho com defesa criminal, assessoria preventiva, compliance e gestão de riscos penais, considerando as particularidades de cada negócio e os riscos relacionados à sua atividade.

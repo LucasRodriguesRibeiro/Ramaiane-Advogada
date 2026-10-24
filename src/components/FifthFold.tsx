@@ -64,37 +64,49 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       fallbackImage: penal1Img,
       title: "DEFESA CRIMINAL",
       subtitle: "Defesa de pessoas físicas",
-      desc: "Atuação estratégica na defesa da liberdade e dos direitos fundamentais em todas as fases da persecução penal.",
+      desc: "Defesa da liberdade desde o primeiro momento: da abordagem policial aos Tribunais Superiores.",
       caixas: [
         {
-          id: "operacoes-policiais",
-          title: "Operações policiais e prisão em flagrante",
-          sub: "Busca e apreensão, flagrante, medidas cautelares",
+          id: "prisao-flagrante",
+          title: "Prisão em flagrante e audiência de custódia",
+          sub: "Atuação imediata para pedir liberdade provisória e relaxamento da prisão",
           icon: Search
         },
         {
           id: "trafico-drogas",
-          title: "Tráfico de drogas e crimes interestaduais",
-          sub: "Lei de Drogas, tráfico local, interestadual e internacional",
+          title: "Tráfico de drogas e associação para o tráfico",
+          sub: "Lei de Drogas: tráfico local, interestadual e internacional",
           icon: Scale
         },
         {
+          id: "operacoes-policiais",
+          title: "Operações policiais e organização criminosa",
+          sub: "Busca e apreensão, prisões preventivas e grandes operações",
+          icon: Gavel
+        },
+        {
+          id: "inquerito-investigacoes",
+          title: "Inquérito policial e investigações",
+          sub: "Acompanhamento de depoimentos e defesa antes da denúncia",
+          icon: Search
+        },
+        {
+          id: "violencia-domestica",
+          title: "Violência doméstica (Lei Maria da Penha)",
+          sub: "Defesa do acusado e atuação em medidas protetivas",
+          icon: Shield
+        },
+        {
           id: "defesa-tribunais",
-          title: "Tribunais superiores e recursos criminais",
-          sub: "Habeas corpus, recursos, sustentações orais",
+          title: "Habeas corpus e recursos nos Tribunais Superiores",
+          sub: "TJ, STJ e STF, com recursos e sustentação oral",
           icon: Landmark
         },
         {
           id: "execucao-penal",
           title: "Execução penal e sistema prisional",
-          sub: "Progressão de regime, livramento condicional",
+          sub: "Progressão de regime, livramento condicional, remição e transferência",
           icon: Lock
-        },
-        {
-          id: "outras-demandas",
-          title: "Outras demandas criminais",
-          sub: "Situações da esfera penal não listadas acima",
-          icon: Gavel
         }
       ]
     },
@@ -106,31 +118,49 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       fallbackImage: penal2Img,
       title: "PENAL EMPRESARIAL E ECONÔMICO",
       subtitle: "Empresas, executivos e negócios",
-      desc: "Proteção penal estratégica para empresas, executivos e profissionais expostos a riscos criminais corporativos.",
+      desc: "Proteção penal para empresas, sócios e gestores, com prevenção antes do problema e defesa quando ele chega.",
       caixas: [
         {
-          id: "empresarios",
-          title: "Criminal empresarial e compliance",
-          sub: "Empresas, sócios, administradores e executivos",
+          id: "operacao-policial-empresa",
+          title: "Operação policial na empresa",
+          sub: "Protocolo de atuação em busca e apreensão e acompanhamento no mesmo dia",
           icon: Building2
         },
         {
           id: "crimes-economicos",
-          title: "Crimes econômicos e tributários",
-          sub: "Lavagem de dinheiro, fraudes e crimes tributários",
+          title: "Lavagem de dinheiro e crimes econômicos",
+          sub: "Investigações financeiras, bloqueio e sequestro de bens",
           icon: DollarSign
+        },
+        {
+          id: "crimes-tributarios",
+          title: "Crimes tributários",
+          sub: "Sonegação, apropriação indébita tributária e representação fiscal",
+          icon: FileText
         },
         {
           id: "fraudes-empresariais",
           title: "Fraudes empresariais e patrimoniais",
-          sub: "Estelionato, apropriação indébita, falsidade",
+          sub: "Estelionato, apropriação indébita e falsidade documental",
           icon: FileText
+        },
+        {
+          id: "responsabilidade-gestores",
+          title: "Responsabilidade penal de sócios e gestores",
+          sub: "Defesa de administradores, diretores e executivos",
+          icon: UserCheck
         },
         {
           id: "crimes-digitais",
           title: "Crimes digitais e cibernéticos",
-          sub: "Fraudes virtuais, vazamentos de dados",
+          sub: "Fraudes virtuais, golpes por Pix, invasão de dispositivos e vazamento de dados",
           icon: Monitor
+        },
+        {
+          id: "compliance-penal",
+          title: "Compliance e prevenção penal",
+          sub: "Mapeamento de riscos, políticas internas e investigação interna",
+          icon: Shield
         }
       ]
     },
@@ -142,37 +172,49 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
       fallbackImage: penal3Img,
       title: "DIREITO PENAL MÉDICO E DA SAÚDE",
       subtitle: "Médicos, clínicas, hospitais e estética",
-      desc: "Defesa especializada para médicos, clínicas, hospitais e profissionais de saúde e estética.",
+      desc: "Defesa e prevenção penal para médicos, dentistas, biomédicos, enfermeiros e clínicas.",
       caixas: [
         {
-          id: "medicos",
-          title: "Médicos e conselhos de classe",
-          sub: "Erro médico, responsabilidade clínica, CRM",
+          id: "erro-medico",
+          title: "Erro médico na esfera penal",
+          sub: "Defesa em inquéritos e ações por lesão ou óbito de paciente",
+          icon: UserCheck
+        },
+        {
+          id: "processo-etico",
+          title: "Processo ético nos conselhos de classe",
+          sub: "Defesa em sindicâncias e processos ético-profissionais no CRM, CRO e COREN",
+          icon: Gavel
+        },
+        {
+          id: "estetica-profissionais",
+          title: "Estética e harmonização",
+          sub: "Dentistas, biomédicos, enfermeiros e demais profissionais habilitados",
           icon: UserCheck
         },
         {
           id: "clinicas-gestao",
           title: "Clínicas, hospitais e laboratórios",
-          sub: "Responsabilidade penal, investigações, gestão de crise",
+          sub: "Investigações, vigilância sanitária e gestão de crise",
           icon: Hospital
         },
         {
-          id: "responsabilizacao-penal",
-          title: "Responsabilização penal e processos",
-          sub: "Inquéritos, denúncias, acusações",
-          icon: Shield
-        },
-        {
-          id: "acompanhamento-juridico",
-          title: "Consultoria e prevenção penal",
-          sub: "Gestão preventiva de riscos na atividade médica",
+          id: "medicamentos-receitas",
+          title: "Medicamentos controlados e receitas",
+          sub: "Prescrição, armazenamento e fiscalização",
           icon: Stethoscope
         },
         {
-          id: "estetica-profissionais",
-          title: "Profissionais de estética",
-          sub: "Dentistas, biomédicos, enfermeiros e demais profissionais habilitados",
-          icon: UserCheck
+          id: "fraudes-sus-convenios",
+          title: "Fraudes em SUS e convênios",
+          sub: "Investigações de faturamento e auditorias",
+          icon: FileText
+        },
+        {
+          id: "prevencao-penal-saude",
+          title: "Prevenção penal na saúde",
+          sub: "Prontuário, termo de consentimento e protocolos de segurança",
+          icon: Shield
         }
       ]
     }
@@ -290,6 +332,19 @@ export const FifthFold: React.FC<FifthFoldProps> = ({ onOpenEmergencyModal, onSe
                         </div>
                       );
                     })}
+                    {nucleo.id === 'penal-tradicional' && (
+                      <p className="pt-2 text-center text-xs text-[#B8BBC0]">
+                        Seu caso não está aqui? Fale com a advogada.
+                      </p>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleCaixaClick(nucleo.id)}
+                      className="w-full mt-3 py-3.5 px-4 bg-[#F7F7F5] hover:bg-white text-[#0B0B0C] rounded-lg text-xs font-bold uppercase tracking-widest flex items-center justify-center space-x-2 transition-all duration-300 shadow-md cursor-pointer"
+                    >
+                      <span>FALAR SOBRE O MEU CASO</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
                   </div>
                 )}
 
