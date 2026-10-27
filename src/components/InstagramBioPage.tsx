@@ -4,6 +4,7 @@ import { EmergencyContact } from '../types';
 import dobra2Img from '../assets/images/dobra2.jpeg';
 import novanovadobra1Img from '../assets/images/novanovadobra1.png';
 import dobra1Img from '../assets/images/dobra1.jpg';
+import logoImg from '../assets/images/logoadvogada.png';
 
 interface InstagramBioPageProps {
   contact: EmergencyContact;
@@ -219,9 +220,10 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
           </a>
 
           {/* Button 2: QUEM SOU EU */}
-          <button
-            type="button"
-            onClick={() => navigateToHomeSection('sobre')}
+          <a
+            href="https://claude.ai/artifact/2PctZ3HMoLS9Njn7kwTcNb"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
             {/* Left Photo Circle */}
@@ -242,12 +244,13 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
             <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
               <MoreVertical className="w-4 h-4" />
             </div>
-          </button>
+          </a>
 
           {/* Button 3: MINHA ATUAÇÃO */}
-          <button
-            type="button"
-            onClick={() => navigateToHomeSection('nucleos-penais')}
+          <a
+            href="https://claude.ai/artifact/7mqcQzRhyhRg42ABQjLxUS"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
             {/* Left Photo Circle */}
@@ -268,7 +271,90 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
             <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
               <MoreVertical className="w-4 h-4" />
             </div>
+          </a>
+
+          {/* Button 4: NOSSO ESCRITÓRIO */}
+          <button
+            type="button"
+            onClick={onNavigateHome}
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full p-2.5 sm:p-3 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            {/* Left Logo Circle */}
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-white/20 shrink-0 group-hover:scale-105 transition-transform duration-200 bg-[#111112] flex items-center justify-center p-1.5">
+              <img
+                src={logoImg}
+                alt="Nosso Escritório"
+                className="w-full h-full object-contain"
+              />
+            </div>
+
+            {/* Center Label */}
+            <span className="font-medium text-xs sm:text-[14px] text-white tracking-wide text-center flex-1 px-2">
+              Nosso Escritório
+            </span>
+
+            {/* Right Three Dots */}
+            <div className="w-6 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0 mr-1.5">
+              <MoreVertical className="w-4 h-4" />
+            </div>
           </button>
+
+        </div>
+
+        {/* Guides for Families Section Header */}
+        <div className="mt-7 mb-3 text-center">
+          <h2 className="text-xs sm:text-[13px] font-bold tracking-wider text-white uppercase">
+            GUIAS PARA FAMILIARES
+          </h2>
+        </div>
+
+        {/* Guides for Families Stack */}
+        <div className="space-y-3">
+          
+          {/* Guide 1: Meu familiar foi PRESO: o que fazer */}
+          <a
+            href="https://claude.ai/artifact/TY2LdTfgx93SvDeZ3zSjch"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
+              Meu familiar foi PRESO: o que fazer
+            </span>
+            <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </a>
+
+          {/* Guide 2: Meu familiar foi CONDENADO. E agora? */}
+          <a
+            href="https://claude.ai/artifact/Mwh35iuw8s8XcrHNWvepWV"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
+              Meu familiar foi CONDENADO. E agora?
+            </span>
+            <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </a>
+
+          {/* Guide 3: A polícia chegou com mandado de busca e apreensão: como agir. */}
+          <a
+            href="https://claude.ai/artifact/R2sQb8gTCCDQcv1jSfGXNo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-3.5 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
+          >
+            <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4 leading-snug">
+              A polícia chegou com mandado de busca e apreensão: como agir.
+            </span>
+            <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
+              <MoreVertical className="w-4 h-4" />
+            </div>
+          </a>
 
         </div>
 
@@ -283,9 +369,10 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
         <div className="space-y-3">
           
           {/* Guide 1: Prevenção para empresários */}
-          <button
-            type="button"
-            onClick={() => navigateToArticle('direito-penal-empresarial-crimes-tributarios-e-compliance')}
+          <a
+            href="https://claude.ai/artifact/1i11DmqdTNhtiZiktbGVN1"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
             <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
@@ -294,12 +381,13 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
             <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
               <MoreVertical className="w-4 h-4" />
             </div>
-          </button>
+          </a>
 
           {/* Guide 2: Prevenção penal para profissionais da saúde */}
-          <button
-            type="button"
-            onClick={() => navigateToArticle('direito-penal-medico-defesa-em-suposto-erro-medico')}
+          <a
+            href="https://claude.ai/artifact/Aac2WxKXxZ9t31DefQ7AXS"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full bg-[#1C1C1E] hover:bg-[#252528] border border-[#2E2E32] hover:border-[#424248] rounded-full py-4 px-5 sm:px-6 transition-all duration-200 flex items-center justify-between group shadow-lg active:scale-[0.99] cursor-pointer"
           >
             <span className="text-xs sm:text-[13.5px] text-[#E4E4E7] font-normal text-center flex-1 pl-4">
@@ -308,7 +396,7 @@ export const InstagramBioPage: React.FC<InstagramBioPageProps> = ({
             <div className="w-5 flex items-center justify-center text-[#71717A] group-hover:text-white transition-colors shrink-0">
               <MoreVertical className="w-4 h-4" />
             </div>
-          </button>
+          </a>
 
         </div>
 
