@@ -24,6 +24,8 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
   onNavigateHome,
   onNavigateBio
 }) => {
+  const googleBusinessUrl = 'https://www.google.com/maps?cid=10401693510461939261';
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -141,6 +143,15 @@ export const FooterFold: React.FC<FooterFoldProps> = ({
               <div className="text-[#D1D4D9] text-xs sm:text-sm leading-relaxed text-left">
                 <p>Atendimento presencial: Juazeiro/BA e Petrolina/PE.</p>
                 <p>Atendimento remoto: em todo o Brasil.</p>
+                <a
+                  href={googleBusinessUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 font-semibold text-[#F7F7F5] underline underline-offset-4 decoration-[#74777C] hover:decoration-[#F7F7F5] transition-colors"
+                  aria-label="Ver Deyse Ramaiane Advocacia Criminal no Google Maps"
+                >
+                  Ver perfil e avaliações no Google
+                </a>
               </div>
             </div>
           </div>

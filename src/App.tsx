@@ -122,7 +122,7 @@ export default function App() {
       setIsBlogPageActive(false);
       setIsBioPageActive(false);
       setCurrentArticle(null);
-      document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
+      document.title = 'Advogada Criminalista em Juazeiro e Petrolina | Deyse Ramaiane';
       return;
     }
 
@@ -177,7 +177,7 @@ export default function App() {
     setIsBlogPageActive(false);
     setIsBioPageActive(false);
     setCurrentArticle(null);
-    document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
+    document.title = 'Advogada Criminalista em Juazeiro e Petrolina | Deyse Ramaiane';
   };
 
   // Sincroniza lista de artigos e rota atual
@@ -258,7 +258,7 @@ export default function App() {
     setIsBlogPageActive(false);
     setIsBioPageActive(false);
     window.history.pushState({}, '', '/');
-    document.title = 'Ramaiane | Advogada Criminalista em Todo o Brasil';
+    document.title = 'Advogada Criminalista em Juazeiro e Petrolina | Deyse Ramaiane';
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
